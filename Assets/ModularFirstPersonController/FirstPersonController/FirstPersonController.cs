@@ -19,8 +19,14 @@ public class FirstPersonController : MonoBehaviour
     private Rigidbody rb;
 
     public int hp = 100;
+    public int max_hp = 100;
+
     private bool dashed = false;
-    private float dashduration = 1f;
+    public float max_stamina = 100f;
+    public float stamina = 100f;
+    private float last_stamina = 100f;
+    private float dashcooldown = 0.0f;
+    private float regenpausetimer = 1f;
     #region Camera Movement Variables
 
     public Camera playerCamera;
@@ -178,7 +184,7 @@ public class FirstPersonController : MonoBehaviour
         #region Sprint Bar
 
         sprintBarCG = GetComponentInChildren<CanvasGroup>();
-
+        stamina = max_stamina;
         if (useSprintBar)
         {
             sprintBarBG.gameObject.SetActive(true);
@@ -212,6 +218,10 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
+        #region HP
+        
+        #endregion
+
         #region Camera
 
         // Control camera movement
@@ -307,6 +317,18 @@ public class FirstPersonController : MonoBehaviour
             {
                 // Regain sprint while not sprinting
                 sprintRemaining = Mathf.Clamp(sprintRemaining += 1 * Time.deltaTime, 0, sprintDuration);
+                
+                dashcooldown = Mathf.Clamp(dashcooldown -= 1 * Time.deltaTime, 0, 1);
+                regenpausetimer = Mathf.Clamp(regenpausetimer -= 1 * Time.deltaTime, 0, 1);
+                if (last_stamina > stamina)
+                {
+                    regenpausetimer = 1;
+                    last_stamina = stamina;
+                }
+                if (regenpausetimer <= 0)
+                {
+                    stamina = Mathf.Clamp(stamina += 10 * Time.deltaTime, 0, max_stamina);
+                }
             }
 
             // Handles sprint cooldown 
@@ -396,24 +418,26 @@ public class FirstPersonController : MonoBehaviour
             {
                 isWalking = false;
             }
-            if (dashed == true)
+            if (Input.GetKey(KeyCode.R))
             {
-                //if (dashduration > 0) { isSprinting = true; }
-                //else { dashed = false;  }
+                hp -= 1;
             }
 
             if (!Input.GetKey(sprintKey) && dashed == true)
             {
+                dashcooldown = 0.5f;
+
                 dashed = false;
             }
             // All movement calculations shile sprint is active
-            if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && dashed == false)
+            if (enableSprint && Input.GetKey(sprintKey) && dashcooldown <= 0f && dashed == false && stamina > max_stamina/4 && isGrounded)
             {
                 dashed = true;
                 Vector3 Velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
                 Vector3 velocityChange = Vector3.Normalize(Velocity) * sprintSpeed;
                 rb.AddForce(velocityChange, ForceMode.Impulse);
-                sprintRemaining -= sprintDuration / 3;
+                stamina -= max_stamina / 4;
+                //regenpausetimer = 1;
                 //dashduration -= Time.deltaTime;
                 //targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
 
