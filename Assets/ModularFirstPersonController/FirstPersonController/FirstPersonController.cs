@@ -19,6 +19,8 @@ public class FirstPersonController : MonoBehaviour
     private Rigidbody rb;
 
     public int hp = 100;
+    private bool dashed = false;
+    private float dashduration = 1f;
     #region Camera Movement Variables
 
     public Camera playerCamera;
@@ -68,7 +70,7 @@ public class FirstPersonController : MonoBehaviour
     public bool enableSprint = true;
     public bool unlimitedSprint = false;
     public KeyCode sprintKey = KeyCode.LeftShift;
-    public float sprintSpeed = 7f;
+    public float sprintSpeed = 20f;
     public float sprintDuration = 5f;
     public float sprintCooldown = .5f;
     public float sprintFOV = 80f;
@@ -85,7 +87,7 @@ public class FirstPersonController : MonoBehaviour
     // Internal Variables
     private CanvasGroup sprintBarCG;
     private bool isSprinting = false;
-    private float sprintRemaining;
+    public float sprintRemaining;
     private float sprintBarWidth;
     private float sprintBarHeight;
     private bool isSprintCooldown = false;
@@ -387,37 +389,48 @@ public class FirstPersonController : MonoBehaviour
             {
                 isWalking = false;
             }
+            if (dashed == true)
+            {
+                dashduration -= Time.deltaTime;
+                if (dashduration > 0) { isSprinting = true; }
+                else { dashed = false; dashduration = 0.5f; }
+            }
 
             // All movement calculations shile sprint is active
-            if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
+            if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown && dashed == false)
             {
-                targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
+                dashed = true;
+                Vector3 Velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                Vector3 velocityChange = Vector3.Normalize(Velocity) * sprintSpeed;
+                rb.AddForce(velocityChange, ForceMode.Impulse);
+                //dashduration -= Time.deltaTime;
+                //targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
 
                 // Apply a force that attempts to reach our target velocity
-                Vector3 velocity = rb.velocity;
-                Vector3 velocityChange = (targetVelocity - velocity);
-                velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-                velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-                velocityChange.y = 0;
+                //Vector3 velocity = rb.velocity;
+                //Vector3 velocityChange = (targetVelocity/* - velocity*/);
+                //velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+                //velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+                //velocityChange.y = 0;
 
-                // Player is only moving when valocity change != 0
-                // Makes sure fov change only happens during movement
-                if (velocityChange.x != 0 || velocityChange.z != 0)
-                {
-                    isSprinting = true;
+                //// Player is only moving when valocity change != 0
+                //// Makes sure fov change only happens during movement
+                //if (velocityChange.x != 0 || velocityChange.z != 0)
+                //{
+                //    isSprinting = true;
 
-                    if (isCrouched)
-                    {
-                        Crouch();
-                    }
+                //    if (isCrouched)
+                //    {
+                //        Crouch();
+                //    }
 
-                    if (hideBarWhenFull && !unlimitedSprint)
-                    {
-                        sprintBarCG.alpha += 5 * Time.deltaTime;
-                    }
-                }
+                //    if (hideBarWhenFull && !unlimitedSprint)
+                //    {
+                //        sprintBarCG.alpha += 5 * Time.deltaTime;
+                //    }
+                //}
 
-                rb.AddForce(velocityChange, ForceMode.VelocityChange);
+                //rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
             // All movement calculations while walking
             else
@@ -440,6 +453,10 @@ public class FirstPersonController : MonoBehaviour
 
                 rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
+            //if (!Input.GetKey(sprintKey) && dashed == true)
+            //{
+            //    dashed = false;
+            //}
         }
 
         #endregion
@@ -635,7 +652,7 @@ public class FirstPersonController : MonoBehaviour
         GUI.enabled = fpc.enableSprint;
         fpc.unlimitedSprint = EditorGUILayout.ToggleLeft(new GUIContent("Unlimited Sprint", "Determines if 'Sprint Duration' is enabled. Turning this on will allow for unlimited sprint."), fpc.unlimitedSprint);
         fpc.sprintKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Sprint Key", "Determines what key is used to sprint."), fpc.sprintKey);
-        fpc.sprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), fpc.sprintSpeed, fpc.walkSpeed, 20f);
+        fpc.sprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), fpc.sprintSpeed, fpc.walkSpeed, 100f);
 
         //GUI.enabled = !fpc.unlimitedSprint;
         fpc.sprintDuration = EditorGUILayout.Slider(new GUIContent("Sprint Duration", "Determines how long the player can sprint while unlimited sprint is disabled."), fpc.sprintDuration, 1f, 20f);
@@ -690,7 +707,7 @@ public class FirstPersonController : MonoBehaviour
 
         GUI.enabled = fpc.enableJump;
         fpc.jumpKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Jump Key", "Determines what key is used to jump."), fpc.jumpKey);
-        fpc.jumpPower = EditorGUILayout.Slider(new GUIContent("Jump Power", "Determines how high the player will jump."), fpc.jumpPower, .1f, 20f);
+        fpc.jumpPower = EditorGUILayout.Slider(new GUIContent("Jump Power", "Determines how high the player will jump."), fpc.jumpPower, .1f, 1000f);
         GUI.enabled = true;
 
         EditorGUILayout.Space();

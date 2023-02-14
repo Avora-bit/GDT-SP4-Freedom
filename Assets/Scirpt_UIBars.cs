@@ -5,19 +5,26 @@ using UnityEngine.UI;
 
 public class Scirpt_UIBars : MonoBehaviour
 {
-    private const float max = 100.0f;
-    public float content = max;
+    
+    public float content = 1f;
+    private float max = 100.0f;
     private Image bar;
+    [SerializeField]
+     FirstPersonController fpc;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         bar = GetComponent<Image>();
+        max = fpc.sprintDuration;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        bar.fillAmount = content / max;
+        content = fpc.sprintRemaining;
+        bar.transform.localScale = new Vector3(content / max, 1f, 1f);
     }
 }
