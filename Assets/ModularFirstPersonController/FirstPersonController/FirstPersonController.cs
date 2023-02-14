@@ -147,10 +147,16 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
+    #region Player Weapon
+    public bool isHoldingWeapon = true;
+    public GameObject currentWeapon;
+    #endregion
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         crosshairObject = GetComponentInChildren<Image>();
+
 
         // hp = GetComponentInChildren<int>();
 
@@ -158,6 +164,7 @@ public class FirstPersonController : MonoBehaviour
         playerCamera.fieldOfView = fov;
         originalScale = transform.localScale;
         jointOriginalPos = joint.localPosition;
+
 
         if (!unlimitedSprint)
         {
@@ -429,6 +436,11 @@ public class FirstPersonController : MonoBehaviour
             HeadBob();
         }
 
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            CheckCurrentWeapon();
+        }
+
         //Interact();
     }
 
@@ -634,13 +646,45 @@ public class FirstPersonController : MonoBehaviour
             if (hit.collider.gameObject.tag == "Healing")
             {
                 Debug.Log("Clicked on healing item");
+                hp += 15;
                 Destroy(hit.collider.gameObject);
             }
-            Debug.Log(hit.collider.gameObject.name);
+            else if (hit.collider.transform.parent.gameObject.tag == "Weapon")
+            {
+                PickUpWeapon(hit);
+            }
         }
         else
         {
             Debug.Log("Did not hit anything");
+        }
+    }
+
+    private void PickUpWeapon(RaycastHit hit)
+    {
+        Debug.Log(hit.collider.transform.parent.gameObject.name);
+        if (hit.collider.transform.parent.gameObject.name != currentWeapon.name)
+        {
+            Debug.Log("Different weapons");
+            if (hit.collider.transform.parent.gameObject.name == "Tomahawk")
+            {
+                currentWeapon.transform.GetChild(0).gameObject.SetActive(false);
+                currentWeapon.transform.GetChild(1).gameObject.SetActive(true);
+
+            }
+        }
+        Destroy(hit.collider.transform.parent.gameObject);
+    }
+
+    private void CheckCurrentWeapon()
+    {
+        for (int i = 0; i < currentWeapon.transform.childCount; i++)
+ {
+            if (currentWeapon.transform.GetChild(i).gameObject.activeSelf == true)
+            {
+                Debug.Log(currentWeapon.transform.GetChild(i));
+                break;
+            }
         }
     }
 }
@@ -870,6 +914,8 @@ public class FirstPersonControllerEditor : Editor
         fpc.stamina = EditorGUILayout.Slider(new GUIContent("stamina", "stamina"), fpc.stamina, 0, 100f);
         EditorGUILayout.Space();
 
+        fpc.currentWeapon = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Current Weapon", "Weapon that the player is currently holding"), fpc.currentWeapon, typeof(GameObject), true);
+        EditorGUILayout.Space();
         #endregion
 
         //Sets any changes from the prefab

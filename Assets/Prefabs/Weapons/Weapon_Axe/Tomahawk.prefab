@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 427898}
   m_Layer: 0
-  m_Name: Axe00_prefab
+  m_Name: Tomahawk
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
