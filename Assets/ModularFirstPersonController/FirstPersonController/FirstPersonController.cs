@@ -19,7 +19,9 @@ public class FirstPersonController : MonoBehaviour
     private Rigidbody rb;
 
     public float hp = 100;
+    private float last_hp = 100;
     public float max_hp = 100;
+    private float iframetimer = 1f;
 
     private bool dashed = false;
     public float max_stamina = 100f;
@@ -216,6 +218,11 @@ public class FirstPersonController : MonoBehaviour
 
     float camRotation;
 
+    public void GiveDamage(int damage)
+    {
+        hp = hp - damage;
+    }
+
     private void Update()
     {
         #region HP
@@ -223,6 +230,29 @@ public class FirstPersonController : MonoBehaviour
         {
             hp = max_hp;
         }
+
+        if(iframetimer > 0)
+        {
+            if (last_hp > hp)
+            {
+                hp = last_hp;
+            }
+            iframetimer = Mathf.Clamp(iframetimer -= 1 * Time.deltaTime, 0, 2f);
+        }
+        else
+        {
+            if (last_hp > hp)
+            {
+                iframetimer = 2f;
+                last_hp = hp;
+            }
+        }
+        if (last_hp > hp)
+        {
+            iframetimer = 2f;
+            iframetimer = Mathf.Clamp(iframetimer -= 1 * Time.deltaTime, 0, 2f);
+        }
+
         #endregion
 
         #region Camera
@@ -423,7 +453,9 @@ public class FirstPersonController : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.R))
             {
-                hp -= 1;
+                GiveDamage(10);
+                //hp -= 10;
+                Debug.Log(hp);
             }
 
             if (!Input.GetKey(sprintKey) && dashed == true)
