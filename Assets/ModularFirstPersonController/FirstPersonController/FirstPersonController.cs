@@ -18,6 +18,7 @@ public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
 
+    public int hp = 100;
     #region Camera Movement Variables
 
     public Camera playerCamera;
@@ -137,6 +138,8 @@ public class FirstPersonController : MonoBehaviour
 
         crosshairObject = GetComponentInChildren<Image>();
 
+       // hp = GetComponentInChildren<int>();
+
         // Set internal variables
         playerCamera.fieldOfView = fov;
         originalScale = transform.localScale;
@@ -194,6 +197,7 @@ public class FirstPersonController : MonoBehaviour
             sprintBarBG.gameObject.SetActive(false);
             sprintBar.gameObject.SetActive(false);
         }
+
 
         #endregion
     }
