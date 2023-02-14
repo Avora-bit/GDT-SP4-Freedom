@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3084163475525177659}
   - component: {fileID: 283692963654916706}
   - component: {fileID: 1211945311713266366}
-  - component: {fileID: 235430057156775587}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -84,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &235430057156775587
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762888961377182025}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2246338929577367263
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +94,6 @@ GameObject:
   - component: {fileID: 2253203547409691815}
   - component: {fileID: 4727826281420512246}
   - component: {fileID: 1678298672424364418}
-  - component: {fileID: 73019465733414380}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -182,19 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &73019465733414380
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2246338929577367263}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2523642779306107416
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +177,6 @@ GameObject:
   - component: {fileID: 590624770790455082}
   - component: {fileID: 520159028998016765}
   - component: {fileID: 2025395777403959732}
-  - component: {fileID: 4178531847740003639}
   m_Layer: 0
   m_Name: Capsule (1)
   m_TagString: Untagged
@@ -279,20 +249,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4178531847740003639
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2523642779306107416}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2560682382202356236
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +260,7 @@ GameObject:
   - component: {fileID: 8355525767581212219}
   - component: {fileID: 6687196424173798053}
   - component: {fileID: 6184766101181516080}
+  - component: {fileID: 4342393667329357924}
   m_Layer: 0
   m_Name: Item_Apple
   m_TagString: Healing
@@ -351,7 +308,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2560682382202356236}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -359,6 +316,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &4342393667329357924
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560682382202356236}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8623632668022663798
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +340,6 @@ GameObject:
   - component: {fileID: 2323375940824720909}
   - component: {fileID: 6726898626100813103}
   - component: {fileID: 4211354657866747506}
-  - component: {fileID: 3310932487610621754}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -443,17 +412,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3310932487610621754
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8623632668022663798}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
