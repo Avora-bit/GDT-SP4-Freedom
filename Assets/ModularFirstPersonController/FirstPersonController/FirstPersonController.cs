@@ -18,8 +18,8 @@ public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
 
-    public int hp = 100;
-    public int max_hp = 100;
+    public float hp = 100;
+    public float max_hp = 100;
 
     private bool dashed = false;
     public float max_stamina = 100f;
@@ -821,6 +821,18 @@ public class FirstPersonControllerEditor : Editor
         fpc.interactKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Interact Key", "Determines what key is used to interact."), fpc.interactKey);
         GUI.enabled = true;
 
+        EditorGUILayout.Space();
+
+        #endregion
+
+        #region Playerinfo
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        GUILayout.Label("Interact Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.Space();
+
+        fpc.hp = EditorGUILayout.Slider(new GUIContent("hp", "hp"), fpc.hp, 0, 100f);
+        fpc.stamina = EditorGUILayout.Slider(new GUIContent("stamina", "stamina"), fpc.stamina, 0, 100f);
         EditorGUILayout.Space();
 
         #endregion
