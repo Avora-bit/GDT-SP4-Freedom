@@ -243,14 +243,9 @@ public class FirstPersonController : MonoBehaviour
         {
             if (last_hp > hp)
             {
-                iframetimer = 2f;
+                //iframetimer = 2f;
                 last_hp = hp;
             }
-        }
-        if (last_hp > hp)
-        {
-            iframetimer = 2f;
-            iframetimer = Mathf.Clamp(iframetimer -= 1 * Time.deltaTime, 0, 2f);
         }
 
         #endregion
@@ -472,6 +467,7 @@ public class FirstPersonController : MonoBehaviour
                 Vector3 velocityChange = Vector3.Normalize(Velocity) * sprintSpeed;
                 rb.AddForce(velocityChange, ForceMode.Impulse);
                 stamina -= max_stamina / 4;
+                iframetimer = 0.5f;
                 //regenpausetimer = 1;
                 //dashduration -= Time.deltaTime;
                 //targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
