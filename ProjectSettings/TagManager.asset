@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Weapons
+  - Weapon
+  - Healing
   layers:
   - Default
   - TransparentFX

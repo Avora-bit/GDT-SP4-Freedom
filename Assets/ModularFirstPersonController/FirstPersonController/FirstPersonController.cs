@@ -588,15 +588,20 @@ public class FirstPersonController : MonoBehaviour
 
     private void Interact()
     {
-        Debug.Log("Interacted");
-        Vector3 origin = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        //Debug.Log("Interacted");
+        Vector3 origin = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, playerCamera.transform.position.z);
         Vector3 direction = playerCamera.transform.forward;
-        float distance = 10.0f;
+        float distance = 5.0f;
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
         {
             Debug.DrawRay(origin, direction * distance, Color.cyan);
-            Debug.Log("Hit something");
+            if (hit.collider.gameObject.tag == "Healing")
+            {
+                Debug.Log("Clicked on healing item");
+                Destroy(hit.collider.gameObject);
+            }
+            Debug.Log(hit.collider.gameObject.name);
         }
         else
         {
