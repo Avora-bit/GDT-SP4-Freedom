@@ -201,6 +201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Axe00_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 196734, guid: 6478e3e782a118f45a402645660f05ef, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 427898, guid: 6478e3e782a118f45a402645660f05ef, type: 3}
       propertyPath: m_RootOrder
       value: 1
