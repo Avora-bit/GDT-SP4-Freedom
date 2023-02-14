@@ -219,7 +219,10 @@ public class FirstPersonController : MonoBehaviour
     private void Update()
     {
         #region HP
-        
+        if(hp > max_hp)
+        {
+            hp = max_hp;
+        }
         #endregion
 
         #region Camera
