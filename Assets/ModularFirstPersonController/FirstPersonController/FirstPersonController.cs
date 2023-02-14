@@ -119,6 +119,11 @@ public class FirstPersonController : MonoBehaviour
     #endregion
     #endregion
 
+    #region Interact
+    public bool canInteract = true;
+    public KeyCode interactKey = KeyCode.E;
+    #endregion
+
     #region Head Bob
 
     public bool enableHeadBob = true;
@@ -135,7 +140,6 @@ public class FirstPersonController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-
         crosshairObject = GetComponentInChildren<Image>();
 
        // hp = GetComponentInChildren<int>();
@@ -216,6 +220,7 @@ public class FirstPersonController : MonoBehaviour
             if (!invertCamera)
             {
                 pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
+                
             }
             else
             {
@@ -366,6 +371,8 @@ public class FirstPersonController : MonoBehaviour
         {
             HeadBob();
         }
+
+        //Interact();
     }
 
     void FixedUpdate()
@@ -442,6 +449,13 @@ public class FirstPersonController : MonoBehaviour
             }
         }
 
+        #endregion
+
+        #region Interact
+        if (canInteract && Input.GetKeyDown(interactKey))
+        {
+            Interact();
+        }
         #endregion
     }
 
@@ -528,6 +542,24 @@ public class FirstPersonController : MonoBehaviour
             // Resets when play stops moving
             timer = 0;
             joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
+        }
+    }
+
+    private void Interact()
+    {
+        Debug.Log("Interacted");
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Vector3 direction = playerCamera.transform.forward;
+        float distance = 10.0f;
+
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
+        {
+            Debug.DrawRay(origin, direction * distance, Color.cyan);
+            Debug.Log("Hit something");
+        }
+        else
+        {
+            Debug.Log("Did not hit anything");
         }
     }
 }
@@ -732,8 +764,23 @@ public class FirstPersonController : MonoBehaviour
 
         #endregion
 
+        #region Interact
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        GUILayout.Label("Interact Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.Space();
+
+        fpc.canInteract = EditorGUILayout.ToggleLeft(new GUIContent("Enable Interaction", "Determines if the player is allowed to interact with gameobjects."), fpc.canInteract);
+        GUI.enabled = fpc.canInteract;
+        fpc.interactKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Interact Key", "Determines what key is used to interact."), fpc.interactKey);
+        GUI.enabled = true;
+
+        EditorGUILayout.Space();
+
+        #endregion
+
         //Sets any changes from the prefab
-        if(GUI.changed)
+        if (GUI.changed)
         {
             EditorUtility.SetDirty(fpc);
             Undo.RecordObject(fpc, "FPC Change");
