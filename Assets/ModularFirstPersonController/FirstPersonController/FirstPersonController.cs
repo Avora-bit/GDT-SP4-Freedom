@@ -691,6 +691,13 @@ public class FirstPersonController : MonoBehaviour
             {
                 WeaponToHold = 6;
             }
+            if (WeaponHand.transform.GetChild(currentWeapon).gameObject.name != "Unarmed")
+            {
+                GameObject clone = Instantiate(WeaponHand.transform.GetChild(currentWeapon).gameObject, transform.position + (transform.forward * 2), Quaternion.identity);
+                clone.name = WeaponHand.transform.GetChild(currentWeapon).gameObject.name;
+                clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                clone.GetComponent<BoxCollider>().enabled = true;
+            }
             WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
             WeaponHand.transform.GetChild(WeaponToHold).gameObject.SetActive(true);
             WeaponHand.transform.GetChild(WeaponToHold).gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -709,6 +716,8 @@ public class FirstPersonController : MonoBehaviour
         {
             GameObject clone = Instantiate(WeaponHand.transform.GetChild(currentWeapon).gameObject, transform.position + (transform.forward * 2), Quaternion.identity);
             clone.name = WeaponHand.transform.GetChild(currentWeapon).gameObject.name;
+            clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            clone.GetComponent<BoxCollider>().enabled = true;
             WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false); // set current weapon to not be active
             WeaponHand.transform.GetChild(7).gameObject.SetActive(true); // set unarmed to be active
             WeaponHand.GetComponentInChildren<BoxCollider>().enabled = false;
