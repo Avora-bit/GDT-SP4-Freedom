@@ -642,45 +642,46 @@ public class FirstPersonController : MonoBehaviour
 
     private void PickUpWeapon(RaycastHit hit)
     {
-        if (hit.collider.transform.parent.gameObject.name != WeaponHand.name)
+        if (hit.collider.transform.parent.gameObject.name != WeaponHand.transform.GetChild(currentWeapon).gameObject.name)
         {
+            int WeaponToHold = -1;
             if (hit.collider.transform.parent.gameObject.name == "Shortsword")
             {
-                WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
-                WeaponHand.transform.GetChild(0).gameObject.SetActive(true);
+                WeaponToHold = 0;
             }
             else if (hit.collider.transform.parent.gameObject.name == "Tomahawk")
             {
-                WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
-                WeaponHand.transform.GetChild(1).gameObject.SetActive(true);
+                WeaponToHold = 1;
             }
             else if (hit.collider.transform.parent.gameObject.name == "Bow")
             {
-                WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
-                WeaponHand.transform.GetChild(2).gameObject.SetActive(true);
+                WeaponToHold = 2;
             }
             else if (hit.collider.transform.parent.gameObject.name == "Mace")
             {
-                WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
-                WeaponHand.transform.GetChild(3).gameObject.SetActive(true);
+                WeaponToHold = 3;
             }
             else if (hit.collider.transform.parent.gameObject.name == "Spear")
             {
-                WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
-                WeaponHand.transform.GetChild(4).gameObject.SetActive(true);
+                WeaponToHold = 4;
             }
             else if (hit.collider.transform.parent.gameObject.name == "Greatsword")
             {
-                WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
-                WeaponHand.transform.GetChild(5).gameObject.SetActive(true);
+                WeaponToHold = 5;
             }
             else if (hit.collider.transform.parent.gameObject.name == "Shield")
             {
-                WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
-                WeaponHand.transform.GetChild(6).gameObject.SetActive(true);
+                WeaponToHold = 6;
             }
+            WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
+            WeaponHand.transform.GetChild(WeaponToHold).gameObject.SetActive(true);
+            currentWeapon = WeaponToHold;
+            Destroy(hit.collider.transform.parent.gameObject);
         }
-        Destroy(hit.collider.transform.parent.gameObject);
+        else
+        {
+            Debug.Log("Trying to take weapon you are holding");
+        }
     }
 
     private void CheckCurrentWeapon()
