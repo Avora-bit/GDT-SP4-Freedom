@@ -18,7 +18,14 @@ public class Script_TriggerSpikes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (fCurrentCooldown > 0f)
+        {
+            fCurrentCooldown -= Time.deltaTime;
+        }
+        else
+        {
+            fCurrentCooldown = 0f;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,12 +38,13 @@ public class Script_TriggerSpikes : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        //if (other.GetComponent<>() != null && fCurrentCooldown <= 0)
-        //{
-        //    //other.hp -= iDamage;
-        //    Debug.Log("Spiked");
-        //    //Debug.Log("player hp: " + other.hp);
-        //    fCurrentCooldown = fCooldown;
-        //}
+        Script_baseHealth Entity = other.GetComponent<Script_baseHealth>();
+        if (Entity != null && fCurrentCooldown <= 0)
+        {
+            Entity.TakeDamage(iDamage);
+            Debug.Log("Spiked");
+            fCurrentCooldown = fCooldown;
+            Debug.Log(Entity.getHealth());
+        }
     }
 }
