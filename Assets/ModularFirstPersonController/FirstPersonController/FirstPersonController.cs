@@ -132,6 +132,7 @@ public class FirstPersonController : MonoBehaviour
     #region Interact
     public bool canInteract = true;
     public KeyCode interactKey = KeyCode.E;
+    public KeyCode dropKey = KeyCode.Q;
     #endregion
 
     #region Head Bob
@@ -177,6 +178,7 @@ public class FirstPersonController : MonoBehaviour
             if (WeaponHand.transform.GetChild(i).gameObject.activeSelf == true)
             {
                 currentWeapon = i;
+                WeaponHand.GetComponentInChildren<BoxCollider>().enabled = false;
                 break;
             }
         }
@@ -440,9 +442,9 @@ public class FirstPersonController : MonoBehaviour
             HeadBob();
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(dropKey))
         {
-            CheckCurrentWeapon();
+            DropWeapon();
         }
 
         //Interact();
@@ -675,12 +677,30 @@ public class FirstPersonController : MonoBehaviour
             }
             WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
             WeaponHand.transform.GetChild(WeaponToHold).gameObject.SetActive(true);
+            WeaponHand.transform.GetChild(WeaponToHold).gameObject.GetComponent<BoxCollider>().enabled = false;
             currentWeapon = WeaponToHold;
             Destroy(hit.collider.transform.parent.gameObject);
         }
         else
         {
             Debug.Log("Trying to take weapon you are holding");
+        }
+    }
+
+    private void DropWeapon()
+    {
+        if (WeaponHand.transform.GetChild(currentWeapon).gameObject.name != "Unarmed")
+        {
+            GameObject clone = Instantiate(WeaponHand.transform.GetChild(currentWeapon).gameObject, transform.position + (transform.forward * 2), Quaternion.identity);
+            clone.name = WeaponHand.transform.GetChild(currentWeapon).gameObject.name;
+            WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false); // set current weapon to not be active
+            WeaponHand.transform.GetChild(7).gameObject.SetActive(true); // set unarmed to be active
+            WeaponHand.GetComponentInChildren<BoxCollider>().enabled = false;
+            currentWeapon = 7; // also set the current weapon to unarmed
+        }
+        else
+        {
+            Debug.Log("You can't drop your hand");
         }
     }
 
