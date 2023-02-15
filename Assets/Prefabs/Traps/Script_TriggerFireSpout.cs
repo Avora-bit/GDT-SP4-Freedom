@@ -6,12 +6,12 @@ using UnityEngine;
 public class Script_TriggerFireSpout : MonoBehaviour
 {
     public int iDamage = 2;
-    public float fCooldown = 5f;
+    public float fCooldown = 10f;
     private float fCurrentCooldown = 0f;
     private bool isActive = false;
-    public float fActiveTime = 1f;
+    public float fActiveTime = 3f;
     private float fTime = 0.1f;
-    public float fDamageTick = 0.5f;
+    public float fDamageTick = 0.2f;
     private float fDamageCooldown = 0f; 
     ParticleSystem fireParticle;
 
