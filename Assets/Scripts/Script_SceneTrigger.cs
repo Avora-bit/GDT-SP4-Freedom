@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
-public class Script_Mainmenu : MonoBehaviour
+using UnityEngine.UI;
+public class Script_SceneTrigger : MonoBehaviour
 {
-    public Animator anim;
-    public Image black;
     // Start is called before the first frame update
+    public Image black;
+    public Animator anim;
     void Start()
     {
         
@@ -19,16 +18,17 @@ public class Script_Mainmenu : MonoBehaviour
     {
         
     }
-    public void GuestLogin()
-    {
-        StartCoroutine(Fading("Scene_Battle"));
-       // Debug.LogError("Loggin");
-    }
 
-    IEnumerator Fading(string sceneName)
+    private void OnTriggerEnter(Collider other)
+    {
+
+        StartCoroutine(change());
+    }
+    IEnumerator change()
     {
         anim.SetBool("fade", true);
         yield return new WaitUntil(() => black.color.a == 1);
-        SceneManager.LoadScene(sceneName);
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene("Scene_Menu");
     }
 }
