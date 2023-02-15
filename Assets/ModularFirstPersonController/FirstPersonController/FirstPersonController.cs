@@ -133,6 +133,7 @@ public class FirstPersonController : MonoBehaviour
     public bool canInteract = true;
     public KeyCode interactKey = KeyCode.E;
     public KeyCode dropKey = KeyCode.Q;
+    public bool canDelete = false;
     #endregion
 
     #region Head Bob
@@ -657,6 +658,7 @@ public class FirstPersonController : MonoBehaviour
             }
             else if (hit.collider.gameObject.tag == "Weapon")
             {
+                canDelete = true;
                 Debug.Log("Picked up weapon with tag weapon");
                 PickUpWeapon(hit);
             }
@@ -666,8 +668,11 @@ public class FirstPersonController : MonoBehaviour
             }
             if (hit.collider.gameObject.tag != "Untagged")
             {
-                Debug.Log("Target is untagged");
-                Destroy(hit.collider.gameObject);
+                Debug.Log("Target is tagged");
+                if  (canDelete == true)
+                {
+                    Destroy(hit.collider.gameObject);
+                }
             }
         }
     }
@@ -717,10 +722,12 @@ public class FirstPersonController : MonoBehaviour
             WeaponHand.transform.GetChild(WeaponToHold).gameObject.GetComponent<BoxCollider>().enabled = false;
             WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
             currentWeapon = WeaponToHold;
+            canDelete = true;
         }
         else
         {
             Debug.Log("Trying to take weapon you are holding");
+            canDelete = false;
         }
     }
 
