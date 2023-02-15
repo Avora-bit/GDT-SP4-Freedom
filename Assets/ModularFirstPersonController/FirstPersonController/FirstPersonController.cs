@@ -472,7 +472,7 @@ public class FirstPersonController : MonoBehaviour
                 dashed = false;
             }
             // All movement calculations shile sprint is active
-            if (enableSprint && Input.GetKey(sprintKey) && dashcooldown <= 0f && dashed == false && stamina > max_stamina/4 && isGrounded! && ( Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) ))
+            if (enableSprint && Input.GetKey(sprintKey) && dashcooldown <= 0f && dashed == false && stamina > max_stamina/4 && isGrounded)
             {
                 dashed = true;
                 Vector3 Velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
@@ -480,7 +480,35 @@ public class FirstPersonController : MonoBehaviour
                 rb.AddForce(velocityChange, ForceMode.Impulse);
                 stamina -= max_stamina / 4;
                 iframetimer = 0.5f;
+                //regenpausetimer = 1;
+                //dashduration -= Time.deltaTime;
+                //targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
 
+                // Apply a force that attempts to reach our target velocity
+                //Vector3 velocity = rb.velocity;
+                //Vector3 velocityChange = (targetVelocity/* - velocity*/);
+                //velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+                //velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+                //velocityChange.y = 0;
+
+                //// Player is only moving when valocity change != 0
+                //// Makes sure fov change only happens during movement
+                //if (velocityChange.x != 0 || velocityChange.z != 0)
+                //{
+                //    isSprinting = true;
+
+                //    if (isCrouched)
+                //    {
+                //        Crouch();
+                //    }
+
+                //    if (hideBarWhenFull && !unlimitedSprint)
+                //    {
+                //        sprintBarCG.alpha += 5 * Time.deltaTime;
+                //    }
+                //}
+
+                //rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
             // All movement calculations while walking
             else
