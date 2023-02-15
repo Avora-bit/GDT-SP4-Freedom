@@ -5,7 +5,7 @@ using UnityEngine;
 public class Script_baseHealth : MonoBehaviour
 {
     public int maxHealth = 100;
-    private int selfHealth;
+    public int selfHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,7 @@ public class Script_baseHealth : MonoBehaviour
         {
             Destroy(gameObject);        //death
         }
+        
     }
 
     public void TakeDamage(int _damage)
