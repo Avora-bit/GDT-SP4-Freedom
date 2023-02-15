@@ -179,6 +179,7 @@ public class FirstPersonController : MonoBehaviour
             {
                 currentWeapon = i;
                 WeaponHand.GetComponentInChildren<BoxCollider>().enabled = false;
+                WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
                 break;
             }
         }
@@ -244,12 +245,12 @@ public class FirstPersonController : MonoBehaviour
     private void Update()
     {
         #region HP
-        if(hp > max_hp)
+        if (hp > max_hp)
         {
             hp = max_hp;
         }
 
-        if(iframetimer > 0)
+        if (iframetimer > 0)
         {
             if (last_hp > hp)
             {
@@ -363,7 +364,7 @@ public class FirstPersonController : MonoBehaviour
             {
                 // Regain sprint while not sprinting
                 sprintRemaining = Mathf.Clamp(sprintRemaining += 1 * Time.deltaTime, 0, sprintDuration);
-                
+
                 dashcooldown = Mathf.Clamp(dashcooldown -= 1 * Time.deltaTime, 0, 1);
                 regenpausetimer = Mathf.Clamp(regenpausetimer -= 1 * Time.deltaTime, 0, 1);
                 if (last_stamina > stamina)
@@ -447,6 +448,12 @@ public class FirstPersonController : MonoBehaviour
             DropWeapon();
         }
 
+        #region Interact
+        if (canInteract && Input.GetKeyDown(interactKey))
+        {
+            Interact();
+        }
+        #endregion
         //Interact();
     }
 
@@ -483,7 +490,7 @@ public class FirstPersonController : MonoBehaviour
                 dashed = false;
             }
             // All movement calculations shile sprint is active
-            if (enableSprint && Input.GetKey(sprintKey) && dashcooldown <= 0f && dashed == false && stamina > max_stamina/4 && isGrounded! && ( Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) ))
+            if (enableSprint && Input.GetKey(sprintKey) && dashcooldown <= 0f && dashed == false && stamina > max_stamina / 4 && isGrounded! && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
             {
                 dashed = true;
                 Vector3 Velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
@@ -518,12 +525,7 @@ public class FirstPersonController : MonoBehaviour
 
         #endregion
 
-        #region Interact
-        if (canInteract && Input.GetKeyDown(interactKey))
-        {
-            Interact();
-        }
-        #endregion
+        
     }
 
     // Sets isGrounded based on a raycast sent straigth down from the player object
@@ -627,59 +629,66 @@ public class FirstPersonController : MonoBehaviour
             {
                 Debug.Log("Clicked on healing item");
                 hp += 15;
-                Destroy(hit.collider.gameObject);
             }
-            else if (hit.collider.transform.parent.gameObject.tag == "Weapon")
+            else if (hit.collider.gameObject.tag == "Ammo")
             {
-                Debug.Log("Picked up weapon with parent tag weapon");
+                Debug.Log("Picked up ammo");
+            }
+            else if (hit.collider.gameObject.tag == "Weapon")
+            {
+                Debug.Log("Picked up weapon with tag weapon");
                 PickUpWeapon(hit);
             }
-
-        }
-        else
-        {
-            Debug.Log("Did not hit anything");
+            else
+            {
+                Debug.Log("Did not hit anything");
+            }
+            if (hit.collider.gameObject.tag != "Untagged")
+            {
+                Debug.Log("Target is untagged");
+                Destroy(hit.collider.gameObject);
+            }
         }
     }
 
     private void PickUpWeapon(RaycastHit hit)
     {
-        if (hit.collider.transform.parent.gameObject.name != WeaponHand.transform.GetChild(currentWeapon).gameObject.name)
+        if (hit.collider.gameObject.name != WeaponHand.transform.GetChild(currentWeapon).gameObject.name)
         {
             int WeaponToHold = -1;
-            if (hit.collider.transform.parent.gameObject.name == "Shortsword")
+            if (hit.collider.gameObject.name == "Shortsword")
             {
                 WeaponToHold = 0;
             }
-            else if (hit.collider.transform.parent.gameObject.name == "Tomahawk")
+            else if (hit.collider.gameObject.name == "Tomahawk")
             {
                 WeaponToHold = 1;
             }
-            else if (hit.collider.transform.parent.gameObject.name == "Bow")
+            else if (hit.collider.gameObject.name == "Bow")
             {
                 WeaponToHold = 2;
             }
-            else if (hit.collider.transform.parent.gameObject.name == "Mace")
+            else if (hit.collider.gameObject.name == "Mace")
             {
                 WeaponToHold = 3;
             }
-            else if (hit.collider.transform.parent.gameObject.name == "Spear")
+            else if (hit.collider.gameObject.name == "Spear")
             {
                 WeaponToHold = 4;
             }
-            else if (hit.collider.transform.parent.gameObject.name == "Greatsword")
+            else if (hit.collider.gameObject.name == "Greatsword")
             {
                 WeaponToHold = 5;
             }
-            else if (hit.collider.transform.parent.gameObject.name == "Shield")
+            else if (hit.collider.gameObject.name == "Shield")
             {
                 WeaponToHold = 6;
             }
             WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
             WeaponHand.transform.GetChild(WeaponToHold).gameObject.SetActive(true);
             WeaponHand.transform.GetChild(WeaponToHold).gameObject.GetComponent<BoxCollider>().enabled = false;
+            WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
             currentWeapon = WeaponToHold;
-            Destroy(hit.collider.transform.parent.gameObject);
         }
         else
         {
@@ -708,8 +717,7 @@ public class FirstPersonController : MonoBehaviour
     {
         Debug.Log("Current Weapon: " + currentWeapon);
     }
-}
-
+} 
 
 
 // Custom Editor
