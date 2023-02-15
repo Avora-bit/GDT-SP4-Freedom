@@ -132,6 +132,7 @@ public class FirstPersonController : MonoBehaviour
     #region Interact
     public bool canInteract = true;
     public KeyCode interactKey = KeyCode.E;
+    public KeyCode dropKey = KeyCode.Q;
     #endregion
 
     #region Head Bob
@@ -149,14 +150,14 @@ public class FirstPersonController : MonoBehaviour
 
     #region Player Weapon
     public bool isHoldingWeapon = true;
-    public GameObject currentWeapon;
+    public GameObject WeaponHand;
+    int currentWeapon; //used to store int value of the active child of WeaponHand
     #endregion
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         crosshairObject = GetComponentInChildren<Image>();
-
 
         // hp = GetComponentInChildren<int>();
 
@@ -170,6 +171,17 @@ public class FirstPersonController : MonoBehaviour
         {
             sprintRemaining = sprintDuration;
             sprintCooldownReset = sprintCooldown;
+        }
+
+        for (int i = 0; i < WeaponHand.transform.childCount; i++)
+        {
+            if (WeaponHand.transform.GetChild(i).gameObject.activeSelf == true)
+            {
+                currentWeapon = i;
+                WeaponHand.GetComponentInChildren<BoxCollider>().enabled = false;
+                WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+                break;
+            }
         }
     }
 
@@ -233,12 +245,12 @@ public class FirstPersonController : MonoBehaviour
     private void Update()
     {
         #region HP
-        if(hp > max_hp)
+        if (hp > max_hp)
         {
             hp = max_hp;
         }
 
-        if(iframetimer > 0)
+        if (iframetimer > 0)
         {
             if (last_hp > hp)
             {
@@ -352,7 +364,7 @@ public class FirstPersonController : MonoBehaviour
             {
                 // Regain sprint while not sprinting
                 sprintRemaining = Mathf.Clamp(sprintRemaining += 1 * Time.deltaTime, 0, sprintDuration);
-                
+
                 dashcooldown = Mathf.Clamp(dashcooldown -= 1 * Time.deltaTime, 0, 1);
                 regenpausetimer = Mathf.Clamp(regenpausetimer -= 1 * Time.deltaTime, 0, 1);
                 if (last_stamina > stamina)
@@ -431,11 +443,17 @@ public class FirstPersonController : MonoBehaviour
             HeadBob();
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(dropKey))
         {
-            CheckCurrentWeapon();
+            DropWeapon();
         }
 
+        #region Interact
+        if (canInteract && Input.GetKeyDown(interactKey))
+        {
+            Interact();
+        }
+        #endregion
         //Interact();
     }
 
@@ -472,7 +490,7 @@ public class FirstPersonController : MonoBehaviour
                 dashed = false;
             }
             // All movement calculations shile sprint is active
-            if (enableSprint && Input.GetKey(sprintKey) && dashcooldown <= 0f && dashed == false && stamina > max_stamina/4 && isGrounded)
+            if (enableSprint && Input.GetKey(sprintKey) && dashcooldown <= 0f && dashed == false && stamina > max_stamina / 4 && isGrounded! && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
             {
                 dashed = true;
                 Vector3 Velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
@@ -480,27 +498,6 @@ public class FirstPersonController : MonoBehaviour
                 rb.AddForce(velocityChange, ForceMode.Impulse);
                 stamina -= max_stamina / 4;
                 iframetimer = 0.5f;
-                //regenpausetimer = 1;
-                //dashduration -= Time.deltaTime;
-                //targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
-
-                // Apply a force that attempts to reach our target velocity
-                //Vector3 velocity = rb.velocity;
-                //Vector3 velocityChange = (targetVelocity/* - velocity*/);
-                //velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-                //velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-                //velocityChange.y = 0;
-
-                //// Player is only moving when valocity change != 0
-                //// Makes sure fov change only happens during movement
-                //if (velocityChange.x != 0 || velocityChange.z != 0)
-                //{
-                //    isSprinting = true;
-
-                //    if (isCrouched)
-                //    {
-                //        Crouch();
-                //    }
 
                 //    if (hideBarWhenFull && !unlimitedSprint)
                 //    {
@@ -535,12 +532,7 @@ public class FirstPersonController : MonoBehaviour
 
         #endregion
 
-        #region Interact
-        if (canInteract && Input.GetKeyDown(interactKey))
-        {
-            Interact();
-        }
-        #endregion
+        
     }
 
     // Sets isGrounded based on a raycast sent straigth down from the player object
@@ -639,52 +631,100 @@ public class FirstPersonController : MonoBehaviour
         if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
         {
             Debug.DrawRay(origin, direction * distance, Color.cyan);
+            Debug.Log("GameObject interacted: " + hit.collider.tag);
             if (hit.collider.gameObject.tag == "Healing")
             {
                 Debug.Log("Clicked on healing item");
                 hp += 15;
-                Destroy(hit.collider.gameObject);
             }
-            else if (hit.collider.transform.parent.gameObject.tag == "Weapon")
+            else if (hit.collider.gameObject.tag == "Ammo")
             {
+                Debug.Log("Picked up ammo");
+            }
+            else if (hit.collider.gameObject.tag == "Weapon")
+            {
+                Debug.Log("Picked up weapon with tag weapon");
                 PickUpWeapon(hit);
             }
-        }
-        else
-        {
-            Debug.Log("Did not hit anything");
+            else
+            {
+                Debug.Log("Did not hit anything");
+            }
+            if (hit.collider.gameObject.tag != "Untagged")
+            {
+                Debug.Log("Target is untagged");
+                Destroy(hit.collider.gameObject);
+            }
         }
     }
 
     private void PickUpWeapon(RaycastHit hit)
     {
-        Debug.Log(hit.collider.transform.parent.gameObject.name);
-        if (hit.collider.transform.parent.gameObject.name != currentWeapon.name)
+        if (hit.collider.gameObject.name != WeaponHand.transform.GetChild(currentWeapon).gameObject.name)
         {
-            Debug.Log("Different weapons");
-            if (hit.collider.transform.parent.gameObject.name == "Tomahawk")
+            int WeaponToHold = -1;
+            if (hit.collider.gameObject.name == "Shortsword")
             {
-                currentWeapon.transform.GetChild(0).gameObject.SetActive(false);
-                currentWeapon.transform.GetChild(1).gameObject.SetActive(true);
-
+                WeaponToHold = 0;
             }
+            else if (hit.collider.gameObject.name == "Tomahawk")
+            {
+                WeaponToHold = 1;
+            }
+            else if (hit.collider.gameObject.name == "Bow")
+            {
+                WeaponToHold = 2;
+            }
+            else if (hit.collider.gameObject.name == "Mace")
+            {
+                WeaponToHold = 3;
+            }
+            else if (hit.collider.gameObject.name == "Spear")
+            {
+                WeaponToHold = 4;
+            }
+            else if (hit.collider.gameObject.name == "Greatsword")
+            {
+                WeaponToHold = 5;
+            }
+            else if (hit.collider.gameObject.name == "Shield")
+            {
+                WeaponToHold = 6;
+            }
+            WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
+            WeaponHand.transform.GetChild(WeaponToHold).gameObject.SetActive(true);
+            WeaponHand.transform.GetChild(WeaponToHold).gameObject.GetComponent<BoxCollider>().enabled = false;
+            WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+            currentWeapon = WeaponToHold;
         }
-        Destroy(hit.collider.transform.parent.gameObject);
+        else
+        {
+            Debug.Log("Trying to take weapon you are holding");
+        }
+    }
+
+    private void DropWeapon()
+    {
+        if (WeaponHand.transform.GetChild(currentWeapon).gameObject.name != "Unarmed")
+        {
+            GameObject clone = Instantiate(WeaponHand.transform.GetChild(currentWeapon).gameObject, transform.position + (transform.forward * 2), Quaternion.identity);
+            clone.name = WeaponHand.transform.GetChild(currentWeapon).gameObject.name;
+            WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false); // set current weapon to not be active
+            WeaponHand.transform.GetChild(7).gameObject.SetActive(true); // set unarmed to be active
+            WeaponHand.GetComponentInChildren<BoxCollider>().enabled = false;
+            currentWeapon = 7; // also set the current weapon to unarmed
+        }
+        else
+        {
+            Debug.Log("You can't drop your hand");
+        }
     }
 
     private void CheckCurrentWeapon()
     {
-        for (int i = 0; i < currentWeapon.transform.childCount; i++)
- {
-            if (currentWeapon.transform.GetChild(i).gameObject.activeSelf == true)
-            {
-                Debug.Log(currentWeapon.transform.GetChild(i));
-                break;
-            }
-        }
+        Debug.Log("Current Weapon: " + currentWeapon);
     }
-}
-
+} 
 
 
 // Custom Editor
@@ -910,7 +950,7 @@ public class FirstPersonControllerEditor : Editor
         fpc.stamina = EditorGUILayout.Slider(new GUIContent("stamina", "stamina"), fpc.stamina, 0, 100f);
         EditorGUILayout.Space();
 
-        fpc.currentWeapon = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Current Weapon", "Weapon that the player is currently holding"), fpc.currentWeapon, typeof(GameObject), true);
+        fpc.WeaponHand = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Current Weapon", "Weapon that the player is currently holding"), fpc.WeaponHand, typeof(GameObject), true);
         EditorGUILayout.Space();
         #endregion
 
