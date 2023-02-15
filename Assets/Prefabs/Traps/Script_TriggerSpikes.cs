@@ -18,14 +18,9 @@ public class Script_TriggerSpikes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (fCurrentCooldown > 0f)
-        {
-            fCurrentCooldown -= Time.deltaTime;
-        }
-        else
-        {
-            fCurrentCooldown = 0f;
-        }
+
+        fCurrentCooldown = Mathf.Clamp(fCurrentCooldown - 1 * Time.deltaTime, 0, fCooldown);
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,5 +41,6 @@ public class Script_TriggerSpikes : MonoBehaviour
             fCurrentCooldown = fCooldown;
             Debug.Log(Entity.getHealth());
         }
+
     }
 }

@@ -10,8 +10,8 @@ public class Script_TriggerFireSpout : MonoBehaviour
     private float fCurrentCooldown = 0f;
     private bool isActive = false;
     public float fActiveTime = 1f;
-    private float fTime = 0f;
-    public float fDamageTick = 0.2f;
+    private float fTime = 0.1f;
+    public float fDamageTick = 0.5f;
     private float fDamageCooldown = 0f; 
     ParticleSystem fireParticle;
 
@@ -28,10 +28,12 @@ public class Script_TriggerFireSpout : MonoBehaviour
         if (isActive)
         {
             fireParticle.Play();
-            fDamageCooldown -= Time.deltaTime;
-            if (fDamageCooldown < 0f) fDamageCooldown = fDamageTick;
+           // fDamageCooldown -= Time.deltaTime;
+            fDamageCooldown = Mathf.Clamp(fDamageCooldown - 1 * Time.deltaTime, 0, fDamageTick);
+            
 
             fTime -= Time.deltaTime;
+            fTime = Mathf.Clamp(fTime - 1 * Time.deltaTime, 0, fActiveTime);
             if (fTime <= 0f)
             {
                 fTime = 0f;
@@ -45,6 +47,7 @@ public class Script_TriggerFireSpout : MonoBehaviour
         {
             fireParticle.Stop();
             fCurrentCooldown -= Time.deltaTime;
+            fCurrentCooldown = Mathf.Clamp(fCurrentCooldown - 1 * Time.deltaTime, 0, fCooldown);
             if (fCurrentCooldown <= 0f)
             {
                 fCurrentCooldown = 0f;
@@ -57,16 +60,16 @@ public class Script_TriggerFireSpout : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+        Debug.Log("fire:)");
     }
     private void OnTriggerExit(Collider other)
     {
-
+        Debug.Log("nofire:(");
     }
     private void OnTriggerStay(Collider other)
     {
         Script_baseHealth Entity = other.GetComponent<Script_baseHealth>();
-        if (Entity != null && isActive && fDamageCooldown <= 0f)
+        if (Entity != null && isActive && fDamageCooldown == 0)
         {
             Debug.Log(Entity.getHealth());
             Entity.TakeDamage(iDamage);
