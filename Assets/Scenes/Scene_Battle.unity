@@ -1883,6 +1883,10 @@ PrefabInstance:
       propertyPath: black
       value: 
       objectReference: {fileID: 654108289}
+    - target: {fileID: 6778760752198665370, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: IsPlayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2248923048949656063, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}

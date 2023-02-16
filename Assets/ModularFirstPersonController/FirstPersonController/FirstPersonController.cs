@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -17,11 +18,22 @@ using System.Net;
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
-
+    public RawImage quiver;
     public float hp = 100;
     private float last_hp = 100;
     public float max_hp = 100;
     private float iframetimer = 1f;
+    public int arrows = 0;
+    public Text arrowcount;
+
+    public Script_baseHealth health;
+    public float hitcd = 0.5f;
+    public int playerhp = 100;
+    public int lastplayerhp = 100;
+    public Animator anim;
+    public Animator anim2;
+    public Image red;
+    public Image black;
 
     private bool dashed = false;
     public float max_stamina = 100f;
@@ -162,7 +174,7 @@ public class FirstPersonController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         crosshairObject = GetComponentInChildren<Image>();
-
+        health = GetComponent<Script_baseHealth>();
         // hp = GetComponentInChildren<int>();
 
         // Set internal variables
@@ -247,8 +259,43 @@ public class FirstPersonController : MonoBehaviour
         hp = hp - damage;
     }
 
+    public void TakeDamage(int damage)
+    {
+        playerhp -= damage;
+        anim.SetBool("hit", true);
+    }
+
     private void Update()
     {
+        
+        arrowcount.text = ": " + arrows.ToString();
+
+        playerhp = health.getHealth();
+
+        if (lastplayerhp != playerhp)
+        {
+            if (lastplayerhp > playerhp)
+            {
+                anim.SetBool("hit", true);
+                if (playerhp <= 0)
+                {
+                    StartCoroutine(die());
+                }
+                lastplayerhp = playerhp;
+            }
+            //if(lastplayerhp < playerhp)
+        }      
+        if (anim.GetBool("hit") == true)
+        {
+            hitcd -= 1 * Time.deltaTime;
+        }
+        if (hitcd <= 0)
+        {
+            anim.SetBool("hit", false);
+            hitcd = 0.5f;
+        }
+
+
         #region HP
         if (hp > max_hp)
         {
@@ -655,6 +702,8 @@ public class FirstPersonController : MonoBehaviour
             else if (hit.collider.gameObject.tag == "Ammo")
             {
                 Debug.Log("Picked up ammo");
+                arrows += 3;
+                
             }
             else if (hit.collider.gameObject.tag == "Weapon")
             {
@@ -764,6 +813,22 @@ public class FirstPersonController : MonoBehaviour
         attackStart = Time.time;
         attackCooldown = WeaponHand.GetComponentInChildren<Script_WeaponStats>().AttackSpeed;
         canAttack = false;
+    }
+
+    IEnumerator die()
+    {
+        anim.SetBool("death", true);
+        yield return new WaitUntil(() => red.color.a == 1);
+        StartCoroutine(change());
+        // SceneManager.LoadScene("Scene_End");
+    }
+    IEnumerator change()
+    {
+        anim2.SetBool("fade", true);
+        Debug.Log("THE END?");
+        yield return new WaitUntil(() => black.color.a == 1);
+        Debug.Log("THE END");
+        SceneManager.LoadScene("Scene_End");
     }
 }
 
@@ -987,7 +1052,9 @@ public class FirstPersonControllerEditor : Editor
         GUILayout.Label("Interact Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
         EditorGUILayout.Space();
 
-        fpc.hp = EditorGUILayout.Slider(new GUIContent("hp", "hp"), fpc.hp, 0, 100f);
+        fpc.arrows = EditorGUILayout.IntField(new GUIContent("arrows", "arrows"), fpc.arrows);
+        fpc.arrowcount = (Text)EditorGUILayout.ObjectField(new GUIContent("arrowtext", "TMP for arrow amount"), fpc.arrowcount, typeof(Text), true);
+        fpc.quiver = (RawImage)EditorGUILayout.ObjectField(new GUIContent("quiver", "Quiver image"), fpc.quiver, typeof(RawImage), true);
         fpc.stamina = EditorGUILayout.Slider(new GUIContent("stamina", "stamina"), fpc.stamina, 0, 100f);
         EditorGUILayout.Space();
 
@@ -995,6 +1062,19 @@ public class FirstPersonControllerEditor : Editor
         EditorGUILayout.Space();
 
         fpc.attackCooldown = EditorGUILayout.DoubleField(new GUIContent("Attack Cooldown", "Cooldown before player is able to attack again. This should count DOWN, not up"), fpc.attackCooldown);
+        #endregion
+
+        #region Health
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        GUILayout.Label("Helpth", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.Space();
+
+        fpc.health = (Script_baseHealth)EditorGUILayout.ObjectField(new GUIContent("healthscriptt", "need"), fpc.health, typeof(Script_baseHealth), true);
+        fpc.anim = (Animator)EditorGUILayout.ObjectField(new GUIContent("anim", "damage screen"), fpc.anim, typeof(Animator), true);
+        fpc.anim2 = (Animator)EditorGUILayout.ObjectField(new GUIContent("anim2", "fader put here"), fpc.anim2, typeof(Animator), true);
+        fpc.red = (Image)EditorGUILayout.ObjectField(new GUIContent("red", "damage screen here"), fpc.red, typeof(Image), true);
+        fpc.black = (Image)EditorGUILayout.ObjectField(new GUIContent("black", "Fader here"), fpc.black, typeof(Image), true);
         #endregion
 
         //Sets any changes from the prefab
