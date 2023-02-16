@@ -199,7 +199,7 @@ public class FirstPersonController : MonoBehaviour
                 break;
             }
         }
-        attackCooldown = WeaponHand.GetComponentInChildren<Script_WeaponStats>().AttackSpeed;
+        //attackCooldown = WeaponHand.GetComponentInChildren<Script_WeaponStats>().AttackSpeed;
     }
 
     void Start()
@@ -509,15 +509,15 @@ public class FirstPersonController : MonoBehaviour
 
         #region WeaponInteraction
 
-        if (Time.time >= attackStart + attackCooldown)
-        {
-            canAttack = true;
-        }
+        //if (Time.time >= attackStart + attackCooldown)
+        //{
+        //    canAttack = true;
+        //}
 
-        if (Input.GetMouseButtonDown(0) && canAttack)
-        {
-            Attack();
-        }
+        //if (Input.GetMouseButtonDown(0) && canAttack)
+        //{
+        //    Attack();
+        //}
         #endregion
     }
 
@@ -797,22 +797,6 @@ public class FirstPersonController : MonoBehaviour
         {
             Debug.Log("You can't drop your hand");
         }
-    }
-
-    private void Attack()
-    {
-        Debug.Log("Damage: " + WeaponHand.GetComponentInChildren<Script_WeaponStats>().Damage + " Attack Speed: " + WeaponHand.GetComponentInChildren<Script_WeaponStats>().AttackSpeed + " Range: " + WeaponHand.GetComponentInChildren<Script_WeaponStats>().Range);
-        Vector3 origin = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, playerCamera.transform.position.z);
-        Vector3 direction = playerCamera.transform.forward;
-
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, WeaponHand.GetComponentInChildren<Script_WeaponStats>().Range))
-        {
-            Debug.DrawRay(origin, direction * WeaponHand.GetComponentInChildren<Script_WeaponStats>().Range, Color.yellow);
-            Debug.Log("GameObject hit: " + hit.collider.name);
-        }
-        attackStart = Time.time;
-        attackCooldown = WeaponHand.GetComponentInChildren<Script_WeaponStats>().AttackSpeed;
-        canAttack = false;
     }
 
     IEnumerator die()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Script_WeaponStats : MonoBehaviour
+public class Script_baseWeapon : MonoBehaviour
 {
     //stats
     public int iDamage;
