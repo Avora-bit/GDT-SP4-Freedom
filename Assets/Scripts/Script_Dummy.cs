@@ -13,7 +13,6 @@ public class Script_Dummy : MonoBehaviour
     public bool deadneutral = false;
     public bool revive = false;
     public Animator anim;
-    private bool toggle = false;
 
     public Script_baseHealth health;
     private int currentHP = 100;
