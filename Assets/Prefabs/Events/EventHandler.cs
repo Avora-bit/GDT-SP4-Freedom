@@ -18,12 +18,34 @@ public class EventHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // if player starts fighting and map is default
+        if (ParentObject == "Default Arena")
+        {
+            //event here
+        }
+
+        // if player starts fighting and map is desert
+        else if (ParentObject == "Desert Arena")
+        {
+            //event here
+        }
+
+        // if player starts fighting and map is forest
+        else if (ParentObject == "Forest Arena")
+        {
+            //event here
+        }
+
+        // if player starts fighting and map is lava
+        else if (ParentObject == "Volcanic Arena")
+        {
+            //event here
+        }
     }
 }
