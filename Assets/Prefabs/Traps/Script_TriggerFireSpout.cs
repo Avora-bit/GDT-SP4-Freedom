@@ -6,20 +6,30 @@ using UnityEngine;
 public class Script_TriggerFireSpout : MonoBehaviour
 {
     public int iDamage = 2;
-    public float fCooldown = 10f;
+
+    public float minCooldown, maxCooldown;
+    private float fCooldown;
     private float fCurrentCooldown = 0f;
+
     private bool isActive = false;
-    public float fActiveTime = 3f;
-    private float fTime = 0.1f;
+    public float minActiveTime, maxActiveTime;
+    private float fActiveTime;
+    private float fTime = 0f;
+
     public float fDamageTick = 0.2f;
     private float fDamageCooldown = 0f; 
+
     ParticleSystem fireParticle;
 
     // Start is called before the first frame update
     void Start()
     {
         fireParticle = GetComponent<ParticleSystem>();
+
+        fCooldown = Random.Range(minCooldown, maxCooldown);
         fCurrentCooldown = fCooldown;
+        fActiveTime = Random.Range(minCooldown, maxCooldown);
+        fTime = fActiveTime;
     }
 
     // Update is called once per frame
