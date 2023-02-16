@@ -25,25 +25,25 @@ public class EventHandler : MonoBehaviour
     void Update()
     {
         // if player starts fighting and map is default
-        if (ParentObject == "Default Arena")
+        if (ParentObject.name == "Default Arena")
         {
             //event here
         }
 
         // if player starts fighting and map is desert
-        else if (ParentObject == "Desert Arena")
+        else if (ParentObject.name == "Desert Arena")
         {
             //event here
         }
 
         // if player starts fighting and map is forest
-        else if (ParentObject == "Forest Arena")
+        else if (ParentObject.name == "Forest Arena")
         {
             //event here
         }
 
         // if player starts fighting and map is lava
-        else if (ParentObject == "Volcanic Arena")
+        else if (ParentObject.name == "Volcanic Arena")
         {
             //event here
         }
