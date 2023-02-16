@@ -13,6 +13,7 @@ public class Script_baseHealth : MonoBehaviour
     //public Image red;
     //public Image black;
     public bool IsPlayer = false;
+    public bool IsDummy;
     
     // Start is called before the first frame update
     void Start()
@@ -26,8 +27,11 @@ public class Script_baseHealth : MonoBehaviour
     {
         if (selfHealth <= 0)
         {
+            selfHealth = 0;
             if (IsPlayer)
                 Debug.Log("player hit");
+            else if (IsDummy)
+                Debug.Log("dummy die");
             else
                 Destroy(gameObject);        //death
         }

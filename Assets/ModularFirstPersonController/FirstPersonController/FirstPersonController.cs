@@ -249,7 +249,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
-        arrowcount.text = ": " + arrows.ToString();
+        arrowcount.text = "x" + arrows.ToString();
 
         playerhp = health.getHealth();
 

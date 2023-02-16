@@ -14,10 +14,14 @@ public class Script_Dummy : MonoBehaviour
     public bool revive = false;
     public Animator anim;
     private bool toggle = false;
+
+    public Script_baseHealth health;
+    private int currentHP = 100;
+    private int lastHP = 100;
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = GetComponent<Script_baseHealth>();
     }
 
     // Update is called once per frame
@@ -65,72 +69,38 @@ public class Script_Dummy : MonoBehaviour
                 revive = false;
                 anim.SetBool("revive", false);
                 anim.SetBool("backtoneutral", true);
+
             }
         }
 
-
-
-        if (Input.GetKey(KeyCode.Alpha1) && toggle == false)
+        currentHP = health.getHealth();
+        if (currentHP == 100)
         {
-            toggle = true;
-            anim.SetBool("hit", true);
-            timer = 0.1f;
-           // Debug.Log(anim.GetBool("hit"));
+            lastHP = currentHP;
+            anim.SetBool("hit", false);
 
         }
-        if (Input.GetKey(KeyCode.Alpha2) && toggle == false)
+
+        if (currentHP <= 0)
         {
-            toggle = true;
-            anim.SetBool("backtoneutral" , false);
+            health.Healing(100);
+            lastHP = currentHP;
+            anim.SetBool("backtoneutral", false);
             anim.SetBool("dead", true);
+            lastHP = currentHP;
             deadneutraltime = 1;
             deadneutral = true;
         }
-        
-        if (Input.GetKey(KeyCode.Alpha3) && toggle == false)
+        else if (currentHP < lastHP)
         {
-            toggle = true;
-            anim.SetBool("dead", false);
-            anim.SetBool("deadneutral", true);
-            deadtime = 2;
-            dead = true;
-        }
-        if (Input.GetKey(KeyCode.Alpha4) && toggle == false)
-        {
-            toggle = true;
-            anim.SetBool("deadneutral", false);
-            anim.SetBool("revive", true);
-        }
-        if (Input.GetKey(KeyCode.Alpha5) && toggle == false)
-        {
-            toggle = true;
-            anim.SetBool("revive", false);
-            anim.SetBool("backtoneutral", true);
-     
-        }
+            lastHP = currentHP;
+            anim.SetBool("hit", true);
+            timer = 1f;
+           Debug.Log(anim.GetBool("dummy hit"));
 
-        if (toggle == true && !Input.GetKey(KeyCode.Alpha1))
-        {
-            toggle = false;
-        }
-        if (toggle == true && !Input.GetKey(KeyCode.Alpha2))
-        {
-            toggle = false;
-        }
-        if (toggle == true && !Input.GetKey(KeyCode.Alpha3))
-        {
-            toggle = false;
-        }
-        if (toggle == true && !Input.GetKey(KeyCode.Alpha4))
-        {
-            toggle = false;
-        }
-        if (toggle == true && !Input.GetKey(KeyCode.Alpha5))
-        {
-            toggle = false;
-        }
+        }    
         if (timer <= 0)
-        {
+        { 
             anim.SetBool("hit", false);
         }
     }
