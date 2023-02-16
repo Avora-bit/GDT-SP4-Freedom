@@ -144,7 +144,8 @@ public class FirstPersonController : MonoBehaviour
     public bool canInteract = true;
     public KeyCode interactKey = KeyCode.E;
     public KeyCode dropKey = KeyCode.Q;
-    public bool canDelete = false;
+    public float pickUpRange = 2.0f;
+    public bool canDelete = true;
     #endregion
 
     #region Head Bob
@@ -621,12 +622,12 @@ public class FirstPersonController : MonoBehaviour
         //Debug.Log("Interacted");
         Vector3 origin = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, playerCamera.transform.position.z);
         Vector3 direction = playerCamera.transform.forward;
-        float distance = 5.0f;
 
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, pickUpRange))
         {
-            Debug.DrawRay(origin, direction * distance, Color.cyan);
+            Debug.DrawRay(origin, direction * pickUpRange, Color.cyan);
             Debug.Log("GameObject interacted: " + hit.collider.tag);
+            canDelete = true;
             if (hit.collider.gameObject.tag == "Healing")
             {
                 Debug.Log("Clicked on healing item");
@@ -639,7 +640,6 @@ public class FirstPersonController : MonoBehaviour
             }
             else if (hit.collider.gameObject.tag == "Weapon")
             {
-                canDelete = true;
                 Debug.Log("Picked up weapon with tag weapon");
                 PickUpWeapon(hit);
             }
@@ -649,11 +649,11 @@ public class FirstPersonController : MonoBehaviour
             }
             if (hit.collider.gameObject.tag != "Untagged")
             {
-                Debug.Log("Target is tagged");
-                if  (canDelete == true)
+                if (canDelete)
                 {
                     Destroy(hit.collider.gameObject);
                 }
+                
             }
         }
     }
@@ -703,7 +703,6 @@ public class FirstPersonController : MonoBehaviour
             WeaponHand.transform.GetChild(WeaponToHold).gameObject.GetComponent<BoxCollider>().enabled = false;
             WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
             currentWeapon = WeaponToHold;
-            canDelete = true;
         }
         else
         {
@@ -956,10 +955,10 @@ public class FirstPersonControllerEditor : Editor
         fpc.canInteract = EditorGUILayout.ToggleLeft(new GUIContent("Enable Interaction", "Determines if the player is allowed to interact with gameobjects."), fpc.canInteract);
         GUI.enabled = fpc.canInteract;
         fpc.interactKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Interact Key", "Determines what key is used to interact."), fpc.interactKey);
+        fpc.pickUpRange = EditorGUILayout.FloatField(new GUIContent("Interaction Range", "Determines how far the player can interact with items on the floor"), fpc.pickUpRange);
         GUI.enabled = true;
 
         EditorGUILayout.Space();
-
         #endregion
 
         #region Playerinfo

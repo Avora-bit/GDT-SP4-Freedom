@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf4953e9dc9364439360f55a9f68db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 17
-  AttackSpeed: 1.2
-  Range: 11
+  iDamage: 33
+  fAttackSpeed: 0.5
+  fRange: 4
 --- !u!33 &6841786619220996895
 MeshFilter:
   m_ObjectHideFlags: 0
