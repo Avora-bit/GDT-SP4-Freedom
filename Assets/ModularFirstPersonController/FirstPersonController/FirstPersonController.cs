@@ -18,12 +18,10 @@ using System.Net;
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
+
     public RawImage quiver;
-    public float hp = 100;
-    private float last_hp = 100;
-    public float max_hp = 100;
-    private float iframetimer = 1f;
     public int arrows = 0;
+    public int maxarrows = 0;
     public Text arrowcount;
 
     public Script_baseHealth health;
@@ -41,6 +39,7 @@ public class FirstPersonController : MonoBehaviour
     private float last_stamina = 100f;
     private float dashcooldown = 0.0f;
     private float regenpausetimer = 1f;
+
     #region Camera Movement Variables
 
     public Camera playerCamera;
@@ -162,12 +161,8 @@ public class FirstPersonController : MonoBehaviour
     #endregion
 
     #region Player Weapon
-    public bool isHoldingWeapon = true;
     public GameObject WeaponHand;
     int currentWeapon; //used to store int value of the active child of WeaponHand
-    public double attackStart = 0.0;
-    public double attackCooldown = 0.0;
-    public bool canAttack = true;
     #endregion
 
     private void Awake()
@@ -175,13 +170,11 @@ public class FirstPersonController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         crosshairObject = GetComponentInChildren<Image>();
         health = GetComponent<Script_baseHealth>();
-        // hp = GetComponentInChildren<int>();
 
         // Set internal variables
         playerCamera.fieldOfView = fov;
         originalScale = transform.localScale;
         jointOriginalPos = joint.localPosition;
-
 
         if (!unlimitedSprint)
         {
@@ -199,7 +192,6 @@ public class FirstPersonController : MonoBehaviour
                 break;
             }
         }
-        //attackCooldown = WeaponHand.GetComponentInChildren<Script_WeaponStats>().AttackSpeed;
     }
 
     void Start()
@@ -254,20 +246,8 @@ public class FirstPersonController : MonoBehaviour
 
     float camRotation;
 
-    public void GiveDamage(int damage)
-    {
-        hp = hp - damage;
-    }
-
-    public void TakeDamage(int damage)
-    {
-        playerhp -= damage;
-        anim.SetBool("hit", true);
-    }
-
     private void Update()
     {
-        
         arrowcount.text = ": " + arrows.ToString();
 
         playerhp = health.getHealth();
@@ -283,7 +263,6 @@ public class FirstPersonController : MonoBehaviour
                 }
                 lastplayerhp = playerhp;
             }
-            //if(lastplayerhp < playerhp)
         }      
         if (anim.GetBool("hit") == true)
         {
@@ -295,32 +274,6 @@ public class FirstPersonController : MonoBehaviour
             hitcd = 0.5f;
         }
 
-
-        #region HP
-        if (hp > max_hp)
-        {
-            hp = max_hp;
-        }
-
-        if (iframetimer > 0)
-        {
-            if (last_hp > hp)
-            {
-                hp = last_hp;
-            }
-            iframetimer = Mathf.Clamp(iframetimer -= 1 * Time.deltaTime, 0, 2f);
-        }
-        else
-        {
-            if (last_hp > hp)
-            {
-                //iframetimer = 2f;
-                last_hp = hp;
-            }
-        }
-
-        #endregion
-
         #region Camera
 
         // Control camera movement
@@ -328,16 +281,8 @@ public class FirstPersonController : MonoBehaviour
         {
             yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
 
-            if (!invertCamera)
-            {
-                pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
-
-            }
-            else
-            {
-                // Inverted Y
-                pitch += mouseSensitivity * Input.GetAxis("Mouse Y");
-            }
+            if (!invertCamera) pitch -= mouseSensitivity * Input.GetAxis("Mouse Y"); 
+            else pitch += mouseSensitivity * Input.GetAxis("Mouse Y"); 
 
             // Clamp pitch between lookAngle
             pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
@@ -508,16 +453,11 @@ public class FirstPersonController : MonoBehaviour
         #endregion
 
         #region WeaponInteraction
+        if (Input.GetMouseButtonDown(0))
+        {
+            WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<Script_baseWeapon>().Attack(playerCamera);
+        }
 
-        //if (Time.time >= attackStart + attackCooldown)
-        //{
-        //    canAttack = true;
-        //}
-
-        //if (Input.GetMouseButtonDown(0) && canAttack)
-        //{
-        //    Attack();
-        //}
         #endregion
     }
 
@@ -540,13 +480,7 @@ public class FirstPersonController : MonoBehaviour
             {
                 isWalking = false;
             }
-            if (Input.GetKey(KeyCode.R))
-            {
-                GiveDamage(10);
-                //hp -= 10;
-                Debug.Log(hp);
-            }
-
+            
             if (!Input.GetKey(sprintKey) && dashed == true)
             {
                 dashcooldown = 0.5f;
@@ -561,7 +495,6 @@ public class FirstPersonController : MonoBehaviour
                 Vector3 velocityChange = Vector3.Normalize(Velocity) * sprintSpeed;
                 rb.AddForce(velocityChange, ForceMode.Impulse);
                 stamina -= max_stamina / 4;
-                iframetimer = 0.5f;
 
                 //    if (hideBarWhenFull && !unlimitedSprint)
                 //    {
@@ -697,13 +630,12 @@ public class FirstPersonController : MonoBehaviour
             if (hit.collider.gameObject.tag == "Healing")
             {
                 Debug.Log("Clicked on healing item");
-                hp += 15;
+                health.Healing(15);
             }
             else if (hit.collider.gameObject.tag == "Ammo")
             {
                 Debug.Log("Picked up ammo");
                 arrows += 3;
-                
             }
             else if (hit.collider.gameObject.tag == "Weapon")
             {
@@ -1037,6 +969,7 @@ public class FirstPersonControllerEditor : Editor
         EditorGUILayout.Space();
 
         fpc.arrows = EditorGUILayout.IntField(new GUIContent("arrows", "arrows"), fpc.arrows);
+        fpc.maxarrows = EditorGUILayout.IntField(new GUIContent("arrows", "arrows"), fpc.maxarrows);
         fpc.arrowcount = (Text)EditorGUILayout.ObjectField(new GUIContent("arrowtext", "TMP for arrow amount"), fpc.arrowcount, typeof(Text), true);
         fpc.quiver = (RawImage)EditorGUILayout.ObjectField(new GUIContent("quiver", "Quiver image"), fpc.quiver, typeof(RawImage), true);
         fpc.stamina = EditorGUILayout.Slider(new GUIContent("stamina", "stamina"), fpc.stamina, 0, 100f);
@@ -1044,8 +977,6 @@ public class FirstPersonControllerEditor : Editor
 
         fpc.WeaponHand = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Current Weapon", "Weapon that the player is currently holding"), fpc.WeaponHand, typeof(GameObject), true);
         EditorGUILayout.Space();
-
-        fpc.attackCooldown = EditorGUILayout.DoubleField(new GUIContent("Attack Cooldown", "Cooldown before player is able to attack again. This should count DOWN, not up"), fpc.attackCooldown);
         #endregion
 
         #region Health

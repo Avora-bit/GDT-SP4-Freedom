@@ -25,24 +25,24 @@ public class Script_baseWeapon : MonoBehaviour
         if (fcooldown <= 0f) canAttack = true;
     }
 
-    private void Attack()
+    public void Attack(Camera rayVector)
     {
         if (canAttack)
         {
             Debug.Log("Damage: " + iDamage + " Attack Speed: " + fAttackSpeed + " Range: " + fRange);
-            //Vector3 origin = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, playerCamera.transform.position.z);
-            //Vector3 direction = playerCamera.transform.forward;
+            Vector3 origin = new Vector3(rayVector.transform.position.x, rayVector.transform.position.y, rayVector.transform.position.z);
+            Vector3 direction = rayVector.transform.forward;
 
-            //if (Physics.Raycast(origin, direction, out RaycastHit hit, fRange))
-            //{
-            //    Debug.DrawRay(origin, direction * fRange, Color.yellow);
-            //    Debug.Log("GameObject hit: " + hit.collider.name);
-            //    //deal damage
-            //    if ()
-            //    {
-
-            //    }
-            //}
+            if (Physics.Raycast(origin, direction, out RaycastHit hit, fRange))
+            {
+                Debug.DrawRay(origin, direction * fRange, Color.yellow);
+                Debug.Log("GameObject hit: " + hit.collider.name);
+                //deal damage
+                if (hit.collider.GetComponent<Script_baseHealth>() != null)
+                {
+                    hit.collider.GetComponent<Script_baseHealth>().TakeDamage(iDamage);
+                }
+            }
             fcooldown = timeBetweenAttack; 
             canAttack = false;
         }
