@@ -39,6 +39,7 @@ public class FirstPersonController : MonoBehaviour
     private float last_stamina = 100f;
     private float dashcooldown = 0.0f;
     private float regenpausetimer = 1f;
+    public bool tping;
 
     #region Camera Movement Variables
 
@@ -249,6 +250,12 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
+
+        if (tping)
+        {
+            StartCoroutine(teleporting());
+            tping = false;
+        }
         arrowcount.text = "x" + arrows.ToString();
 
         playerhp = health.getHealth();
@@ -740,10 +747,22 @@ public class FirstPersonController : MonoBehaviour
     IEnumerator change()
     {
         anim2.SetBool("fade", true);
-        Debug.Log("THE END?");
+       // Debug.Log("THE END?");
         yield return new WaitUntil(() => black.color.a == 1);
-        Debug.Log("THE END");
+      //  Debug.Log("THE END");
         SceneManager.LoadScene("Scene_End");
+    }
+    IEnumerator teleporting()
+    {
+        anim2.SetBool("fade", true);
+        yield return new WaitUntil(() => black.color.a == 1);
+        StartCoroutine(teleported());
+    }
+    IEnumerator teleported()
+    {
+        anim2.SetBool("fade", false);
+        yield return new WaitUntil(() => black.color.a == 255);
+
     }
 }
 
