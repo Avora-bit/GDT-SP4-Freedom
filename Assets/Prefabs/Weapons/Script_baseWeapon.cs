@@ -41,6 +41,7 @@ public class Script_baseWeapon : MonoBehaviour
                 if (hit.collider.GetComponent<Script_baseHealth>() != null)
                 {
                     hit.collider.GetComponent<Script_baseHealth>().TakeDamage(iDamage);
+                    Debug.Log("Hit");
                 }
             }
             fcooldown = timeBetweenAttack; 

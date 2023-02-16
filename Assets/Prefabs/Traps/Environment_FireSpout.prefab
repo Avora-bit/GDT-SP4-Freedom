@@ -49,8 +49,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iDamage: 2
-  fCooldown: 5
-  fActiveTime: 1
+  minCooldown: 2
+  maxCooldown: 10
+  minActiveTime: 2
+  maxActiveTime: 10
   fDamageTick: 0.2
 --- !u!199 &279961783140924943
 ParticleSystemRenderer:
@@ -132,7 +134,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8136475225305966877}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 3
   stopAction: 0
   cullingMode: 0
@@ -140,7 +142,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -4841,10 +4843,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 4
-  m_Height: 10
+  m_Radius: 2
+  m_Height: 20
   m_Direction: 1
-  m_Center: {x: 0, y: 5, z: 0}
+  m_Center: {x: 0, y: 8, z: 0}
 --- !u!1 &8234230975764826869
 GameObject:
   m_ObjectHideFlags: 0
