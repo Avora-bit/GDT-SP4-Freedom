@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &871150705784363505
 Transform:
@@ -114,7 +114,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &871150706030235187
 Transform:
@@ -211,7 +211,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &871150706510087663
 Transform:
@@ -308,7 +308,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &871150706576133727
 Transform:
@@ -405,7 +405,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &871150706619141803
 Transform:
@@ -502,7 +502,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &871150707226071600
 Transform:
@@ -599,7 +599,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &871150707310204327
 Transform:
@@ -693,7 +693,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &871150707327117705
 Transform:
@@ -807,7 +807,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &871150707567113378
 Transform:
@@ -938,9 +938,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -2354,9 +2362,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7582912282214026463, guid: 67f88c85afd9dc54bb40b62d5eb68f73, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 67f88c85afd9dc54bb40b62d5eb68f73, type: 3}
       propertyPath: m_Name
       value: Environment_Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 67f88c85afd9dc54bb40b62d5eb68f73, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67f88c85afd9dc54bb40b62d5eb68f73, type: 3}
@@ -3232,6 +3248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_Bridge (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1721737726587604, guid: a9c899e0b66039040ab831fddc761839, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4061660776025202, guid: a9c899e0b66039040ab831fddc761839, type: 3}
       propertyPath: m_RootOrder
       value: 59
@@ -3350,9 +3370,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -3412,9 +3440,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -3474,9 +3510,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -3495,6 +3539,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_Name
       value: rpgpp_lt_terrain_grass_01 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_RootOrder
@@ -3633,9 +3681,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -3695,9 +3751,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -3757,9 +3821,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -3819,9 +3891,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -3881,9 +3961,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -3943,9 +4031,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -4005,9 +4101,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -4067,9 +4171,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -4088,6 +4200,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_Name
       value: rpgpp_lt_terrain_grass_01 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_RootOrder
@@ -4226,9 +4342,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -4247,6 +4371,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_Name
       value: rpgpp_lt_terrain_grass_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_RootOrder
@@ -4385,9 +4513,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -4406,6 +4542,10 @@ PrefabInstance:
     - target: {fileID: 1721737726587604, guid: a9c899e0b66039040ab831fddc761839, type: 3}
       propertyPath: m_Name
       value: Prefab_Bridge (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721737726587604, guid: a9c899e0b66039040ab831fddc761839, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4061660776025202, guid: a9c899e0b66039040ab831fddc761839, type: 3}
       propertyPath: m_RootOrder
@@ -4525,9 +4665,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -4546,6 +4694,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_Name
       value: rpgpp_lt_terrain_grass_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_RootOrder
@@ -4643,6 +4795,10 @@ PrefabInstance:
     - target: {fileID: 1721737726587604, guid: a9c899e0b66039040ab831fddc761839, type: 3}
       propertyPath: m_Name
       value: Prefab_Bridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721737726587604, guid: a9c899e0b66039040ab831fddc761839, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4061660776025202, guid: a9c899e0b66039040ab831fddc761839, type: 3}
       propertyPath: m_RootOrder
@@ -4762,9 +4918,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -4824,9 +4988,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -4845,6 +5017,10 @@ PrefabInstance:
     - target: {fileID: 1721737726587604, guid: a9c899e0b66039040ab831fddc761839, type: 3}
       propertyPath: m_Name
       value: Prefab_Bridge (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721737726587604, guid: a9c899e0b66039040ab831fddc761839, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4061660776025202, guid: a9c899e0b66039040ab831fddc761839, type: 3}
       propertyPath: m_RootOrder
@@ -4964,9 +5140,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -5026,9 +5210,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -5092,6 +5284,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EventOrigin
       objectReference: {fileID: 0}
+    - target: {fileID: 8805499301683852987, guid: 39c059c06cacaab48b349de281045646, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39c059c06cacaab48b349de281045646, type: 3}
 --- !u!4 &8087731087855548351 stripped
@@ -5150,9 +5346,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -5212,9 +5416,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -5274,9 +5486,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -5295,6 +5515,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_Name
       value: rpgpp_lt_terrain_grass_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_RootOrder
@@ -5392,6 +5616,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_Name
       value: rpgpp_lt_terrain_grass_01 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_RootOrder
@@ -5530,9 +5758,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -5592,9 +5828,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -5613,6 +5857,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_Name
       value: rpgpp_lt_terrain_grass_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_RootOrder
@@ -5751,9 +5999,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
@@ -5772,6 +6028,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_Name
       value: rpgpp_lt_terrain_grass_01 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
       propertyPath: m_RootOrder
@@ -5869,6 +6129,10 @@ PrefabInstance:
     - target: {fileID: 1721737726587604, guid: a9c899e0b66039040ab831fddc761839, type: 3}
       propertyPath: m_Name
       value: Prefab_Bridge (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721737726587604, guid: a9c899e0b66039040ab831fddc761839, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4061660776025202, guid: a9c899e0b66039040ab831fddc761839, type: 3}
       propertyPath: m_RootOrder
@@ -5988,9 +6252,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4069848316624419693, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
       propertyPath: m_Name
       value: Environment_FireSpout (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d78f0820676aae49836a4d9327084e3, type: 3}
