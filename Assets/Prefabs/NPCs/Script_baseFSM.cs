@@ -22,8 +22,8 @@ public class Script_baseFSM : MonoBehaviour
 
     enum FSM
     {
-        INACTIVE = 0,
-        IDLE,               //check for player
+        INACTIVE,
+        IDLE = 0,           //check for player
         PATROL,             //"melee": roam spawn point
         MOVE,               //found target, moving to target
         ATTACK,             //target in range, attack
@@ -49,10 +49,6 @@ public class Script_baseFSM : MonoBehaviour
         }
 
         switch (currentFSM){
-            case FSM.INACTIVE:
-                {
-                    break;
-                }
             case FSM.IDLE:
                 {
                     break;

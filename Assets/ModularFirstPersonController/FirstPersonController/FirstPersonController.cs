@@ -252,7 +252,6 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
-
         if (tping)
         {
             StartCoroutine(teleporting());
@@ -336,10 +335,12 @@ public class FirstPersonController : MonoBehaviour
             // Lerps camera.fieldOfView to allow for a smooth transistion
             if (isZoomed)
             {
+                GetComponent<Script_Throwing>().DrawTrajectoryProjection(playerCamera.transform.position + playerCamera.transform.right, playerCamera.transform.forward);
                 playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, zoomFOV, zoomStepTime * Time.deltaTime);
             }
             else if (!isZoomed && !isSprinting)
             {
+                GetComponent<Script_Throwing>().StopTrajectoryDraw();
                 playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, fov, zoomStepTime * Time.deltaTime);
             }
         }
