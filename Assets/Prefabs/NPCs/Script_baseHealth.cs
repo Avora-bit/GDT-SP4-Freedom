@@ -9,13 +9,12 @@ public class Script_baseHealth : MonoBehaviour
     public int selfHealth;
     public int totaldmg;
     public bool IsPlayer = false;
-    public bool IsDummy;
+    public bool IsDummy = false;
     
     // Start is called before the first frame update
     void Start()
     {
         selfHealth = maxHealth;
-
     }
 
     // Update is called once per frame
@@ -28,19 +27,7 @@ public class Script_baseHealth : MonoBehaviour
                 Debug.Log("player die");
             else if (IsDummy)
                 Debug.Log("dummy die");
-            else
-                Destroy(gameObject);        //death
         }
-        //if (anim.GetBool("hit") == true)
-        //{
-        //    timer -= 1 * Time.deltaTime;
-        //}
-        //if (timer <= 0)
-        //{
-        //    anim.SetBool("hit", false);
-        //    timer = 0.5f;
-        //}
-
     }
 
     public void TakeDamage(int _damage)
@@ -61,19 +48,4 @@ public class Script_baseHealth : MonoBehaviour
     {
         return selfHealth;
     }
-    //IEnumerator die()
-    //{
-    //    anim.SetBool("death", true);
-    //    yield return new WaitUntil(() => red.color.a == 1);
-    //     StartCoroutine(change());
-    //   // SceneManager.LoadScene("Scene_End");
-    //}
-    //IEnumerator change()
-    //{
-    //    anim2.SetBool("fade", true);
-    //    Debug.Log("THE END?");
-    //    yield return new WaitUntil(() => black.color.a == 1);
-    //    Debug.Log("THE END");
-    //    SceneManager.LoadScene("Scene_End");
-    //}
 }

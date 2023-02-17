@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Script_baseFSM : MonoBehaviour
 {
+    Script_baseHealth baseHealth;
+
     FSM currentFSM = 0;
     int iFSMCounter = 0;
     public const float iMaxFSMCounter = 60f;       //in seconds
     //after 1 min ends, stop chase and wait for other enemies to spawn and reset self FSM
+
+    private NavMeshAgent navMeshAgent;
+    public Transform TargetPos;
 
     enum FSM
     {
@@ -23,13 +30,21 @@ public class Script_baseFSM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        baseHealth = GetComponent<Script_baseHealth>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch(currentFSM){
+        navMeshAgent.destination = TargetPos.position;
+
+        if (baseHealth.getHealth() <= 0)
+        {
+            currentFSM = FSM.DEATH;
+        }
+
+        switch (currentFSM){
             case FSM.INACTIVE:
                 {
                     break;
@@ -56,6 +71,14 @@ public class Script_baseFSM : MonoBehaviour
                 }
             case FSM.DEATH:
                 {
+                    //drop weapon
+                    GameObject Clone = Instantiate(transform.GetChild(0).gameObject, transform.position, Quaternion.identity);
+                    Clone.name = transform.GetChild(0).gameObject.name;
+                    Clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    Clone.GetComponent<BoxCollider>().enabled = true;
+
+                    //destroy self
+                    Destroy(gameObject);
                     break;
                 }
             default:
