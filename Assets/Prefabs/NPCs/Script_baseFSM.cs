@@ -15,6 +15,10 @@ public class Script_baseFSM : MonoBehaviour
 
     private NavMeshAgent navMeshAgent;
     public Transform TargetPos;
+    public bool IsMelee;
+    public bool IsRanged;
+    public GameObject ParentArcherTower;
+
 
     enum FSM
     {
@@ -67,6 +71,15 @@ public class Script_baseFSM : MonoBehaviour
                 }
             case FSM.VANTAGE:
                 {
+                    if (baseHealth.getHealth() != 100 && IsRanged) // if enemy is an archer and isn't max health 
+                    {
+                        // get out of vantage point to flank/attack player on ground
+
+
+
+                        //after getting out of vantage point (dropping to ground), enemy goes to attack
+                        currentFSM = FSM.ATTACK;
+                    }
                     break;
                 }
             case FSM.DEATH:
