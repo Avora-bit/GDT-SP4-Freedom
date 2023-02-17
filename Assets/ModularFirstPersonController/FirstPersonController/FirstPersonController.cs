@@ -371,16 +371,25 @@ public class FirstPersonController : MonoBehaviour
                 sprintRemaining = Mathf.Clamp(sprintRemaining += 1 * Time.deltaTime, 0, sprintDuration);
 
                 dashcooldown = Mathf.Clamp(dashcooldown -= 1 * Time.deltaTime, 0, 1);
-                regenpausetimer = Mathf.Clamp(regenpausetimer -= 1 * Time.deltaTime, 0, 1);
-                if (last_stamina > stamina)
+                regenpausetimer = Mathf.Clamp(regenpausetimer -= 1 * Time.deltaTime, 0, 5);
+                if (regenpausetimer <= 0)
+                {
+                    stamina = Mathf.Clamp(stamina += 10 * Time.deltaTime, 0, max_stamina);
+                    walkSpeed = 5;
+                }
+                if (stamina <= 0)
+                {
+                    stamina = 1;
+                    last_stamina = stamina;
+                    regenpausetimer = 5;
+                    walkSpeed = 2;
+                }
+                else if (last_stamina > stamina)
                 {
                     regenpausetimer = 1;
                     last_stamina = stamina;
                 }
-                if (regenpausetimer <= 0)
-                {
-                    stamina = Mathf.Clamp(stamina += 10 * Time.deltaTime, 0, max_stamina);
-                }
+
             }
 
             // Handles sprint cooldown 
@@ -496,7 +505,7 @@ public class FirstPersonController : MonoBehaviour
                 dashed = false;
             }
             // All movement calculations shile sprint is active
-            if (enableSprint && Input.GetKey(sprintKey) && dashcooldown <= 0f && dashed == false && stamina > max_stamina / 4 && isGrounded! && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
+            if (enableSprint && Input.GetKey(sprintKey) && dashcooldown <= 0f && dashed == false && stamina > 5 && isGrounded! && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
             {
                 dashed = true;
                 Vector3 Velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);

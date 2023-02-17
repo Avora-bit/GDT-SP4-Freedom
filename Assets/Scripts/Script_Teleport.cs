@@ -10,7 +10,7 @@ public class Script_Teleport : MonoBehaviour
 
 
     public FirstPersonController fpc;
-    public Vector3 v;
+
     private float timer;
     private int countdown;
     private void OnTriggerEnter(Collider other)
