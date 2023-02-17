@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 public class Script_Mainmenu : MonoBehaviour
 {
     public Animator anim;
     public Image black;
+    public TMP_InputField nameinput;
+    public string name = "nameless";
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class Script_Mainmenu : MonoBehaviour
     }
     public void GuestLogin()
     {
+        name = nameinput.text;
         StartCoroutine(Fading("Scene_Battle"));
        // Debug.LogError("Loggin");
     }
