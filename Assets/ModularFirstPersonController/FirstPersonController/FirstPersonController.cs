@@ -38,6 +38,7 @@ public class FirstPersonController : MonoBehaviour
     private bool dashed = false;
     public float max_stamina = 100f;
     public float stamina = 100f;
+    public float dashCost = 30;
     private float last_stamina = 100f;
     private float dashcooldown = 0.0f;
     private float regenpausetimer = 1f;
@@ -385,7 +386,7 @@ public class FirstPersonController : MonoBehaviour
                 {
                     stamina = 1;
                     last_stamina = stamina;
-                    regenpausetimer = 5;
+                    regenpausetimer = 3;
                     walkSpeed = 2;
                 }
                 else if (last_stamina > stamina)
@@ -456,30 +457,23 @@ public class FirstPersonController : MonoBehaviour
 
         CheckGround();
 
-        if (enableHeadBob)
-        {
-            HeadBob();
-        }
+        if (enableHeadBob) HeadBob(); 
 
-        if (Input.GetKeyDown(dropKey))
-        {
-            DropWeapon();
-        }
+        if (Input.GetKeyDown(dropKey)) DropWeapon(); 
 
-        #region Interact
-        if (canInteract && Input.GetKeyDown(interactKey))
-        {
-            Interact();
-        }
-        #endregion
+        if (canInteract && Input.GetKeyDown(interactKey)) Interact(); 
 
-        #region WeaponInteraction
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && stamina >= WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<Script_baseWeapon>().getStaminaCost())
         {
-            WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<Script_baseWeapon>().Attack(playerCamera);
+            if (WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<Script_baseWeapon>().Attack(playerCamera))         //if attack succesful
+            {
+                stamina -= WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<Script_baseWeapon>().getStaminaCost();
+            }
+            else
+            {
+                //null
+            }
         }
-
-        #endregion
     }
 
     void FixedUpdate()
@@ -509,13 +503,15 @@ public class FirstPersonController : MonoBehaviour
                 dashed = false;
             }
             // All movement calculations shile sprint is active
-            if (enableSprint && Input.GetKey(sprintKey) && dashcooldown <= 0f && dashed == false && stamina > 5 && isGrounded! && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
+            if (enableSprint && Input.GetKey(sprintKey) && dashcooldown <= 0f && dashed == false && stamina > 5 && isGrounded! && 
+                ( Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) ) &&
+                stamina >= dashCost)
             {
                 dashed = true;
                 Vector3 Velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
                 Vector3 velocityChange = Vector3.Normalize(Velocity) * sprintSpeed;
                 rb.AddForce(velocityChange, ForceMode.Impulse);
-                stamina -= max_stamina / 3;
+                stamina -= dashCost;
 
                 //    if (hideBarWhenFull && !unlimitedSprint)
                 //    {

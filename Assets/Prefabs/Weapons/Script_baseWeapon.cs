@@ -11,10 +11,13 @@ public class Script_baseWeapon : MonoBehaviour
     public Animator anim;
     public GameObject weapon;
 
+    public int costStamina;
+
     //flags
     private float timeBetweenAttack;
     private float fcooldown;
     private bool canAttack;
+    private bool isThrows = false;
 
     void Start()
     {
@@ -33,7 +36,7 @@ public class Script_baseWeapon : MonoBehaviour
         anim.SetTrigger("Attack");
     }
 
-    public void Attack(Camera rayVector)
+    public bool Attack(Camera rayVector)
     {
         if (canAttack)
         {
@@ -53,13 +56,20 @@ public class Script_baseWeapon : MonoBehaviour
                     Debug.Log("Hit");
                 }
             }
-            fcooldown = timeBetweenAttack; 
+            fcooldown = timeBetweenAttack;
+            return true;
         }
         else
         {
             //null
             Debug.Log("weapon cooldown");
+            return false;
         }
+    }
+
+    public int getStaminaCost()
+    {
+        return costStamina;
     }
 
     public void StopEvent(string s)
