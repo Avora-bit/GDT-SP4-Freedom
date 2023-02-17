@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Script_baseFSM : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class Script_baseFSM : MonoBehaviour
     int iFSMCounter = 0;
     public const float iMaxFSMCounter = 60f;       //in seconds
     //after 1 min ends, stop chase and wait for other enemies to spawn and reset self FSM
+
+    private NavMeshAgent navMeshAgent;
+    public Transform TargetPos;
 
     enum FSM
     {
@@ -23,13 +27,15 @@ public class Script_baseFSM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch(currentFSM){
+        navMeshAgent.destination = TargetPos.position;
+
+        switch (currentFSM){
             case FSM.INACTIVE:
                 {
                     break;

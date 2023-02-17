@@ -179,7 +179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 997316360597791311, guid: 5913da53ad344d348ba73ad046718549, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12
+      value: -104.4
       objectReference: {fileID: 0}
     - target: {fileID: 997316360597791311, guid: 5913da53ad344d348ba73ad046718549, type: 3}
       propertyPath: m_LocalPosition.y
@@ -221,6 +221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC_Enemy_Shield
       objectReference: {fileID: 0}
+    - target: {fileID: 4626990177488573357, guid: 5913da53ad344d348ba73ad046718549, type: 3}
+      propertyPath: TargetPos
+      value: 
+      objectReference: {fileID: 1331451845}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5913da53ad344d348ba73ad046718549, type: 3}
 --- !u!1001 &291125256
@@ -470,7 +474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 997316360597791311, guid: a05923bf25d66654a94b344664476d87, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: -106.4
       objectReference: {fileID: 0}
     - target: {fileID: 997316360597791311, guid: a05923bf25d66654a94b344664476d87, type: 3}
       propertyPath: m_LocalPosition.y
@@ -512,6 +516,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC_Enemy_Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 4626990177488573357, guid: a05923bf25d66654a94b344664476d87, type: 3}
+      propertyPath: TargetPos
+      value: 
+      objectReference: {fileID: 1331451845}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a05923bf25d66654a94b344664476d87, type: 3}
 --- !u!1001 &521066455
@@ -2020,7 +2028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -40
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3147,6 +3155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90ba6530d9bfda47abb4610956b2f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1331451845 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+  m_PrefabInstance: {fileID: 842773892}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1339339190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6841786619218129785, guid: 6d6964f787699194b9af6583ce7ef956, type: 3}
@@ -4657,7 +4670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 997316360597791311, guid: 98d34fc8d608fee408c0a815ce1a8b78, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14
+      value: -102.4
       objectReference: {fileID: 0}
     - target: {fileID: 997316360597791311, guid: 98d34fc8d608fee408c0a815ce1a8b78, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4699,6 +4712,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC_Enemy_Spear
       objectReference: {fileID: 0}
+    - target: {fileID: 4626990177488573357, guid: 98d34fc8d608fee408c0a815ce1a8b78, type: 3}
+      propertyPath: TargetPos
+      value: 
+      objectReference: {fileID: 1331451845}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98d34fc8d608fee408c0a815ce1a8b78, type: 3}
 --- !u!1001 &1736428188
@@ -5232,7 +5249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 997316360597791311, guid: 7f45323baccbf3c4ca898f93a957aeca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16
+      value: -100.4
       objectReference: {fileID: 0}
     - target: {fileID: 997316360597791311, guid: 7f45323baccbf3c4ca898f93a957aeca, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5274,6 +5291,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC_Enemy_Bow
       objectReference: {fileID: 0}
+    - target: {fileID: 4626990177488573357, guid: 7f45323baccbf3c4ca898f93a957aeca, type: 3}
+      propertyPath: TargetPos
+      value: 
+      objectReference: {fileID: 1331451845}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f45323baccbf3c4ca898f93a957aeca, type: 3}
 --- !u!1 &1971361735
