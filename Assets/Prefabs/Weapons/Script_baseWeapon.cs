@@ -8,6 +8,8 @@ public class Script_baseWeapon : MonoBehaviour
     public int iDamage;
     public float fAttackSpeed;
     public float fRange;
+    public Animator anim;
+    public GameObject weapon;
 
     //flags
     private float timeBetweenAttack;
@@ -25,10 +27,17 @@ public class Script_baseWeapon : MonoBehaviour
         if (fcooldown <= 0f) canAttack = true;
     }
 
+    private void PlayAttackAnimation()
+    {
+        anim.speed = 1/fAttackSpeed; //set the animation speed corresponding to the attack speed
+        anim.SetTrigger("Attack");
+    }
+
     public void Attack(Camera rayVector)
     {
         if (canAttack)
         {
+            PlayAttackAnimation();
             Debug.Log("Damage: " + iDamage + " Attack Speed: " + fAttackSpeed + " Range: " + fRange);
             Vector3 origin = new Vector3(rayVector.transform.position.x, rayVector.transform.position.y, rayVector.transform.position.z);
             Vector3 direction = rayVector.transform.forward;
@@ -45,12 +54,17 @@ public class Script_baseWeapon : MonoBehaviour
                 }
             }
             fcooldown = timeBetweenAttack; 
-            canAttack = false;
         }
         else
         {
             //null
             Debug.Log("weapon cooldown");
         }
+    }
+
+    public void StopEvent(string s)
+    {
+        Debug.Log(s + " anim.length: " + anim.GetCurrentAnimatorStateInfo(0).length);
+        anim.ResetTrigger("Trigger");
     }
 }

@@ -51,6 +51,8 @@ MonoBehaviour:
   iDamage: 34
   fAttackSpeed: 1
   fRange: 2
+  anim: {fileID: 0}
+  weapon: {fileID: 181888}
 --- !u!33 &1682591482471889220
 MeshFilter:
   m_ObjectHideFlags: 0
