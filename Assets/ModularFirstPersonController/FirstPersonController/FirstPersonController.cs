@@ -33,6 +33,8 @@ public class FirstPersonController : MonoBehaviour
     public Image red;
     public Image black;
 
+    public int scoretest;
+
     private bool dashed = false;
     public float max_stamina = 100f;
     public float stamina = 100f;
@@ -375,7 +377,8 @@ public class FirstPersonController : MonoBehaviour
                 if (regenpausetimer <= 0)
                 {
                     stamina = Mathf.Clamp(stamina += 10 * Time.deltaTime, 0, max_stamina);
-                    walkSpeed = 5;
+                    if (walkSpeed != 5) walkSpeed = 5;
+                    if (last_stamina < stamina) last_stamina = stamina;
                 }
                 if (stamina <= 0)
                 {
@@ -511,7 +514,7 @@ public class FirstPersonController : MonoBehaviour
                 Vector3 Velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
                 Vector3 velocityChange = Vector3.Normalize(Velocity) * sprintSpeed;
                 rb.AddForce(velocityChange, ForceMode.Impulse);
-                stamina -= max_stamina / 4;
+                stamina -= max_stamina / 3;
 
                 //    if (hideBarWhenFull && !unlimitedSprint)
                 //    {

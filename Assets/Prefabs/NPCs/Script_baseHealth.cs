@@ -7,11 +7,7 @@ public class Script_baseHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int selfHealth;
-    //private float timer = 0.5f;
-    //public Animator anim;
-    //public Animator anim2;
-    //public Image red;
-    //public Image black;
+    public int totaldmg;
     public bool IsPlayer = false;
     public bool IsDummy;
     
@@ -29,7 +25,7 @@ public class Script_baseHealth : MonoBehaviour
         {
             selfHealth = 0;
             if (IsPlayer)
-                Debug.Log("player hit");
+                Debug.Log("player die");
             else if (IsDummy)
                 Debug.Log("dummy die");
             else
@@ -50,11 +46,15 @@ public class Script_baseHealth : MonoBehaviour
     public void TakeDamage(int _damage)
     {
         selfHealth -= _damage;
+        if (IsPlayer)
+        {
+            totaldmg += _damage;
+        }
     }
 
     public void Healing(int _heal)
     {
-        selfHealth += _heal;
+        selfHealth = Mathf.Clamp(selfHealth += _heal, 0, maxHealth);
     }
 
     public int getHealth()
