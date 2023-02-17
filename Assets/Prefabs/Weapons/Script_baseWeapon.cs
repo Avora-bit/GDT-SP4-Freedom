@@ -29,7 +29,7 @@ public class Script_baseWeapon : MonoBehaviour
 
     private void PlayAttackAnimation()
     {
-        anim.speed = 1/fAttackSpeed; //set the animation speed corresponding to the attack speed
+        anim.speed = 1 / timeBetweenAttack;
         anim.SetTrigger("Attack");
     }
 
@@ -38,7 +38,7 @@ public class Script_baseWeapon : MonoBehaviour
         if (canAttack)
         {
             PlayAttackAnimation();
-            Debug.Log("Damage: " + iDamage + " Attack Speed: " + fAttackSpeed + " Range: " + fRange);
+            Debug.Log("Damage: " + iDamage + " Attack Speed: " + fAttackSpeed + " Range: " + fRange + " TimeBetweenAttack: " + timeBetweenAttack);
             Vector3 origin = new Vector3(rayVector.transform.position.x, rayVector.transform.position.y, rayVector.transform.position.z);
             Vector3 direction = rayVector.transform.forward;
 
