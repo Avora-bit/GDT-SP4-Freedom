@@ -30,9 +30,9 @@ public class Script_baseWeapon : MonoBehaviour
         if (fcooldown <= 0f) canAttack = true;
     }
 
-    private void PlayAttackAnimation()
+    private void PlayAnimation()
     {
-        anim.speed = 1 / timeBetweenAttack;
+        anim.speed = timeBetweenAttack;
         anim.SetTrigger("Attack");
     }
 
@@ -40,7 +40,7 @@ public class Script_baseWeapon : MonoBehaviour
     {
         if (canAttack)
         {
-            PlayAttackAnimation();
+            PlayAnimation();
             Debug.Log("Damage: " + iDamage + " Attack Speed: " + fAttackSpeed + " Range: " + fRange + " TimeBetweenAttack: " + timeBetweenAttack);
             Vector3 origin = new Vector3(rayVector.transform.position.x, rayVector.transform.position.y, rayVector.transform.position.z);
             Vector3 direction = rayVector.transform.forward;
@@ -75,6 +75,23 @@ public class Script_baseWeapon : MonoBehaviour
     public void StopEvent(string s)
     {
         Debug.Log(s + " anim.length: " + anim.GetCurrentAnimatorStateInfo(0).length);
-        anim.ResetTrigger("Trigger");
+        anim.ResetTrigger("Attack");
+    }
+    public void HasStarted()
+    {
+        anim.ResetTrigger("Return");
+        Debug.Log("Animation has started");
+        anim.ResetTrigger("Attack");
+    }
+
+    public void IsInMiddle()
+    {
+        Debug.Log("Animation is in the middle");
+    }
+
+    public void Ended()
+    {
+        Debug.Log("Animation has ended");
+        anim.SetTrigger("Return");
     }
 }

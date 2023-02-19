@@ -860,6 +860,7 @@ MonoBehaviour:
   scoretest: 0
   max_stamina: 100
   stamina: 100
+  dashCost: 30
   tping: 0
   playerCamera: {fileID: 4459864851310106426}
   fov: 75
@@ -2348,7 +2349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 355312524381552382, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 791227595985173490, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
       propertyPath: m_Controller
