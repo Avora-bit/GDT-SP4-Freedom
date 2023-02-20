@@ -83,8 +83,8 @@ public class Script_baseAI : MonoBehaviour
         {
             ///Attack code here
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 32f, ForceMode.Impulse); // forward force of projectile
+            rb.AddForce(transform.up * 8f, ForceMode.Impulse); // upward force of projectile
             ///End of attack code
 
             alreadyAttacked = true;
