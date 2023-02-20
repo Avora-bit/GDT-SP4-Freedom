@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3688372073609561130}
   - component: {fileID: 4598193447846404630}
   - component: {fileID: 2214073445536888960}
+  - component: {fileID: 9179194396322377716}
   - component: {fileID: 4883432854362673197}
   - component: {fileID: 4626990177488573357}
-  - component: {fileID: 9179194396322377716}
   m_Layer: 0
   m_Name: NPC_Enemy_Bow
   m_TagString: Untagged
@@ -102,35 +102,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4883432854362673197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553998467788200286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 261421e8dea308c4faa324245dc01e29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  selfHealth: 0
-  IsPlayer: 0
-  IsDummy: 0
---- !u!114 &4626990177488573357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553998467788200286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d901e079c4a96418995892b5d9e47e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetPos: {fileID: 0}
 --- !u!195 &9179194396322377716
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -153,6 +124,40 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4883432854362673197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553998467788200286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 261421e8dea308c4faa324245dc01e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  selfHealth: 0
+  totaldmg: 0
+  IsPlayer: 0
+  IsDummy: 0
+  damageTextPrefab: {fileID: 2506511521597342433, guid: a5fd43dabeece144cac09031ef1bd3b4, type: 3}
+--- !u!114 &4626990177488573357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553998467788200286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d901e079c4a96418995892b5d9e47e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetPos: {fileID: 0}
+  IsMelee: 0
+  IsRanged: 0
+  ParentArcherTower: {fileID: 2506511521597342433, guid: a5fd43dabeece144cac09031ef1bd3b4, type: 3}
 --- !u!1001 &1876995055964256132
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -138,8 +138,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   selfHealth: 0
+  totaldmg: 0
   IsPlayer: 0
   IsDummy: 0
+  damageTextPrefab: {fileID: 2506511521597342433, guid: a5fd43dabeece144cac09031ef1bd3b4, type: 3}
 --- !u!114 &4626990177488573357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +155,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetPos: {fileID: 0}
+  IsMelee: 0
+  IsRanged: 0
+  ParentArcherTower: {fileID: 0}
 --- !u!1001 &8235650930172642560
 PrefabInstance:
   m_ObjectHideFlags: 0
