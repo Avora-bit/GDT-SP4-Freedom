@@ -28,6 +28,8 @@ public class Script_HitLava : MonoBehaviour
         {
             LavaDamageTimer = LavaDamageTime;
         }
+
+
         if (LavaDamageTimer <= 0f)
         {
             LavaDamageTimer = LavaDamageTime;
@@ -48,6 +50,10 @@ public class Script_HitLava : MonoBehaviour
         else if (other.gameObject.name.Contains("NPC_Enemy"))
         {
             Debug.Log("Enemy Touch Water");
+        }
+        else if (other.gameObject.tag == "Weapon")
+        {
+            Destroy(other);
         }
         if (canDamage)
         {

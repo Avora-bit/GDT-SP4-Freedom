@@ -43,7 +43,7 @@ public class Script_baseFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        navMeshAgent.destination = TargetPos.position;
+        //navMeshAgent.destination = TargetPos.position;
 
         if (baseHealth.getHealth() <= 0)
         {
