@@ -1870,9 +1870,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4040369673379089845, guid: 1d2d2043275977a4894cced8450a8115, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 87
+      objectReference: {fileID: 0}
     - target: {fileID: 8136475225305966877, guid: 1d2d2043275977a4894cced8450a8115, type: 3}
       propertyPath: m_Name
       value: Environment_Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136475225305966877, guid: 1d2d2043275977a4894cced8450a8115, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 87
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d2d2043275977a4894cced8450a8115, type: 3}
