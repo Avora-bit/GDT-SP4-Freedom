@@ -930,6 +930,7 @@ MonoBehaviour:
   totaldmg: 0
   IsPlayer: 1
   IsDummy: 0
+  damageTextPrefab: {fileID: 0}
 --- !u!114 &251842346614427477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2258,7 +2259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6841786619218095897, guid: 6d6964f787699194b9af6583ce7ef956, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6841786619218129785, guid: 6d6964f787699194b9af6583ce7ef956, type: 3}
       propertyPath: m_RootOrder
@@ -2349,7 +2350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 355312524381552382, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 791227595985173490, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
       propertyPath: m_Controller

@@ -84,6 +84,7 @@ public class FirstPersonController : MonoBehaviour
     public bool playerCanMove = true;
     public float walkSpeed = 5f;
     public float maxVelocityChange = 10f;
+    public bool isInWater = false;
 
     // Internal Variables
     private bool isWalking = false;
@@ -379,7 +380,7 @@ public class FirstPersonController : MonoBehaviour
                 if (regenpausetimer <= 0)
                 {
                     stamina = Mathf.Clamp(stamina += 10 * Time.deltaTime, 0, max_stamina);
-                    if (walkSpeed != 5) walkSpeed = 5;
+                    if (walkSpeed != 5 && !isInWater) walkSpeed = 5;
                     if (last_stamina < stamina) last_stamina = stamina;
                 }
                 if (stamina <= 0)
@@ -495,7 +496,7 @@ public class FirstPersonController : MonoBehaviour
             {
                 isWalking = false;
             }
-            
+
             if (!Input.GetKey(sprintKey) && dashed == true)
             {
                 dashcooldown = 0.5f;
@@ -509,7 +510,15 @@ public class FirstPersonController : MonoBehaviour
             {
                 dashed = true;
                 Vector3 Velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-                Vector3 velocityChange = Vector3.Normalize(Velocity) * sprintSpeed;
+                Vector3 velocityChange;
+                if (isInWater)
+                {
+                    velocityChange = Vector3.Normalize(Velocity) * sprintSpeed * 0.5f;
+                }
+                else
+                {
+                    velocityChange = Vector3.Normalize(Velocity) * sprintSpeed;
+                }
                 rb.AddForce(velocityChange, ForceMode.Impulse);
                 stamina -= dashCost;
 
