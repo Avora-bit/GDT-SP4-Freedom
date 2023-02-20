@@ -53,6 +53,7 @@ MonoBehaviour:
   fRange: 2
   anim: {fileID: 0}
   weapon: {fileID: 100884}
+  costStamina: 10
 --- !u!33 &3135857634010122614
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -68,7 +68,8 @@ public class Script_Dummy : MonoBehaviour
                 revive = false;
                 anim.SetBool("revive", false);
                 anim.SetBool("backtoneutral", true);
-
+                health.Healing(100);
+                lastHP = currentHP;
             }
         }
 
@@ -82,7 +83,7 @@ public class Script_Dummy : MonoBehaviour
 
         if (currentHP <= 0)
         {
-            health.Healing(100);
+            health.selfHealth = 1;
             lastHP = currentHP;
             anim.SetBool("backtoneutral", false);
             anim.SetBool("dead", true);
