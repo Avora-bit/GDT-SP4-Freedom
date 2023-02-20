@@ -110,7 +110,7 @@ NavMeshSettings:
     agentHeight: 2
     agentSlope: 30
     agentClimb: 0.4
-    ledgeDropHeight: 100
+    ledgeDropHeight: 20
     maxJumpAcrossDistance: 5
     minRegionArea: 2
     manualCellSize: 0
@@ -904,6 +904,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 889189417814703586, guid: 27c9ec8f35572fc4a86253e3a94bffcc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5068402966776512209, guid: 27c9ec8f35572fc4a86253e3a94bffcc, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -951,6 +955,18 @@ PrefabInstance:
     - target: {fileID: 5068402966776512221, guid: 27c9ec8f35572fc4a86253e3a94bffcc, type: 3}
       propertyPath: m_Name
       value: Hub 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068402966776512221, guid: 27c9ec8f35572fc4a86253e3a94bffcc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5700099409430435391, guid: 27c9ec8f35572fc4a86253e3a94bffcc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955745560790378892, guid: 27c9ec8f35572fc4a86253e3a94bffcc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27c9ec8f35572fc4a86253e3a94bffcc, type: 3}
@@ -1018,6 +1034,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5659daadf4c8b4ba2f780c2dded83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statsarray: []
+  finalstr: 
   fpc: {fileID: 1331451839}
 --- !u!1001 &807211297
 PrefabInstance:
