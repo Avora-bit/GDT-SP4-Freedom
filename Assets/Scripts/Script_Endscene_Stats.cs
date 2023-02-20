@@ -5,6 +5,8 @@ using UnityEngine;
 public class Script_Endscene_Stats : MonoBehaviour
 {
     private bool generated = false;
+    public string[] statsarray;
+    public string finalstr;
     [SerializeField]
     FirstPersonController fpc;
     // Start is called before the first frame update
@@ -24,9 +26,23 @@ public class Script_Endscene_Stats : MonoBehaviour
     }
     void generateStats()
     {
-        PlayerPrefs.SetInt("dmgtaken", fpc.health.totaldmg);
+        statsarray = new string[4];
         int playcount = PlayerPrefs.GetInt("playamount");
-        PlayerPrefs.SetInt("playamount", playcount += 1);
+        string ID = PlayerPrefs.GetInt("playamount").ToString();
+        string name = PlayerPrefs.GetString("username");
+        string location = PlayerPrefs.GetString("location");
+        string causeOfDeath = PlayerPrefs.GetString("cause");
+        statsarray[0] = ID; statsarray[1] = name; statsarray[2] = location; statsarray[3] = causeOfDeath;
+        finalstr = '#' + statsarray[0] + "\n\n" + statsarray[1] + "\n\nCause of death:\n" + statsarray[2] + "\n\nCause of death:\n" + statsarray[3];
+
+        PlayerPrefs.SetString("deathArray" + playcount, finalstr);
+
+
+        PlayerPrefs.SetInt("dmgtaken", fpc.health.totaldmg);
+
+        PlayerPrefs.SetInt("playamount", playcount + 1);
+
+
         PlayerPrefs.Save();
     }
 
