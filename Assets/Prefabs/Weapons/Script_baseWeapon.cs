@@ -17,7 +17,9 @@ public class Script_baseWeapon : MonoBehaviour
     private float timeBetweenAttack;
     private float fcooldown;
     private bool canAttack;
-    private bool isThrows = false;
+    private bool isThrown = false;
+
+    public GameObject projectile;
 
     void Start()
     {
@@ -66,6 +68,11 @@ public class Script_baseWeapon : MonoBehaviour
             Debug.Log("weapon cooldown");
             return false;
         }
+    }
+
+    public bool Throw(Camera rayVector)
+    {
+        return false;
     }
 
     public int getStaminaCost()

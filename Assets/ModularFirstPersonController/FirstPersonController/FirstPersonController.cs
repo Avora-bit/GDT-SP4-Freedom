@@ -44,6 +44,10 @@ public class FirstPersonController : MonoBehaviour
     private float regenpausetimer = 1f;
     public bool tping;
 
+    public float minThrowForce = 100f, maxThrowForce = 1000f;
+    public float throwChargeRate = 100f;
+
+
     #region Camera Movement Variables
 
     public Camera playerCamera;

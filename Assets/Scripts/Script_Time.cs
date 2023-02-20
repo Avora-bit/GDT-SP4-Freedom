@@ -1,23 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Script_GlobalTime : MonoBehaviour
+public class Script_Time : MonoBehaviour
 {
-    public float timeRemaining = 300;        //in seconds
-    public bool timeActive = false;
-    private float minutes;
-    private float seconds;
+    private float timeRemaining = 300;        //in seconds
+    private bool timeActive = false;
 
     public TextMeshPro[] timeText;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        timeActive = true;
-    }
+    public float minutes, seconds;
 
     // Update is called once per frame
     void Update()
@@ -34,18 +24,25 @@ public class Script_GlobalTime : MonoBehaviour
                 timeRemaining = 0;
                 timeActive = false;
             }
-            minutes = Mathf.FloorToInt(timeRemaining / 60);
-            seconds = Mathf.FloorToInt(timeRemaining % 60);
         }
         DisplayTime(timeRemaining);
     }
     void DisplayTime(float timeToDisplay)
     {
-        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
-        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+        minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        seconds = Mathf.FloorToInt(timeToDisplay % 60);
         for (int i = 0; i < timeText.Length; i++) 
         {
             timeText[i].text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
+    }
+    public void setTime(int _time)
+    {
+        timeRemaining = _time;
+    }
+
+    public void ActivateTime(bool _state)
+    {
+        timeActive = _state;
     }
 }

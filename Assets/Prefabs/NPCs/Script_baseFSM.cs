@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,7 +20,7 @@ public class Script_baseFSM : MonoBehaviour
     public bool IsStunned; // booleN to check whether the enemy is stunned or not
     public GameObject ParentArcherTower;
 
-
+    public int dropRate = 25;
 
     enum FSM
     {
@@ -103,6 +101,14 @@ public class Script_baseFSM : MonoBehaviour
                     Clone.name = transform.GetChild(0).gameObject.name;
                     Clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     Clone.GetComponent<BoxCollider>().enabled = true;
+
+                    if (UnityEngine.Random.Range(0, 100) <= dropRate)
+                    {
+                        //drop other
+                        GameObject Other = Instantiate(transform.GetChild(1).gameObject, transform.position, Quaternion.identity);
+                        Other.name = transform.GetChild(1).gameObject.name;
+                        Other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    }
 
                     //destroy self
                     Destroy(gameObject);

@@ -70,7 +70,7 @@ public class Script_baseHealth : MonoBehaviour
         DamageTextInstance.transform.GetChild(0).GetComponent<TextMeshPro>().color = _color;
         if (selfHealth <= 0)
         {
-
+            DamageTextInstance.transform.parent = null;
         }
     }
 }

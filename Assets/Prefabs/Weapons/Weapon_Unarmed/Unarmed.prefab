@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6509058615774606069}
-  - component: {fileID: 330504397566998780}
   - component: {fileID: 3862751807553299249}
   - component: {fileID: 3418628472203592841}
+  - component: {fileID: 330504397566998780}
   - component: {fileID: 3023616422348037031}
-  - component: {fileID: 8596781233272372424}
+  - component: {fileID: 3381278058521212940}
   m_Layer: 0
   m_Name: Unarmed
   m_TagString: Weapon
@@ -36,24 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &330504397566998780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2465539320210823020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bf4953e9dc9364439360f55a9f68db6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  iDamage: 13
-  fAttackSpeed: 1.4
-  fRange: 1
-  anim: {fileID: 0}
-  weapon: {fileID: 2465539320210823020}
-  costStamina: 5
 --- !u!33 &3862751807553299249
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -61,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2465539320210823020}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &3418628472203592841
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -104,6 +86,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &330504397566998780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2465539320210823020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf4953e9dc9364439360f55a9f68db6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iDamage: 13
+  fAttackSpeed: 1.4
+  fRange: 1
+  anim: {fileID: 0}
+  weapon: {fileID: 2465539320210823020}
+  costStamina: 5
 --- !u!54 &3023616422348037031
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -120,8 +120,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 0
---- !u!65 &8596781233272372424
-BoxCollider:
+--- !u!135 &3381278058521212940
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -131,5 +131,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

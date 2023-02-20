@@ -54,6 +54,8 @@ MonoBehaviour:
   fRange: 0.5
   anim: {fileID: 3717023708038884612}
   weapon: {fileID: 107374}
+  costStamina: 0
+  projectile: {fileID: 4865309214770636011, guid: 45804eb2722b83845adbcf2d72da12dd, type: 3}
 --- !u!33 &213149316351560061
 MeshFilter:
   m_ObjectHideFlags: 0
