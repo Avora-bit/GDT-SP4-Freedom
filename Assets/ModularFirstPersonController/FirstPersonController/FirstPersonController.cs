@@ -18,6 +18,8 @@ using System.Net;
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
+    public float speed;
+    public GameObject specialdash;
 
     public RawImage quiver;
     public int arrows = 0;
@@ -260,6 +262,13 @@ public class FirstPersonController : MonoBehaviour
             tping = false;
         }
         arrowcount.text = "x" + arrows.ToString();
+
+        speed = Vector3.Magnitude(rb.velocity);
+        // Debug.Log(speed);
+        if (speed > 20 && (currentWeapon == 4 || currentWeapon == 6))
+            specialdash.SetActive(true);
+        else specialdash.SetActive(false);
+
 
         playerhp = health.getHealth();
 
@@ -1015,6 +1024,8 @@ public class FirstPersonControllerEditor : Editor
 
         fpc.WeaponHand = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Current Weapon", "Weapon that the player is currently holding"), fpc.WeaponHand, typeof(GameObject), true);
         EditorGUILayout.Space();
+
+        fpc.specialdash = (GameObject)EditorGUILayout.ObjectField(new GUIContent("dash trigger", "trigger to enable when dashing"),fpc.specialdash, typeof(GameObject), true);
         #endregion
 
         #region Health
