@@ -201,8 +201,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   selfHealth: 0
+  totaldmg: 0
   IsPlayer: 0
   IsDummy: 1
+  damageTextPrefab: {fileID: 2506511521597342433, guid: a5fd43dabeece144cac09031ef1bd3b4, type: 3}
 --- !u!1 &6774080502169825540
 GameObject:
   m_ObjectHideFlags: 0
