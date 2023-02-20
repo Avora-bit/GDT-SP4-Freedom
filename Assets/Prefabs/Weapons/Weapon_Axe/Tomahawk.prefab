@@ -49,10 +49,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iDamage: 23
-  fAttackSpeed: 0.6
+  fAttackSpeed: 1.3
   fRange: 1.7
   anim: {fileID: 0}
   weapon: {fileID: 174004}
+  costStamina: 0
 --- !u!33 &3451167113790780976
 MeshFilter:
   m_ObjectHideFlags: 0

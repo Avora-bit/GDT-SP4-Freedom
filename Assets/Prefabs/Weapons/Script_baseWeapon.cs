@@ -32,7 +32,7 @@ public class Script_baseWeapon : MonoBehaviour
 
     private void PlayAnimation()
     {
-        anim.speed = timeBetweenAttack;
+        anim.speed = 1/timeBetweenAttack;
         anim.SetTrigger("Attack");
     }
 
@@ -57,6 +57,7 @@ public class Script_baseWeapon : MonoBehaviour
                 }
             }
             fcooldown = timeBetweenAttack;
+            canAttack = false;
             return true;
         }
         else
