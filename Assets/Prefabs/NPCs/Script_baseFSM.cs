@@ -11,13 +11,17 @@ public class Script_baseFSM : MonoBehaviour
     FSM currentFSM = 0;
     int iFSMCounter = 0;
     public const float iMaxFSMCounter = 60f;       //in seconds
+    public int iStunCounter = 3; // time to get stunned
     //after 1 min ends, stop chase and wait for other enemies to spawn and reset self FSM
 
     private NavMeshAgent navMeshAgent;
     public Transform TargetPos;
-    public bool IsMelee;
-    public bool IsRanged;
+    public bool IsMelee; // boolean to check whether the enemy is a melee type
+    public bool IsRanged; // boolean to check whether the enemy is a ranged type
+    public bool OnVantage; // boolean to check whether the enemy is on the vantage point
+    public bool IsStunned; // booleN to check whether the enemy is stunned or not
     public GameObject ParentArcherTower;
+
 
 
     enum FSM
@@ -55,6 +59,10 @@ public class Script_baseFSM : MonoBehaviour
                 }
             case FSM.PATROL:
                 {
+                    if (IsMelee)
+                    {
+
+                    }
                     break;
                 }
             case FSM.MOVE:
@@ -63,6 +71,15 @@ public class Script_baseFSM : MonoBehaviour
                 }
             case FSM.ATTACK:
                 {
+                    if (IsMelee)
+                    {
+
+                    }
+
+                    else if (IsRanged)
+                    {
+
+                    }
                     break;
                 }
             case FSM.VANTAGE:
@@ -70,11 +87,12 @@ public class Script_baseFSM : MonoBehaviour
                     if (baseHealth.getHealth() != 100 && IsRanged) // if enemy is an archer and isn't max health 
                     {
                         // get out of vantage point to flank/attack player on ground
-
-
-
                         //after getting out of vantage point (dropping to ground), enemy goes to attack
                         currentFSM = FSM.ATTACK;
+                    }
+                    else
+                    {
+                        // stay at vantage point and attack from range
                     }
                     break;
                 }
