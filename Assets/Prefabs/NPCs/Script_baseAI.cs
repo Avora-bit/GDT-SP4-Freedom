@@ -24,6 +24,7 @@ public class Script_baseAI : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    public bool isStrafing;
 
     Script_baseFSM FSMScript;
 
