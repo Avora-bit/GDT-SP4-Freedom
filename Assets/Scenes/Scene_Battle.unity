@@ -510,6 +510,14 @@ PrefabInstance:
       value: NPC_Enemy_Test
       objectReference: {fileID: 0}
     - target: {fileID: 4626990177488573357, guid: a05923bf25d66654a94b344664476d87, type: 3}
+      propertyPath: IsMelee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626990177488573357, guid: a05923bf25d66654a94b344664476d87, type: 3}
+      propertyPath: IsRanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626990177488573357, guid: a05923bf25d66654a94b344664476d87, type: 3}
       propertyPath: TargetPos
       value: 
       objectReference: {fileID: 1331451845}

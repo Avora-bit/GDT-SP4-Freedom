@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9179194396322377716}
   - component: {fileID: 4883432854362673197}
   - component: {fileID: 4626990177488573357}
+  - component: {fileID: 1535155599018897294}
   m_Layer: 0
   m_Name: NPC_Enemy_Bow
   m_TagString: Untagged
@@ -158,10 +159,39 @@ MonoBehaviour:
   iStunCounter: 3
   TargetPos: {fileID: 0}
   IsMelee: 0
-  IsRanged: 0
+  IsRanged: 1
   OnVantage: 0
   IsStunned: 0
   ParentArcherTower: {fileID: 2506511521597342433, guid: a5fd43dabeece144cac09031ef1bd3b4, type: 3}
+  dropRate: 25
+--- !u!114 &1535155599018897294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553998467788200286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c910cfd19c8e541b65177107de2647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 9179194396322377716}
+  player: {fileID: 0}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 128
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 256
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 5
+  timeBetweenAttacks: 2
+  projectile: {fileID: 1900148654302723510, guid: 593ffa9acb7d6f245bf3a9375ed0a4cc, type: 3}
+  sightRange: 65
+  attackRange: 15
+  playerInSightRange: 0
+  playerInAttackRange: 0
 --- !u!1001 &251227417378289139
 PrefabInstance:
   m_ObjectHideFlags: 0
