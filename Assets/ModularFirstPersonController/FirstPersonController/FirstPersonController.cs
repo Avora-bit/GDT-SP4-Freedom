@@ -51,6 +51,7 @@ public class FirstPersonController : MonoBehaviour
     public float minThrowForce = 100f, maxThrowForce = 1000f;
     public float throwChargeRate = 100f;
 
+    public bool IsInHub = false;
 
     #region Camera Movement Variables
 
@@ -660,6 +661,14 @@ public class FirstPersonController : MonoBehaviour
     private void Interact()
     {
         //Debug.Log("Interacted");
+        if (IsInHub)
+        {
+            Debug.Log("isInHub");
+        }
+        else
+        {
+            Debug.Log("IsNotInHub");
+        }
         Vector3 origin = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, playerCamera.transform.position.z);
         Vector3 direction = playerCamera.transform.forward;
 
@@ -689,7 +698,7 @@ public class FirstPersonController : MonoBehaviour
             }
             if (hit.collider.gameObject.tag != "Untagged")
             {
-                if (canDelete)
+                if (canDelete && !IsInHub)
                 {
                     Destroy(hit.collider.gameObject);
                 }
@@ -731,7 +740,8 @@ public class FirstPersonController : MonoBehaviour
             {
                 WeaponToHold = 6;
             }
-            if (WeaponHand.transform.GetChild(currentWeapon).gameObject.name != "Unarmed")
+            if (WeaponHand.transform.GetChild(currentWeapon).gameObject.name != "Unarmed" &&
+                !IsInHub)
             {
                 GameObject clone = Instantiate(WeaponHand.transform.GetChild(currentWeapon).gameObject, WeaponHand.transform.GetChild(currentWeapon).position, Quaternion.identity);
                 clone.name = WeaponHand.transform.GetChild(currentWeapon).gameObject.name;
@@ -763,7 +773,7 @@ public class FirstPersonController : MonoBehaviour
             clone.GetComponent<Animator>().enabled = false;
             WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false); // set current weapon to not be active
             WeaponHand.transform.GetChild(7).gameObject.SetActive(true); // set unarmed to be active
-            WeaponHand.GetComponentInChildren<BoxCollider>().enabled = false;
+            WeaponHand.GetComponentInChildren<SphereCollider>().enabled = false;
             currentWeapon = 7; // also set the current weapon to unarmed
         }
         else
