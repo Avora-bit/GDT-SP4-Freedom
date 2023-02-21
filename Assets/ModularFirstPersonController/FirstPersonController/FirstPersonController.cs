@@ -35,6 +35,8 @@ public class FirstPersonController : MonoBehaviour
     public Image red;
     public Image black;
 
+    public GameObject TPUI;
+
     public int scoretest;
 
     private bool dashed = false;
@@ -788,12 +790,14 @@ public class FirstPersonController : MonoBehaviour
     IEnumerator teleporting()
     {
         anim2.SetBool("fade", true);
+        TPUI.gameObject.SetActive(true);
         yield return new WaitUntil(() => black.color.a == 1);
         StartCoroutine(teleported());
     }
     IEnumerator teleported()
     {
         anim2.SetBool("fade", false);
+        TPUI.gameObject.SetActive(false);
         yield return new WaitUntil(() => black.color.a == 255);
 
     }
@@ -1030,6 +1034,8 @@ public class FirstPersonControllerEditor : Editor
         EditorGUILayout.Space();
 
         fpc.specialdash = (GameObject)EditorGUILayout.ObjectField(new GUIContent("dash trigger", "trigger to enable when dashing"),fpc.specialdash, typeof(GameObject), true);
+        fpc.TPUI = (GameObject)EditorGUILayout.ObjectField(new GUIContent("teleport text", "teleporting..."), fpc.TPUI, typeof(GameObject), true);
+
         #endregion
 
         #region Health
