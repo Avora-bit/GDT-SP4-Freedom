@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 7023300018700639973}
   - component: {fileID: 4501765172838601240}
   - component: {fileID: 1899589308458304945}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BasePlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2906,6 +2906,22 @@ PrefabInstance:
     - target: {fileID: 3495714663028855614, guid: 285c5cd6a9e300c48bed887e49eda065, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8018794202858792047, guid: 285c5cd6a9e300c48bed887e49eda065, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8018794203641426250, guid: 285c5cd6a9e300c48bed887e49eda065, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8018794203832701395, guid: 285c5cd6a9e300c48bed887e49eda065, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8018794204302195893, guid: 285c5cd6a9e300c48bed887e49eda065, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 285c5cd6a9e300c48bed887e49eda065, type: 3}
