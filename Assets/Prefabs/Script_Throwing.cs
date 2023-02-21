@@ -10,10 +10,24 @@ public class Script_Throwing : MonoBehaviour
     private const float TimeBetweenPoints = 0.1f;
     private const float projectileMass = 100f;
 
+    private LayerMask SolidCollisionLayer;
+
     // Start is called before the first frame update
     void Start()
     {
         lineRenderer = gameObject.GetComponent<LineRenderer>();
+    }
+
+    private void Awake()
+    {
+        int selflayer = gameObject.layer;
+        for (int i = 0; i < 32; i++)
+        {
+            if (!Physics.GetIgnoreLayerCollision(selflayer, i))
+            {
+                SolidCollisionLayer |= 1 << i;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -36,6 +50,14 @@ public class Script_Throwing : MonoBehaviour
             Vector3 point = startPosition + time * startVelocity;
             point.y = startPosition.y + startVelocity.y * time + (Physics.gravity.y / 2f * time * time);
             lineRenderer.SetPosition(i, point);
+            Vector3 lastPos = lineRenderer.GetPosition(i - 1);
+            if (Physics.Raycast(lastPos, (point - lastPos).normalized, 
+                out RaycastHit hit, (point - lastPos).magnitude, SolidCollisionLayer))
+            {
+                lineRenderer.SetPosition(i, hit.point);
+                lineRenderer.positionCount = i + 1;
+                return;
+            }
         }
     }
     public void StopTrajectoryDraw()

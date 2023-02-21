@@ -11,6 +11,7 @@ public class Script_baseFSM : MonoBehaviour
     public const float iMaxFSMCounter = 60f;       //in seconds
     public int iStunCounter = 3; // time to get stunned
     //after 1 min ends, stop chase and wait for other enemies to spawn and reset self FSM
+    Script_baseAI ScriptAI;
 
     private NavMeshAgent navMeshAgent;
     public Transform TargetPos;
@@ -49,6 +50,10 @@ public class Script_baseFSM : MonoBehaviour
         {
             currentFSM = FSM.DEATH;
         }
+        else
+        {
+            currentFSM = FSM.MOVE;
+        }
 
         switch (currentFSM){
             case FSM.IDLE:
@@ -65,6 +70,7 @@ public class Script_baseFSM : MonoBehaviour
                 }
             case FSM.MOVE:
                 {
+                    ScriptAI.enabled = true;
                     break;
                 }
             case FSM.ATTACK:
