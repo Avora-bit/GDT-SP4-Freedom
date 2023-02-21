@@ -168,6 +168,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 451876202909151572, guid: 5913da53ad344d348ba73ad046718549, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1331451845}
     - target: {fileID: 997316360597791311, guid: 5913da53ad344d348ba73ad046718549, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -444,7 +448,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 997316360597791311, guid: a05923bf25d66654a94b344664476d87, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.72
       objectReference: {fileID: 0}
     - target: {fileID: 997316360597791311, guid: a05923bf25d66654a94b344664476d87, type: 3}
       propertyPath: m_LocalRotation.w
@@ -477,6 +481,14 @@ PrefabInstance:
     - target: {fileID: 1553998467788200286, guid: a05923bf25d66654a94b344664476d87, type: 3}
       propertyPath: m_Name
       value: NPC_Enemy_Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626990177488573357, guid: a05923bf25d66654a94b344664476d87, type: 3}
+      propertyPath: IsMelee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626990177488573357, guid: a05923bf25d66654a94b344664476d87, type: 3}
+      propertyPath: IsRanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4626990177488573357, guid: a05923bf25d66654a94b344664476d87, type: 3}
       propertyPath: TargetPos
@@ -5091,6 +5103,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 843642320798054035, guid: 98d34fc8d608fee408c0a815ce1a8b78, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1331451845}
     - target: {fileID: 997316360597791311, guid: 98d34fc8d608fee408c0a815ce1a8b78, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -5832,6 +5848,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1535155599018897294, guid: 7f45323baccbf3c4ca898f93a957aeca, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1331451845}
     - target: {fileID: 1553998467788200286, guid: 7f45323baccbf3c4ca898f93a957aeca, type: 3}
       propertyPath: m_Name
       value: NPC_Enemy_Bow

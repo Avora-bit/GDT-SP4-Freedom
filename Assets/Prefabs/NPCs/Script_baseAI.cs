@@ -24,11 +24,16 @@ public class Script_baseAI : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    public bool isStrafing;
+
+    Script_baseFSM FSMScript;
+
 
     private void Awake()
     {
         player = GameObject.Find("FirstPersonController").transform;
         agent = GetComponent<NavMeshAgent>();
+        FSMScript = GetComponent<Script_baseFSM>();
     }
 
     private void Update()
@@ -74,21 +79,31 @@ public class Script_baseAI : MonoBehaviour
 
     private void AttackPlayer()
     {
-        //Make sure enemy doesn't move
-        agent.SetDestination(transform.position);
-
-        transform.LookAt(player);
-
-        if (!alreadyAttacked)
+        if (FSMScript.IsMelee)
         {
-            ///Attack code here
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse); // forward force of projectile
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse); // upward force of projectile
-            ///End of attack code
+            // Melee Code Here
+        }
 
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        else if (FSMScript.IsRanged)
+        {
+            // Ranged Code Here
+            //Make sure enemy doesn't move
+            agent.SetDestination(transform.position);
+
+            transform.LookAt(player);
+
+            if (!alreadyAttacked)
+            {
+                ///Attack code here
+                Rigidbody rb = Instantiate(projectile, transform.position + (transform.forward * 2) + (transform.up * 0.3f), Quaternion.identity).GetComponent<Rigidbody>();
+                Debug.Log(transform.position);
+                rb.AddForce(transform.forward * 32f, ForceMode.Impulse); // forward force of projectile
+                rb.AddForce(transform.up * 8f, ForceMode.Impulse); // upward force of projectile
+                ///End of attack code
+
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            }
         }
     }
     private void ResetAttack()

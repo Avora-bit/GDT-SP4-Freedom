@@ -35,6 +35,8 @@ public class FirstPersonController : MonoBehaviour
     public Image red;
     public Image black;
 
+    public GameObject TPUI;
+
     public int scoretest;
 
     private bool dashed = false;
@@ -49,6 +51,7 @@ public class FirstPersonController : MonoBehaviour
     public float minThrowForce = 100f, maxThrowForce = 1000f;
     public float throwChargeRate = 100f;
 
+    public bool IsInHub = false;
 
     #region Camera Movement Variables
 
@@ -658,6 +661,14 @@ public class FirstPersonController : MonoBehaviour
     private void Interact()
     {
         //Debug.Log("Interacted");
+        if (IsInHub)
+        {
+            Debug.Log("isInHub");
+        }
+        else
+        {
+            Debug.Log("IsNotInHub");
+        }
         Vector3 origin = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, playerCamera.transform.position.z);
         Vector3 direction = playerCamera.transform.forward;
 
@@ -687,7 +698,7 @@ public class FirstPersonController : MonoBehaviour
             }
             if (hit.collider.gameObject.tag != "Untagged")
             {
-                if (canDelete)
+                if (canDelete && !IsInHub)
                 {
                     Destroy(hit.collider.gameObject);
                 }
@@ -729,7 +740,8 @@ public class FirstPersonController : MonoBehaviour
             {
                 WeaponToHold = 6;
             }
-            if (WeaponHand.transform.GetChild(currentWeapon).gameObject.name != "Unarmed")
+            if (WeaponHand.transform.GetChild(currentWeapon).gameObject.name != "Unarmed" &&
+                !IsInHub)
             {
                 GameObject clone = Instantiate(WeaponHand.transform.GetChild(currentWeapon).gameObject, WeaponHand.transform.GetChild(currentWeapon).position, Quaternion.identity);
                 clone.name = WeaponHand.transform.GetChild(currentWeapon).gameObject.name;
@@ -761,7 +773,7 @@ public class FirstPersonController : MonoBehaviour
             clone.GetComponent<Animator>().enabled = false;
             WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false); // set current weapon to not be active
             WeaponHand.transform.GetChild(7).gameObject.SetActive(true); // set unarmed to be active
-            WeaponHand.GetComponentInChildren<BoxCollider>().enabled = false;
+            WeaponHand.GetComponentInChildren<SphereCollider>().enabled = false;
             currentWeapon = 7; // also set the current weapon to unarmed
         }
         else
@@ -788,12 +800,14 @@ public class FirstPersonController : MonoBehaviour
     IEnumerator teleporting()
     {
         anim2.SetBool("fade", true);
+        TPUI.gameObject.SetActive(true);
         yield return new WaitUntil(() => black.color.a == 1);
         StartCoroutine(teleported());
     }
     IEnumerator teleported()
     {
         anim2.SetBool("fade", false);
+        TPUI.gameObject.SetActive(false);
         yield return new WaitUntil(() => black.color.a == 255);
 
     }
@@ -1030,6 +1044,8 @@ public class FirstPersonControllerEditor : Editor
         EditorGUILayout.Space();
 
         fpc.specialdash = (GameObject)EditorGUILayout.ObjectField(new GUIContent("dash trigger", "trigger to enable when dashing"),fpc.specialdash, typeof(GameObject), true);
+        fpc.TPUI = (GameObject)EditorGUILayout.ObjectField(new GUIContent("teleport text", "teleporting..."), fpc.TPUI, typeof(GameObject), true);
+
         #endregion
 
         #region Health
