@@ -1733,6 +1733,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2882856111427385051, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2963935222490570803, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: costStamina
       value: 10
@@ -1936,7 +1940,7 @@ PrefabInstance:
     - target: {fileID: 6122981002224402695, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c14021abfaa46d1498a6155145915532, type: 2}
+      objectReference: {fileID: 2100000, guid: 4f948b36d1e80af408a9bce179b66ed7, type: 2}
     - target: {fileID: 6122981002224402695, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_Parameters.colorGradient.ctime1
       value: 65535

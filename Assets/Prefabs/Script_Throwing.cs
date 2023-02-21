@@ -12,6 +12,8 @@ public class Script_Throwing : MonoBehaviour
 
     private LayerMask SolidCollisionLayer;
 
+    public GameObject SphereTargetPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +58,9 @@ public class Script_Throwing : MonoBehaviour
             {
                 lineRenderer.SetPosition(i, hit.point);
                 lineRenderer.positionCount = i + 1;
+
+                SphereTargetPos.SetActive(true);
+                SphereTargetPos.transform.position = hit.point;
                 return;
             }
         }
@@ -63,5 +68,6 @@ public class Script_Throwing : MonoBehaviour
     public void StopTrajectoryDraw()
     {
         lineRenderer.enabled = false;
+        SphereTargetPos.SetActive(false);
     }
 }
