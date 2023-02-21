@@ -70,7 +70,6 @@ public class Script_baseFSM : MonoBehaviour
                 }
             case FSM.MOVE:
                 {
-                    ScriptAI.enabled = true;
                     break;
                 }
             case FSM.ATTACK:
