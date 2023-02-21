@@ -86,14 +86,29 @@ public class Script_baseAI : MonoBehaviour
 
         else if (FSMScript.IsRanged)
         {
-            // Ranged Code Here
-            //Make sure enemy doesn't move
-            agent.SetDestination(transform.position);
-
             transform.LookAt(player);
 
             if (!alreadyAttacked)
             {
+                // Ranged Code Here
+                if (isStrafing)
+                {
+                    //Make sure enemy doesn't move
+                    if (!walkPointSet) SearchWalkPoint();
+
+                    if (walkPointSet)
+                        agent.SetDestination(walkPoint);
+
+                    Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+                    //Walkpoint reached
+                    if (distanceToWalkPoint.magnitude < 5f)
+                        walkPointSet = false;
+                }
+                else
+                {
+                    agent.SetDestination(transform.position);
+                }
                 ///Attack code here
                 Rigidbody rb = Instantiate(projectile, transform.position + (transform.forward * 2) + (transform.up * 0.3f), Quaternion.identity).GetComponent<Rigidbody>();
                 Debug.Log(transform.position);

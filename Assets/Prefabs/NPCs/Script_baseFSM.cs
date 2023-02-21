@@ -52,7 +52,7 @@ public class Script_baseFSM : MonoBehaviour
         }
         else
         {
-            currentFSM = FSM.MOVE;
+            currentFSM = FSM.ATTACK;
         }
 
         switch (currentFSM){
