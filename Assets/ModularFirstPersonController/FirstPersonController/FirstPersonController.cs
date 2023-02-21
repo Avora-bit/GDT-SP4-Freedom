@@ -21,6 +21,8 @@ public class FirstPersonController : MonoBehaviour
     public float speed;
     public GameObject specialdash;
 
+    public GameObject settingScreen;
+
     public RawImage quiver;
     public int arrows = 0;
     public int maxarrows = 0;
@@ -268,6 +270,11 @@ public class FirstPersonController : MonoBehaviour
             tping = false;
         }
         arrowcount.text = "x" + arrows.ToString();
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            settingScreen.SetActive(true);
+        }
 
         speed = Vector3.Magnitude(rb.velocity);
         // Debug.Log(speed);
@@ -1035,7 +1042,7 @@ public class FirstPersonControllerEditor : Editor
 
         fpc.specialdash = (GameObject)EditorGUILayout.ObjectField(new GUIContent("dash trigger", "trigger to enable when dashing"),fpc.specialdash, typeof(GameObject), true);
         fpc.TPUI = (GameObject)EditorGUILayout.ObjectField(new GUIContent("teleport text", "teleporting..."), fpc.TPUI, typeof(GameObject), true);
-
+        fpc.settingScreen = (GameObject)EditorGUILayout.ObjectField(new GUIContent("settings screen", "in canvas"), fpc.settingScreen, typeof(GameObject), true);
         #endregion
 
         #region Health

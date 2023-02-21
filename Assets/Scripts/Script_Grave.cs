@@ -7,9 +7,9 @@ public class Script_Grave : MonoBehaviour
 {
     GameObject gravestone;
     public int ID;
+    [SerializeField]
     TextMeshPro Gravetext;
     [SerializeField]
-    Script_Endscene_get array;
     Script_Endscene_get db;
     // Start is called before the first frame update
     void Start()
