@@ -42,9 +42,9 @@ public class Script_baseAI : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        if (!playerInSightRange && !playerInAttackRange && FSMScript.OnVantage == false) Patroling();
+        if (playerInSightRange && !playerInAttackRange && FSMScript.OnVantage == false) ChasePlayer();
+        if (playerInAttackRange && playerInSightRange && FSMScript.OnVantage == false) AttackPlayer();
     }
 
     private void Patroling()
@@ -91,7 +91,7 @@ public class Script_baseAI : MonoBehaviour
             if (!alreadyAttacked)
             {
                 // Ranged Code Here
-                if (isStrafing)
+                if (isStrafing && FSMScript.OnVantage == false)
                 {
                     //Make sure enemy doesn't move
                     if (!walkPointSet) SearchWalkPoint();
