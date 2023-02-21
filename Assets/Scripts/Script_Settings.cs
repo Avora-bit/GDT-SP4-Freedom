@@ -37,6 +37,52 @@ public class Script_Settings : MonoBehaviour
         sfxvol = (int)num;
         sfxdisplay.text = sfxvol.ToString();
     }
+
+    public void setHealthBarToggle(bool input)
+    {
+        int a = 1;
+        if (input)
+        {
+            a = 1;
+        }
+        else
+        {
+            a = 0;
+        }
+        PlayerPrefs.SetInt("HPBARON", a);
+        Debug.Log(PlayerPrefs.GetInt("HPBARON"));
+    }
+
+    public void setStaminaBarToggle(bool input)
+    {
+        int a = 1;
+        if (input)
+        {
+            a = 1;
+        }
+        else
+        {
+            a = 0;
+        }
+        PlayerPrefs.SetInt("STAMBARON", a);
+        Debug.Log(PlayerPrefs.GetInt("STAMBARON"));
+    }
+
+    public void setArrowCountToggle(bool input)
+    {
+        int a = 1;
+        if (input)
+        {
+            a = 1;
+        }
+        else
+        {
+            a = 0;
+        }
+        PlayerPrefs.SetInt("ARROWCOUNTON", a);
+        Debug.Log(PlayerPrefs.GetInt("ARROWCOUNTON"));
+    }
+
     public void Save()
     {
         PlayerPrefs.SetInt("BGMVOLUME", bgmvol);

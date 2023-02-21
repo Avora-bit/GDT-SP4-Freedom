@@ -1118,6 +1118,9 @@ MonoBehaviour:
   maxThrowForce: 1000
   throwChargeRate: 100
   IsInHub: 0
+  HealthBar: {fileID: 3704672083517231269}
+  StaminaBar: {fileID: 8230979414397673431}
+  ArrowCounter: {fileID: 959717678958065536}
   playerCamera: {fileID: 4459864851310106426}
   fov: 75
   invertCamera: 0

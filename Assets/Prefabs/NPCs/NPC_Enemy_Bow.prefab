@@ -192,6 +192,7 @@ MonoBehaviour:
   attackRange: 15
   playerInSightRange: 0
   playerInAttackRange: 0
+  isStrafing: 1
 --- !u!1001 &251227417378289139
 PrefabInstance:
   m_ObjectHideFlags: 0

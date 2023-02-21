@@ -52,7 +52,7 @@ public class Script_baseFSM : MonoBehaviour
         }
         else
         {
-            currentFSM = FSM.MOVE;
+            currentFSM = FSM.ATTACK;
         }
 
         switch (currentFSM){
@@ -91,11 +91,13 @@ public class Script_baseFSM : MonoBehaviour
                     {
                         // get out of vantage point to flank/attack player on ground
                         //after getting out of vantage point (dropping to ground), enemy goes to attack
+                        OnVantage = false;
                         currentFSM = FSM.ATTACK;
                     }
-                    else
+                    else if (baseHealth.getHealth() == 100)
                     {
                         // stay at vantage point and attack from range
+                        OnVantage = true;
                     }
                     break;
                 }

@@ -54,6 +54,9 @@ public class FirstPersonController : MonoBehaviour
     public float throwChargeRate = 100f;
 
     public bool IsInHub = false;
+    public Image HealthBar;
+    public Image StaminaBar;
+    public Image ArrowCounter;
 
     #region Camera Movement Variables
 
@@ -199,6 +202,19 @@ public class FirstPersonController : MonoBehaviour
             sprintCooldownReset = sprintCooldown;
         }
 
+        if (PlayerPrefs.GetInt("HPBARON") == 0)
+        {
+            HealthBar.gameObject.SetActive(false);
+        }
+        if (PlayerPrefs.GetInt("STAMBARON") == 0)
+        {
+            StaminaBar.gameObject.SetActive(false);
+        }
+        if (PlayerPrefs.GetInt("ARROWCOUNTERON") == 0)
+        {
+            ArrowCounter.gameObject.SetActive(false);
+        }
+
         for (int i = 0; i < WeaponHand.transform.childCount; i++)
         {
             if (WeaponHand.transform.GetChild(i).gameObject.activeSelf == true)
@@ -271,11 +287,6 @@ public class FirstPersonController : MonoBehaviour
             tping = false;
         }
         arrowcount.text = "x" + arrows.ToString();
-
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            settingScreen.SetActive(true);
-        }
 
         speed = Vector3.Magnitude(rb.velocity);
         // Debug.Log(speed);
@@ -1066,6 +1077,11 @@ public class FirstPersonControllerEditor : Editor
         fpc.anim2 = (Animator)EditorGUILayout.ObjectField(new GUIContent("anim2", "fader put here"), fpc.anim2, typeof(Animator), true);
         fpc.red = (Image)EditorGUILayout.ObjectField(new GUIContent("red", "damage screen here"), fpc.red, typeof(Image), true);
         fpc.black = (Image)EditorGUILayout.ObjectField(new GUIContent("black", "Fader here"), fpc.black, typeof(Image), true);
+
+        EditorGUILayout.Space();
+        fpc.HealthBar = (Image)EditorGUILayout.ObjectField(new GUIContent("Health Bar", "Fader here"), fpc.HealthBar, typeof(Image), true);
+        fpc.StaminaBar = (Image)EditorGUILayout.ObjectField(new GUIContent("Stamina Bar", "Fader here"), fpc.StaminaBar, typeof(Image), true);
+        fpc.ArrowCounter = (Image)EditorGUILayout.ObjectField(new GUIContent("Arrow Counter", "Fader here"), fpc.ArrowCounter, typeof(Image), true);
         #endregion
 
         //Sets any changes from the prefab
