@@ -7,10 +7,13 @@ public class Script_Teleport : MonoBehaviour
     public FirstPersonController fpc;
     public Vector3 TeleportPos = new Vector3(0,0,0);
 
-    private float timer;
+    private float timer = 2f;
+    private float cooldownTimer = 2f;
+
+    public bool teleported = false;         //if recently teleported player
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == fpc.tag)
         {
             timer = 2f;
             fpc.tping = true;
@@ -18,22 +21,30 @@ public class Script_Teleport : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        timer = Mathf.Clamp(timer -= Time.deltaTime, 0, 1);
-        if (timer <= 0)
+        if (other.gameObject.tag == fpc.tag && teleported == false)
         {
-            fpc.transform.position = TeleportPos;
-            //arena reference start
+            timer = Mathf.Clamp(timer -= Time.deltaTime, 0, 2);
+            if (timer <= 0)
+            {
+                fpc.transform.position = TeleportPos;
+                teleported = true;
+                cooldownTimer = 2f;
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (teleported == true)
+        {
+            cooldownTimer -= Time.deltaTime;
+            if (cooldownTimer <= 0)
+            {
+                cooldownTimer = 0;
+                teleported = false;
+            }
+        }
         
-    }
-
-    public void startArena()
-    {
-
     }
 }

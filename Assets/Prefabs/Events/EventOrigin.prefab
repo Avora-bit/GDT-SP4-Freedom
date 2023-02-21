@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5559507291175114487}
   - component: {fileID: 3231970253477871123}
   - component: {fileID: 7252011386018130248}
+  - component: {fileID: 4429735721006612599}
   - component: {fileID: 2858640099073798249}
   - component: {fileID: 1762564430166346823}
-  - component: {fileID: 4429735721006612599}
   m_Layer: 0
   m_Name: EventOrigin
   m_TagString: Untagged
@@ -101,6 +101,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4429735721006612599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8805499301683852987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1ff4b3691e9534a8e8d8197ae77e24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2858640099073798249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,8 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93e9a9bae13a0841963dea09ab6ba81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemaining: 300
-  timeActive: 0
   timeText:
   - {fileID: 1917011159821957426}
   - {fileID: 1917011159932316753}
@@ -139,18 +149,6 @@ MonoBehaviour:
   EventDuration: 15
   GameStart: 0
   PlayerObject: {fileID: 0}
---- !u!114 &4429735721006612599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8805499301683852987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac1ff4b3691e9534a8e8d8197ae77e24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3655943227427697169
 PrefabInstance:
   m_ObjectHideFlags: 0

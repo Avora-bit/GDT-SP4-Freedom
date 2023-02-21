@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Script_Time : MonoBehaviour
 {
-    private float timeRemaining = 300;        //in seconds
+    private float timeRemaining = 0f;        //in seconds
     private bool timeActive = false;
 
     public TextMeshPro[] timeText;
@@ -36,7 +36,7 @@ public class Script_Time : MonoBehaviour
             timeText[i].text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
     }
-    public void setTime(int _time)
+    public void setTime(float _time)
     {
         timeRemaining = _time;
     }
@@ -44,5 +44,10 @@ public class Script_Time : MonoBehaviour
     public void ActivateTime(bool _state)
     {
         timeActive = _state;
+    }
+
+    public bool getState()
+    {
+        return timeActive;
     }
 }
