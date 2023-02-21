@@ -82,7 +82,7 @@ public class Script_baseFSM : MonoBehaviour
 
                     else if (IsRanged)
                     {
-
+                        ScriptAI.isStrafing = true;
                     }
                     break;
                 }
