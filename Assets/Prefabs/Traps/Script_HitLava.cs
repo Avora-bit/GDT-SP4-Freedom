@@ -53,7 +53,7 @@ public class Script_HitLava : MonoBehaviour
         }
         else if (other.gameObject.tag == "Weapon")
         {
-            Destroy(other);
+            Destroy(other.gameObject);
         }
         if (canDamage)
         {
