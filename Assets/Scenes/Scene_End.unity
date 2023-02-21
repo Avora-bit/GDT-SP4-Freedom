@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3394416579338336515, guid: c09a91b89a1551f49999cb001590e6cf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.076
       objectReference: {fileID: 0}
     - target: {fileID: 3394416579338336515, guid: c09a91b89a1551f49999cb001590e6cf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -174,6 +174,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3578859876271315921, guid: c09a91b89a1551f49999cb001590e6cf, type: 3}
+      propertyPath: db
+      value: 
+      objectReference: {fileID: 1220480532}
     - target: {fileID: 6946055987807331175, guid: c09a91b89a1551f49999cb001590e6cf, type: 3}
       propertyPath: m_Name
       value: Prefab_Gravestone

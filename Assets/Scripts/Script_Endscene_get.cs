@@ -18,7 +18,7 @@ public class Script_Endscene_get : MonoBehaviour
 
     void Start()
     {
-        pos.y = -5.2f;
+        pos.y = -6f;
         rotation.x = 0; rotation.y = 0; rotation.z = 0;
         int playcount = PlayerPrefs.GetInt("playamount");
         int totaldmg = PlayerPrefs.GetInt("dmgtaken");
