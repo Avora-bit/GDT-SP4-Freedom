@@ -202,7 +202,7 @@ public class FirstPersonController : MonoBehaviour
             sprintCooldownReset = sprintCooldown;
         }
 
-        if (PlayerPrefs.GetInt("HPBARON") == 0)
+        if (PlayerPrefs.GetInt("HEALTHBARON") == 0)
         {
             HealthBar.gameObject.SetActive(false);
         }
@@ -210,7 +210,7 @@ public class FirstPersonController : MonoBehaviour
         {
             StaminaBar.gameObject.SetActive(false);
         }
-        if (PlayerPrefs.GetInt("ARROWCOUNTERON") == 0)
+        if (PlayerPrefs.GetInt("ARROWCOUNTON") == 0)
         {
             ArrowCounter.gameObject.SetActive(false);
         }
@@ -502,6 +502,7 @@ public class FirstPersonController : MonoBehaviour
         {
             if (WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<Script_baseWeapon>().Attack(playerCamera))         //if attack succesful
             {
+                WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<BoxCollider>().enabled = true;
                 stamina -= WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<Script_baseWeapon>().getStaminaCost();
             }
             else
@@ -764,7 +765,7 @@ public class FirstPersonController : MonoBehaviour
                 GameObject clone = Instantiate(WeaponHand.transform.GetChild(currentWeapon).gameObject, WeaponHand.transform.GetChild(currentWeapon).position, Quaternion.identity);
                 clone.name = WeaponHand.transform.GetChild(currentWeapon).gameObject.name;
                 clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                clone.GetComponent<BoxCollider>().enabled = true;
+                clone.GetComponent<BoxCollider>().isTrigger = false;
                 clone.GetComponent<Animator>().enabled = false;
             }
             WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
@@ -791,7 +792,7 @@ public class FirstPersonController : MonoBehaviour
             clone.GetComponent<Animator>().enabled = false;
             WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false); // set current weapon to not be active
             WeaponHand.transform.GetChild(7).gameObject.SetActive(true); // set unarmed to be active
-            WeaponHand.GetComponentInChildren<SphereCollider>().enabled = false;
+            WeaponHand.GetComponentInChildren<BoxCollider>().enabled = false;
             currentWeapon = 7; // also set the current weapon to unarmed
         }
         else

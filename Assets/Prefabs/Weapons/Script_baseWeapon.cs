@@ -34,6 +34,7 @@ public class Script_baseWeapon : MonoBehaviour
 
     private void PlayAnimation()
     {
+        gameObject.GetComponent<BoxCollider>().isTrigger = true;
         anim.speed = 1/timeBetweenAttack;
         anim.SetTrigger("Attack");
     }
@@ -43,21 +44,21 @@ public class Script_baseWeapon : MonoBehaviour
         if (canAttack)
         {
             PlayAnimation();
-            Debug.Log("Damage: " + iDamage + " Attack Speed: " + fAttackSpeed + " Range: " + fRange + " TimeBetweenAttack: " + timeBetweenAttack);
-            Vector3 origin = new Vector3(rayVector.transform.position.x, rayVector.transform.position.y, rayVector.transform.position.z);
-            Vector3 direction = rayVector.transform.forward;
+            //Debug.Log("Damage: " + iDamage + " Attack Speed: " + fAttackSpeed + " Range: " + fRange + " TimeBetweenAttack: " + timeBetweenAttack);
+            //Vector3 origin = new Vector3(rayVector.transform.position.x, rayVector.transform.position.y, rayVector.transform.position.z);
+            //Vector3 direction = rayVector.transform.forward;
 
-            if (Physics.Raycast(origin, direction, out RaycastHit hit, fRange))
-            {
-                Debug.DrawRay(origin, direction * fRange, Color.yellow);
-                Debug.Log("GameObject hit: " + hit.collider.name);
-                //deal damage
-                if (hit.collider.GetComponent<Script_baseHealth>() != null)
-                {
-                    hit.collider.GetComponent<Script_baseHealth>().TakeDamage(iDamage);
-                    Debug.Log("Hit");
-                }
-            }
+            //if (Physics.Raycast(origin, direction, out RaycastHit hit, fRange))
+            //{
+            //    Debug.DrawRay(origin, direction * fRange, Color.yellow);
+            //    Debug.Log("GameObject hit: " + hit.collider.name);
+            //    //deal damage
+            //    if (hit.collider.GetComponent<Script_baseHealth>() != null)
+            //    {
+            //        hit.collider.GetComponent<Script_baseHealth>().TakeDamage(iDamage);
+            //        Debug.Log("Hit");
+            //    }
+            //}
             fcooldown = timeBetweenAttack;
             canAttack = false;
             return true;
@@ -67,6 +68,27 @@ public class Script_baseWeapon : MonoBehaviour
             //null
             Debug.Log("weapon cooldown");
             return false;
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name.Contains("NPC_Enemy") || other.gameObject.name.Contains("training_dummy"))
+        {
+            other.GetComponent<Script_baseHealth>().TakeDamage(iDamage);
+            if (other.GetComponent<Script_baseHealth>().InvincTimer <= 0.0f)
+            {
+                other.GetComponent<Script_baseHealth>().InvincTimer = timeBetweenAttack;
+            }
+            Debug.Log("Weapon Hit Enemy Hitbox");
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name.Contains("NPC_Enemy") || other.gameObject.name.Contains("training_dummy"))
+        {
+            Debug.Log("Weapon left Enemy Hitbox");
         }
     }
 
@@ -99,6 +121,8 @@ public class Script_baseWeapon : MonoBehaviour
 
     public void Ended()
     {
+        gameObject.GetComponent<BoxCollider>().isTrigger = false;
+        gameObject.GetComponent<BoxCollider>().enabled = false;
         Debug.Log("Animation has ended");
         anim.SetTrigger("Return");
     }

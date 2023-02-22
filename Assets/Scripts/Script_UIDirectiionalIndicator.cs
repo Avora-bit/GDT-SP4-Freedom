@@ -54,7 +54,7 @@ public class Script_UIDirectiionalIndicator : MonoBehaviour
                 gameObject.transform.rotation = Quaternion.Euler(0, 0, angleRot);
             }
 
-            Debug.Log(angleRot);
+            //Debug.Log(angleRot);
         }
         else
         {

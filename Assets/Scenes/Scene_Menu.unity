@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &67840577 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4814767345443529139, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+  m_PrefabInstance: {fileID: 8934863309041446544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &99985718
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +498,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180146940}
   m_CullTransparentMesh: 1
+--- !u!114 &281105356 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 97113886736421753, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+  m_PrefabInstance: {fileID: 8934863309041446544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &328171366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,6 +1322,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373663637}
   m_CullTransparentMesh: 1
+--- !u!114 &1417298924 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5205477467300796374, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+  m_PrefabInstance: {fileID: 8934863309041446544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1499295195 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8934863310001226571, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
@@ -1740,6 +1773,9 @@ MonoBehaviour:
   sfxvol: 0
   bgmdisplay: {fileID: 1499295195}
   sfxdisplay: {fileID: 590234247}
+  healthToggle: {fileID: 67840577}
+  staminaToggle: {fileID: 281105356}
+  arrowToggle: {fileID: 1417298924}
   SettingsScreen: {fileID: 708486241}
 --- !u!1 &2041719225
 GameObject:
