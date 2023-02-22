@@ -407,10 +407,10 @@ public class FirstPersonController : MonoBehaviour
             else
             {
                 // Regain sprint while not sprinting
-                sprintRemaining = Mathf.Clamp(sprintRemaining += 1 * Time.deltaTime, 0, sprintDuration);
+                sprintRemaining = Mathf.Clamp(sprintRemaining += Time.deltaTime, 0, sprintDuration);
 
-                dashcooldown = Mathf.Clamp(dashcooldown -= 1 * Time.deltaTime, 0, 1);
-                regenpausetimer = Mathf.Clamp(regenpausetimer -= 1 * Time.deltaTime, 0, 5);
+                dashcooldown = Mathf.Clamp(dashcooldown -= Time.deltaTime, 0, 1);
+                regenpausetimer = Mathf.Clamp(regenpausetimer -= Time.deltaTime, 0, 5);
                 if (regenpausetimer <= 0)
                 {
                     stamina = Mathf.Clamp(stamina += 10 * Time.deltaTime, 0, max_stamina);
@@ -540,8 +540,7 @@ public class FirstPersonController : MonoBehaviour
             }
             // All movement calculations shile sprint is active
             if (enableSprint && Input.GetKey(sprintKey) && dashcooldown <= 0f && dashed == false && stamina > 5 && isGrounded! && 
-                ( Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) ) &&
-                stamina >= dashCost)
+                ( Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
             {
                 dashed = true;
                 Vector3 Velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
