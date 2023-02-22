@@ -14,6 +14,8 @@ public class Script_Settings : MonoBehaviour
     public Toggle staminaToggle;
     public Toggle arrowToggle;
     
+    public Image DefaultTab;
+    
     public Image SettingsScreen;
     void Start()
     {
@@ -21,6 +23,11 @@ public class Script_Settings : MonoBehaviour
         sfxvol = PlayerPrefs.GetInt("SFXVOLUME");
         bgmdisplay.text = bgmvol.ToString();
         sfxdisplay.text = sfxvol.ToString();
+
+        for (int i = 0; i < DefaultTab.transform.childCount; i++)
+        {
+            DefaultTab.transform.GetChild(i).gameObject.SetActive(false);
+        }
 
         #region Toggles
 
@@ -126,6 +133,15 @@ public class Script_Settings : MonoBehaviour
         PlayerPrefs.SetInt("BGMVOLUME", bgmvol);
         PlayerPrefs.SetInt("SFXVOLUME", sfxvol);
         SettingsScreen.gameObject.SetActive(false);
+    }
+
+    public void ToggleTab(int tab)
+    {
+        for (int i=0;i<DefaultTab.transform.childCount;i++)
+        {
+            DefaultTab.transform.GetChild(i).gameObject.SetActive(false);
+        }
+        DefaultTab.transform.GetChild(tab).gameObject.SetActive(true);
     }
 
     public void OpenSettings()
