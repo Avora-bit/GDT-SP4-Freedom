@@ -39,7 +39,7 @@ public class Script_UIDirectiionalIndicator : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Vector3 playerPos = playerInstance.transform.position;
         Vector3 playerForward = new Vector3(playerInstance.transform.forward.x, 0, playerInstance.transform.forward.z).normalized;
