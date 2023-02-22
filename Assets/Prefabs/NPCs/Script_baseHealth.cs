@@ -18,10 +18,15 @@ public class Script_baseHealth : MonoBehaviour
     public bool canHit = false;
 
     public GameObject damageTextPrefab;
+
+    private AudioSource source;
+
     // Start is called before the first frame update
+
     void Start()
     {
         selfHealth = maxHealth;
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -60,6 +65,11 @@ public class Script_baseHealth : MonoBehaviour
             else FloatingText(text, Color.red);
             canHit = false;
         }
+        if (IsDummy)
+        {
+            source.Play();
+        }
+
     }
 
     public void Healing(int _heal)

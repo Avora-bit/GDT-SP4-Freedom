@@ -2191,9 +2191,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8934863308975048125, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934863308975048125, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_MaxValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934863308975048125, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_MinValue
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934863308975048125, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2009446764}
+    - target: {fileID: 8934863309039995918, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_MaxValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934863309039995918, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_MinValue
+      value: -80
+      objectReference: {fileID: 0}
     - target: {fileID: 8934863309039995918, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

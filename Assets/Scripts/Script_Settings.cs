@@ -76,13 +76,13 @@ public class Script_Settings : MonoBehaviour
     public void setBGMvol(float num)
     {
         bgmvol = (int)num;
-        bgmdisplay.text = bgmvol.ToString();
+        bgmdisplay.text = (bgmvol+80).ToString();
     }
 
     public void setSFXvol(float num)
     {
         sfxvol = (int)num;
-        sfxdisplay.text = sfxvol.ToString();
+        sfxdisplay.text = (sfxvol+80).ToString();
     }
 
     public void setHealthBarToggle()
