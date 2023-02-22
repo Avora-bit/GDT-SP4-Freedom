@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Script_Throwing : MonoBehaviour
 {
-    public float throwStrength = 50f;
     private LineRenderer lineRenderer;
     private const int LinePoints = 20;
     private const float TimeBetweenPoints = 0.1f;
@@ -38,12 +37,12 @@ public class Script_Throwing : MonoBehaviour
 
     }
 
-    public void DrawTrajectoryProjection(Vector3 location , Vector3 direction)
+    public void DrawTrajectoryProjection(Vector3 location, Vector3 direction, float _throwStrength)
     {
         lineRenderer.enabled = true;
         lineRenderer.positionCount = Mathf.CeilToInt(LinePoints / TimeBetweenPoints) + 1;
         Vector3 startPosition = location;
-        Vector3 startVelocity = throwStrength * direction / projectileMass;
+        Vector3 startVelocity = _throwStrength * direction / projectileMass;
         int i = 0;
         lineRenderer.SetPosition(i, startPosition);
         for (float time = 0; time < LinePoints; time += TimeBetweenPoints)

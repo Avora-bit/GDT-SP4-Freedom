@@ -50,8 +50,9 @@ public class FirstPersonController : MonoBehaviour
     private float regenpausetimer = 1f;
     public bool tping;
 
-    public float minThrowForce = 100f, maxThrowForce = 1000f;
-    public float throwChargeRate = 100f;
+    private float minThrowForce = 1000f, maxThrowForce = 10000f;
+    private float throwChargeRate = 1000f;
+    private float throwForce;
 
     public bool IsInHub = false;
     public Image HealthBar;
@@ -356,7 +357,7 @@ public class FirstPersonController : MonoBehaviour
 
             // Changes isZoomed when key is pressed
             // Behavior for hold to zoom
-            if (holdToZoom && !isSprinting)
+            if (holdToZoom && !isSprinting && currentWeapon != 7)
             {
                 if (Input.GetKeyDown(zoomKey))
                 {
@@ -371,11 +372,32 @@ public class FirstPersonController : MonoBehaviour
             // Lerps camera.fieldOfView to allow for a smooth transistion
             if (isZoomed)
             {
-                GetComponent<Script_Throwing>().DrawTrajectoryProjection(playerCamera.transform.position + playerCamera.transform.right, playerCamera.transform.forward);
+                throwForce = Mathf.Clamp(throwForce += throwChargeRate * Time.deltaTime, minThrowForce, maxThrowForce);
+                GetComponent<Script_Throwing>().DrawTrajectoryProjection(playerCamera.transform.position + playerCamera.transform.right, playerCamera.transform.forward, throwForce);
                 playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, zoomFOV, zoomStepTime * Time.deltaTime);
+                if (Input.GetMouseButtonDown(0))      //do not throw if weapon is "unarmed"
+                {
+                    //throw weapon
+                    GameObject cloneThrown = Instantiate(WeaponHand.transform.GetChild(currentWeapon).GetComponent<Script_baseWeapon>().projectile, playerCamera.transform.position + playerCamera.transform.right, Quaternion.identity);
+                    cloneThrown.GetComponent<Script_baseWeapon>().isThrown = true;
+                    cloneThrown.GetComponent<Rigidbody>().AddForce(playerCamera.transform.forward * throwForce, ForceMode.Impulse);
+
+                    //set hand to unarmed if not bow
+                    if (currentWeapon != 2)
+                    {
+                        WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);                               //7 is unarmed
+                        currentWeapon = 7;
+                        WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(true);
+                        WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<BoxCollider>().enabled = false;
+                        WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+                    }
+                    isZoomed = false;
+                    throwForce = minThrowForce;
+                }
             }
             else if (!isZoomed && !isSprinting)
             {
+                throwForce = minThrowForce;
                 GetComponent<Script_Throwing>().StopTrajectoryDraw();
                 playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, fov, zoomStepTime * Time.deltaTime);
             }

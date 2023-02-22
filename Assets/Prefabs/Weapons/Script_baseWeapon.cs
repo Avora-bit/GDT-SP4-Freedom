@@ -17,7 +17,9 @@ public class Script_baseWeapon : MonoBehaviour
     private float timeBetweenAttack;
     private float fcooldown;
     private bool canAttack;
-    private bool isThrown = false;
+    public bool isThrown = false;
+
+    private float projectile_lifetime = 20f;
 
     public GameObject projectile;
 
@@ -30,6 +32,20 @@ public class Script_baseWeapon : MonoBehaviour
     {
         if (!canAttack) fcooldown -= Time.deltaTime;
         if (fcooldown <= 0f) canAttack = true;
+        if (isThrown)
+        {
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            gameObject.GetComponent<BoxCollider>().enabled = true;
+            gameObject.GetComponent<BoxCollider>().isTrigger = true;
+            gameObject.GetComponent<Animator>().enabled = false;
+            projectile_lifetime -= Time.deltaTime;
+            if (projectile_lifetime <= 0f)
+            {
+                Destroy(gameObject);
+            }
+        }
+
     }
 
     private void PlayAnimation()
@@ -80,7 +96,13 @@ public class Script_baseWeapon : MonoBehaviour
             {
                 other.GetComponent<Script_baseHealth>().InvincTimer = timeBetweenAttack;
             }
-            Debug.Log("Weapon Hit Enemy Hitbox");
+        }
+        if (isThrown)
+        {
+            if (other.gameObject.tag == "Untagged" || other.gameObject.name.Contains("NPC_Enemy") || other.gameObject.name.Contains("training_dummy"))
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
