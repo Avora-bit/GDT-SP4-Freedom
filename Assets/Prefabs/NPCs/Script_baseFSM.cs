@@ -42,6 +42,7 @@ public class Script_baseFSM : MonoBehaviour
     void Start()
     {
         baseHealth = GetComponent<Script_baseHealth>();
+        garbage = GameObject.Find("Garbage Container").transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
