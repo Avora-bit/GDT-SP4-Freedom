@@ -23,14 +23,17 @@ public class Script_baseFSM : MonoBehaviour
     public Transform garbage;
 
     public int dropRate = 25;
+    public FSM FSMState;
 
-    enum FSM
+    public enum FSM
     {
         INACTIVE,
         IDLE = 0,           //check for player
         PATROL,             //"melee": roam spawn point
         MOVE,               //found target, moving to target
         ATTACK,             //target in range, attack
+        RETREAT,            //fall back distance, regroup and reorganise
+        ENCIRCLE,           //player found, going to surround player
         VANTAGE,            //"ranged": keep target in range, go to higher point, 
         DEATH
     }
@@ -46,14 +49,17 @@ public class Script_baseFSM : MonoBehaviour
     void Update()
     {
         //navMeshAgent.destination = TargetPos.position;
+        //Debug.Log(FSMState);
 
         if (baseHealth.getHealth() <= 0)
         {
             currentFSM = FSM.DEATH;
+            FSMState = FSM.DEATH; // Just a variable to identify the actual state of the FSM to other scripts
         }
         else
         {
             currentFSM = FSM.ATTACK;
+            FSMState = FSM.ATTACK;
         }
 
         switch (currentFSM){

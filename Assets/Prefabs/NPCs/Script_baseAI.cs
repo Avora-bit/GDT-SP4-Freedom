@@ -77,10 +77,19 @@ public class Script_baseAI : MonoBehaviour
         agent.SetDestination(player.position);
     }
 
+    // For Archers if they are on vantage point, their isStrafing variable is off and they stand on the vantage point and shoot, else when they take damage they move off the tower
+    // and strafe assault the player
+
+    // For melee enemies they will have different states including rushing towards the player, encircling the player, flanking, tactical retreat
+
     private void AttackPlayer()
     {
         if (FSMScript.IsMelee)
         {
+            if (FSMScript.FSMState == Script_baseFSM.FSM.ATTACK)
+            {
+
+            }
             // Melee Code Here
         }
 
@@ -88,12 +97,12 @@ public class Script_baseAI : MonoBehaviour
         {
             transform.LookAt(player);
 
-            if (!alreadyAttacked)
+            if (!alreadyAttacked && FSMScript.FSMState == Script_baseFSM.FSM.ATTACK)
             {
                 // Ranged Code Here
+                // Archer is able to strafe and is not on an archer tower
                 if (isStrafing && FSMScript.OnVantage == false)
                 {
-                    //Make sure enemy doesn't move
                     if (!walkPointSet) SearchWalkPoint();
 
                     if (walkPointSet)
@@ -107,6 +116,7 @@ public class Script_baseAI : MonoBehaviour
                 }
                 else
                 {
+                    // Archer stands in place
                     agent.SetDestination(transform.position);
                 }
                 ///Attack code here

@@ -623,6 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 647318955}
   player: {fileID: 1331451845}
+  garbage: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
@@ -1831,6 +1832,10 @@ PrefabInstance:
       propertyPath: arrows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4459864850019384740, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: garbage
+      value: 
+      objectReference: {fileID: 1437405616}
     - target: {fileID: 4459864850019384740, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: zoomFOV
       value: 35
