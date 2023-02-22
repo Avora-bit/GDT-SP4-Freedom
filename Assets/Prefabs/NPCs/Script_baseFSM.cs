@@ -109,6 +109,20 @@ public class Script_baseFSM : MonoBehaviour
                     Clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     Clone.GetComponent<BoxCollider>().enabled = true;
 
+                    GameObject body1 = Instantiate(transform.GetChild(2).gameObject, transform.position, Quaternion.identity);
+                    body1.GetComponent<Script_GIbs>().vanishing = true;
+                    body1.name = transform.GetChild(2).gameObject.name;
+                    body1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
+                    GameObject body2 = Instantiate(transform.GetChild(3).gameObject, transform.position, Quaternion.identity);
+                    body2.GetComponent<Script_GIbs>().vanishing = true;
+                    body2.name = transform.GetChild(3).gameObject.name;
+                    body2.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    GameObject body3 = Instantiate(transform.GetChild(4).gameObject, transform.position, Quaternion.identity);
+                    body3.GetComponent<Script_GIbs>().vanishing = true;
+                    body3.name = transform.GetChild(4).gameObject.name;
+                    body3.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
                     if (UnityEngine.Random.Range(0, 100) <= dropRate)
                     {
                         //drop other
