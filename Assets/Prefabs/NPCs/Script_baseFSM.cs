@@ -20,6 +20,7 @@ public class Script_baseFSM : MonoBehaviour
     public bool OnVantage; // boolean to check whether the enemy is on the vantage point
     public bool IsStunned; // booleN to check whether the enemy is stunned or not
     public GameObject ParentArcherTower;
+    public Transform garbage;
 
     public int dropRate = 25;
 
@@ -81,7 +82,7 @@ public class Script_baseFSM : MonoBehaviour
 
                     else if (IsRanged)
                     {
-                        ScriptAI.isStrafing = true;
+                        //ScriptAI.isStrafing = true;
                     }
                     break;
                 }
@@ -104,7 +105,7 @@ public class Script_baseFSM : MonoBehaviour
             case FSM.DEATH:
                 {
                     //drop weapon
-                    GameObject Clone = Instantiate(transform.GetChild(0).gameObject, transform.position, Quaternion.identity);
+                    GameObject Clone = Instantiate(transform.GetChild(0).gameObject, transform.position, Quaternion.identity,garbage);
                     Clone.name = transform.GetChild(0).gameObject.name;
                     Clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     Clone.GetComponent<BoxCollider>().enabled = true;
@@ -126,7 +127,7 @@ public class Script_baseFSM : MonoBehaviour
                     if (UnityEngine.Random.Range(0, 100) <= dropRate)
                     {
                         //drop other
-                        GameObject Other = Instantiate(transform.GetChild(1).gameObject, transform.position, Quaternion.identity);
+                        GameObject Other = Instantiate(transform.GetChild(1).gameObject, transform.position, Quaternion.identity,garbage);
                         Other.name = transform.GetChild(1).gameObject.name;
                         Other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     }

@@ -8,7 +8,7 @@ public class Script_baseAI : MonoBehaviour
     public NavMeshAgent agent;
 
     public Transform player;
-
+    public Transform garbage;
     public LayerMask whatIsGround, whatIsPlayer;
 
     //Patroling
@@ -110,7 +110,7 @@ public class Script_baseAI : MonoBehaviour
                     agent.SetDestination(transform.position);
                 }
                 ///Attack code here
-                Rigidbody rb = Instantiate(projectile, transform.position + (transform.forward * 2) + (transform.up * 0.3f), Quaternion.identity).GetComponent<Rigidbody>();
+                Rigidbody rb = Instantiate(projectile, transform.position + (transform.forward * 2) + (transform.up * 0.3f), Quaternion.identity,garbage).GetComponent<Rigidbody>();
                 //Debug.Log(transform.position);
                 rb.AddForce(transform.forward * 32f, ForceMode.Impulse); // forward force of projectile
                 rb.AddForce(transform.up * 8f, ForceMode.Impulse); // upward force of projectile
