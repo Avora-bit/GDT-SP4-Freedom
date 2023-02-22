@@ -20,6 +20,7 @@ public class Script_baseFSM : MonoBehaviour
     public bool OnVantage; // boolean to check whether the enemy is on the vantage point
     public bool IsStunned; // booleN to check whether the enemy is stunned or not
     public GameObject ParentArcherTower;
+    public Transform garbage;
 
     public int dropRate = 25;
 
@@ -81,7 +82,7 @@ public class Script_baseFSM : MonoBehaviour
 
                     else if (IsRanged)
                     {
-                        ScriptAI.isStrafing = true;
+                        //ScriptAI.isStrafing = true;
                     }
                     break;
                 }
@@ -104,15 +105,29 @@ public class Script_baseFSM : MonoBehaviour
             case FSM.DEATH:
                 {
                     //drop weapon
-                    GameObject Clone = Instantiate(transform.GetChild(0).gameObject, transform.position, Quaternion.identity);
+                    GameObject Clone = Instantiate(transform.GetChild(0).gameObject, transform.position, Quaternion.identity,garbage);
                     Clone.name = transform.GetChild(0).gameObject.name;
                     Clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     Clone.GetComponent<BoxCollider>().enabled = true;
 
+                    GameObject body1 = Instantiate(transform.GetChild(2).gameObject, transform.position, Quaternion.identity);
+                    body1.GetComponent<Script_GIbs>().vanishing = true;
+                    body1.name = transform.GetChild(2).gameObject.name;
+                    body1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
+                    GameObject body2 = Instantiate(transform.GetChild(3).gameObject, transform.position, Quaternion.identity);
+                    body2.GetComponent<Script_GIbs>().vanishing = true;
+                    body2.name = transform.GetChild(3).gameObject.name;
+                    body2.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    GameObject body3 = Instantiate(transform.GetChild(4).gameObject, transform.position, Quaternion.identity);
+                    body3.GetComponent<Script_GIbs>().vanishing = true;
+                    body3.name = transform.GetChild(4).gameObject.name;
+                    body3.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
                     if (UnityEngine.Random.Range(0, 100) <= dropRate)
                     {
                         //drop other
-                        GameObject Other = Instantiate(transform.GetChild(1).gameObject, transform.position, Quaternion.identity);
+                        GameObject Other = Instantiate(transform.GetChild(1).gameObject, transform.position, Quaternion.identity,garbage);
                         Other.name = transform.GetChild(1).gameObject.name;
                         Other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     }

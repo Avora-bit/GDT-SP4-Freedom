@@ -166,6 +166,8 @@ public class FirstPersonController : MonoBehaviour
     public KeyCode dropKey = KeyCode.Q;
     public float pickUpRange = 2.0f;
     public bool canDelete = true;
+
+    public Transform garbage;
     #endregion
 
     #region Head Bob
@@ -203,6 +205,7 @@ public class FirstPersonController : MonoBehaviour
             sprintCooldownReset = sprintCooldown;
         }
 
+        #region UI Bars
         if (PlayerPrefs.GetInt("HEALTHBARON") == 0)
         {
             HealthBar.gameObject.SetActive(false);
@@ -215,6 +218,7 @@ public class FirstPersonController : MonoBehaviour
         {
             ArrowCounter.gameObject.SetActive(false);
         }
+        #endregion
 
         for (int i = 0; i < WeaponHand.transform.childCount; i++)
         {
@@ -284,6 +288,19 @@ public class FirstPersonController : MonoBehaviour
     {
         if (tping)
         {
+            foreach (Transform pickup in garbage)
+            {
+                Debug.Log(pickup.gameObject);
+                Destroy(pickup.gameObject);
+            }
+            if (currentWeapon == 7)
+            {
+                WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
+                WeaponHand.transform.GetChild(0).gameObject.SetActive(true);
+                WeaponHand.transform.GetChild(0).gameObject.GetComponent<BoxCollider>().enabled = false;
+                WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+                currentWeapon = 0;
+            }
             StartCoroutine(teleporting());
             tping = false;
         }
@@ -783,7 +800,7 @@ public class FirstPersonController : MonoBehaviour
             if (WeaponHand.transform.GetChild(currentWeapon).gameObject.name != "Unarmed" &&
                 !IsInHub)
             {
-                GameObject clone = Instantiate(WeaponHand.transform.GetChild(currentWeapon).gameObject, WeaponHand.transform.GetChild(currentWeapon).position, Quaternion.identity);
+                GameObject clone = Instantiate(WeaponHand.transform.GetChild(currentWeapon).gameObject, WeaponHand.transform.GetChild(currentWeapon).position, Quaternion.identity, garbage);
                 clone.name = WeaponHand.transform.GetChild(currentWeapon).gameObject.name;
                 clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 clone.GetComponent<BoxCollider>().isTrigger = false;
@@ -806,10 +823,11 @@ public class FirstPersonController : MonoBehaviour
     {
         if (WeaponHand.transform.GetChild(currentWeapon).gameObject.name != "Unarmed")
         {
-            GameObject clone = Instantiate(WeaponHand.transform.GetChild(currentWeapon).gameObject, transform.position + (transform.forward * 2), Quaternion.identity);
+            GameObject clone = Instantiate(WeaponHand.transform.GetChild(currentWeapon).gameObject, transform.position + (transform.forward * 2), Quaternion.identity, garbage);
             clone.name = WeaponHand.transform.GetChild(currentWeapon).gameObject.name;
             clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             clone.GetComponent<BoxCollider>().enabled = true;
+            clone.GetComponent<BoxCollider>().isTrigger = false;
             clone.GetComponent<Animator>().enabled = false;
             WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false); // set current weapon to not be active
             WeaponHand.transform.GetChild(7).gameObject.SetActive(true); // set unarmed to be active
@@ -1086,6 +1104,8 @@ public class FirstPersonControllerEditor : Editor
         fpc.specialdash = (GameObject)EditorGUILayout.ObjectField(new GUIContent("dash trigger", "trigger to enable when dashing"),fpc.specialdash, typeof(GameObject), true);
         fpc.TPUI = (GameObject)EditorGUILayout.ObjectField(new GUIContent("teleport text", "teleporting..."), fpc.TPUI, typeof(GameObject), true);
         fpc.settingScreen = (GameObject)EditorGUILayout.ObjectField(new GUIContent("settings screen", "in canvas"), fpc.settingScreen, typeof(GameObject), true);
+
+        fpc.garbage = (Transform)EditorGUILayout.ObjectField(new GUIContent("Garbage Container", "in canvas"), fpc.garbage, typeof(Transform), true);
         #endregion
 
         #region Health
