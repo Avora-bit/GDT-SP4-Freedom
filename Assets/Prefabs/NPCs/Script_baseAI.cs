@@ -32,6 +32,7 @@ public class Script_baseAI : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("FirstPersonController").transform;
+        garbage = GameObject.Find("Garbage Container").transform;
         agent = GetComponent<NavMeshAgent>();
         FSMScript = GetComponent<Script_baseFSM>();
     }
