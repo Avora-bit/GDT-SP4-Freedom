@@ -15,7 +15,7 @@ public class Script_UIDirectiionalIndicator : MonoBehaviour
     private float fadeTime = 1f;
     private float timeRemaining;
 
-    private bool isObjective = true;
+    private bool isObjective = false;
     private float distFade = 5f;
 
     public void setTarget(GameObject _target, bool _isObjective)

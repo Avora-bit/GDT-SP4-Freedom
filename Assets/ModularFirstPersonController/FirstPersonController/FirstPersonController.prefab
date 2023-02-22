@@ -1026,14 +1026,10 @@ MonoBehaviour:
   stamina: 100
   dashCost: 30
   tping: 0
-  minThrowForce: 100
-  maxThrowForce: 1000
-  throwChargeRate: 100
   IsInHub: 0
   HealthBar: {fileID: 3704672083517231269}
   StaminaBar: {fileID: 8230979414397673431}
   ArrowCounter: {fileID: 959717678958065536}
-  prefab_arrow: {fileID: 0}
   playerCamera: {fileID: 4459864851310106426}
   fov: 75
   invertCamera: 0
@@ -1081,6 +1077,7 @@ MonoBehaviour:
   dropKey: 113
   pickUpRange: 2
   canDelete: 1
+  garbage: {fileID: 0}
   enableHeadBob: 1
   joint: {fileID: 4459864851508666808}
   bobSpeed: 10
@@ -1104,7 +1101,6 @@ MonoBehaviour:
   IsPlayer: 1
   IsDummy: 0
   InvincTimer: 1
-  canHit: 0
   damageTextPrefab: {fileID: 0}
 --- !u!114 &251842346614427477
 MonoBehaviour:
@@ -1118,7 +1114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd2f80177c74a741afb2daef2c17f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwStrength: 10000
   SphereTargetPos: {fileID: 4344372879715513323}
 --- !u!120 &6122981002224402695
 LineRenderer:

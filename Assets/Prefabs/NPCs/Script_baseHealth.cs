@@ -15,9 +15,9 @@ public class Script_baseHealth : MonoBehaviour
     public bool IsDummy = false;
 
     public float InvincTimer = 1.0f;
-    public bool canHit = false;
 
     public GameObject damageTextPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,28 +27,14 @@ public class Script_baseHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (selfHealth <= 0)
-        {
-            selfHealth = 0;
-            if (IsPlayer)
-                Debug.Log("player die");
-            else if (IsDummy)
-                Debug.Log("dummy die");
-        }
+        selfHealth = Mathf.Clamp(selfHealth, 0, 100);
 
-        if (InvincTimer > 0.0f)
-        {
-            InvincTimer -= Time.deltaTime;
-        }
-        else
-        {
-            canHit = true;
-        }
+        InvincTimer = Mathf.Clamp(InvincTimer -= Time.deltaTime, 0, 10);
     }
 
     public void TakeDamage(int _damage)
     {
-        if (canHit)
+        if (InvincTimer <= 0)
         {
             string text = _damage + "!";
 
@@ -58,7 +44,6 @@ public class Script_baseHealth : MonoBehaviour
                 totaldmg += _damage;
             }
             else FloatingText(text, Color.red);
-            canHit = false;
         }
     }
 

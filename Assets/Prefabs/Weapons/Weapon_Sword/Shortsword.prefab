@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1682591482471889220}
   - component: {fileID: 3437479893746349559}
   - component: {fileID: 7848796528431865243}
-  - component: {fileID: 1384529002336872854}
+  - component: {fileID: 2784846793341523777}
   m_Layer: 0
   m_Name: Shortsword
   m_TagString: Weapon
@@ -50,11 +50,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iDamage: 24
   fAttackSpeed: 1
-  fRange: 2
   anim: {fileID: 0}
   weapon: {fileID: 181888}
   costStamina: 10
-  projectile: {fileID: 0}
+  isThrown: 0
+  projectile: {fileID: 181888}
 --- !u!33 &1682591482471889220
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -121,8 +121,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1384529002336872854
-BoxCollider:
+--- !u!64 &2784846793341523777
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -131,6 +131,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.058312893, y: 0.6917336, z: 0.14586277}
-  m_Center: {x: 0, y: 0.34673184, z: -0.0041441023}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 9e2fe6d298ba0a54fb43103a000f3fd3, type: 3}

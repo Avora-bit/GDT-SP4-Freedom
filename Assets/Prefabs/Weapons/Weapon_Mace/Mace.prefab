@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3135857634010122614}
   - component: {fileID: 3349628465692384262}
   - component: {fileID: 2794368601190166439}
-  - component: {fileID: 5290397658140975140}
+  - component: {fileID: 3692610497725447199}
   m_Layer: 0
   m_Name: Mace
   m_TagString: Weapon
@@ -50,10 +50,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iDamage: 25
   fAttackSpeed: 1
-  fRange: 2
   anim: {fileID: 0}
   weapon: {fileID: 100884}
   costStamina: 10
+  isThrown: 0
+  projectile: {fileID: 100884}
 --- !u!33 &3135857634010122614
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -120,8 +121,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &5290397658140975140
-BoxCollider:
+--- !u!64 &3692610497725447199
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -130,6 +131,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.14445415, y: 0.81308514, z: 0.13603011}
-  m_Center: {x: -0.0006959103, y: 0.38508752, z: 0.00857278}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: d2b89fec2501cbe4dbb75f50d1e6692f, type: 3}

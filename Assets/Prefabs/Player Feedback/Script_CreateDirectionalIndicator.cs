@@ -6,7 +6,14 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Script_CreateDirectionalIndicator : MonoBehaviour
 {
+    private GameObject playerInstance;
+    
     public GameObject arrowPrefab;
+    
+    private void Awake()
+    {
+        playerInstance = gameObject.transform.parent.parent.parent.parent.transform.gameObject;
+    }
 
     // Update is called once per frame
     void Update()

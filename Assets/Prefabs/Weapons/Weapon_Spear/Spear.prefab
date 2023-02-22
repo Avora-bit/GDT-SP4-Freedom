@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1618176729946809537}
   - component: {fileID: 6841786619220996895}
   - component: {fileID: 6841786619220029791}
-  - component: {fileID: 1379821913941810983}
   - component: {fileID: 6009013226255080437}
+  - component: {fileID: 1437260280237911075}
   m_Layer: 0
   m_Name: Spear
   m_TagString: Weapon
@@ -50,10 +50,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iDamage: 33
   fAttackSpeed: 0.8
-  fRange: 4
   anim: {fileID: 0}
   weapon: {fileID: 6841786619218095897}
   costStamina: 15
+  isThrown: 0
+  projectile: {fileID: 6841786619218095897}
 --- !u!33 &6841786619220996895
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -104,19 +105,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1379821913941810983
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6841786619218095897}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.27036035, y: 8.878321, z: 0.27036035}
-  m_Center: {x: 0, y: 2.052849, z: 0}
 --- !u!54 &6009013226255080437
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -133,3 +121,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &1437260280237911075
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6841786619218095897}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7245416631961224919, guid: c32baef01e84d214d9571ff6ec2352f7, type: 3}

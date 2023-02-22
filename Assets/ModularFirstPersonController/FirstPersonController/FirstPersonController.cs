@@ -59,6 +59,8 @@ public class FirstPersonController : MonoBehaviour
     public Image StaminaBar;
     public Image ArrowCounter;
 
+    private Script_CreateDirectionalIndicator DirectionalIndicator;
+
     #region Camera Movement Variables
 
     public Camera playerCamera;
@@ -193,7 +195,12 @@ public class FirstPersonController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         crosshairObject = GetComponentInChildren<Image>();
         health = GetComponent<Script_baseHealth>();
-
+        DirectionalIndicator = gameObject.transform.GetChild(0).GetChild(1).GetChild(0).GetChild(10).GetComponent<Script_CreateDirectionalIndicator>();
+        if (DirectionalIndicator != null)
+        {
+            Debug.Log("correct child found");
+        }
+        
         // Set internal variables
         playerCamera.fieldOfView = fov;
         originalScale = transform.localScale;
@@ -225,7 +232,7 @@ public class FirstPersonController : MonoBehaviour
             if (WeaponHand.transform.GetChild(i).gameObject.activeSelf == true)
             {
                 currentWeapon = i;
-                WeaponHand.GetComponentInChildren<BoxCollider>().enabled = false;
+                WeaponHand.GetComponentInChildren<MeshCollider>().enabled = false;
                 WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
                 break;
             }
@@ -282,8 +289,6 @@ public class FirstPersonController : MonoBehaviour
         #endregion
     }
 
-    float camRotation;
-
     private void Update()
     {
         if (tping)
@@ -297,17 +302,19 @@ public class FirstPersonController : MonoBehaviour
             {
                 WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
                 WeaponHand.transform.GetChild(0).gameObject.SetActive(true);
-                WeaponHand.transform.GetChild(0).gameObject.GetComponent<BoxCollider>().enabled = false;
+                WeaponHand.transform.GetChild(0).gameObject.GetComponent<MeshCollider>().enabled = false;
                 WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
                 currentWeapon = 0;
             }
+
+            //delete all indicator arrows
+
             StartCoroutine(teleporting());
             tping = false;
         }
         arrowcount.text = "x" + arrows.ToString();
 
         speed = Vector3.Magnitude(rb.velocity);
-        // Debug.Log(speed);
         if (speed > 20 && (currentWeapon == 4 || currentWeapon == 6))
             specialdash.SetActive(true);
         else specialdash.SetActive(false);
@@ -405,7 +412,7 @@ public class FirstPersonController : MonoBehaviour
                         WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);                               //7 is unarmed
                         currentWeapon = 7;
                         WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(true);
-                        WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<BoxCollider>().enabled = false;
+                        WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<MeshCollider>().enabled = false;
                         WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
                     }
                     isZoomed = false;
@@ -541,7 +548,7 @@ public class FirstPersonController : MonoBehaviour
         {
             if (WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<Script_baseWeapon>().Attack(playerCamera))         //if attack succesful
             {
-                WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<BoxCollider>().enabled = true;
+                WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<MeshCollider>().enabled = true;
                 stamina -= WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<Script_baseWeapon>().getStaminaCost();
             }
             else
@@ -717,15 +724,6 @@ public class FirstPersonController : MonoBehaviour
 
     private void Interact()
     {
-        //Debug.Log("Interacted");
-        if (IsInHub)
-        {
-            Debug.Log("isInHub");
-        }
-        else
-        {
-            Debug.Log("IsNotInHub");
-        }
         Vector3 origin = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, playerCamera.transform.position.z);
         Vector3 direction = playerCamera.transform.forward;
 
@@ -803,12 +801,12 @@ public class FirstPersonController : MonoBehaviour
                 GameObject clone = Instantiate(WeaponHand.transform.GetChild(currentWeapon).gameObject, WeaponHand.transform.GetChild(currentWeapon).position, Quaternion.identity, garbage);
                 clone.name = WeaponHand.transform.GetChild(currentWeapon).gameObject.name;
                 clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                clone.GetComponent<BoxCollider>().isTrigger = false;
+                clone.GetComponent<MeshCollider>().isTrigger = false;
                 clone.GetComponent<Animator>().enabled = false;
             }
             WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false);
             WeaponHand.transform.GetChild(WeaponToHold).gameObject.SetActive(true);
-            WeaponHand.transform.GetChild(WeaponToHold).gameObject.GetComponent<BoxCollider>().enabled = false;
+            WeaponHand.transform.GetChild(WeaponToHold).gameObject.GetComponent<MeshCollider>().enabled = false;
             WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
             currentWeapon = WeaponToHold;
         }
@@ -826,12 +824,12 @@ public class FirstPersonController : MonoBehaviour
             GameObject clone = Instantiate(WeaponHand.transform.GetChild(currentWeapon).gameObject, transform.position + (transform.forward * 2), Quaternion.identity, garbage);
             clone.name = WeaponHand.transform.GetChild(currentWeapon).gameObject.name;
             clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            clone.GetComponent<BoxCollider>().enabled = true;
-            clone.GetComponent<BoxCollider>().isTrigger = false;
+            clone.GetComponent<MeshCollider>().enabled = true;
+            clone.GetComponent<MeshCollider>().isTrigger = false;
             clone.GetComponent<Animator>().enabled = false;
             WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(false); // set current weapon to not be active
             WeaponHand.transform.GetChild(7).gameObject.SetActive(true); // set unarmed to be active
-            WeaponHand.GetComponentInChildren<BoxCollider>().enabled = false;
+            WeaponHand.GetComponentInChildren<MeshCollider>().enabled = false;
             currentWeapon = 7; // also set the current weapon to unarmed
         }
         else

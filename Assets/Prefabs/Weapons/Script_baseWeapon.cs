@@ -7,7 +7,6 @@ public class Script_baseWeapon : MonoBehaviour
     //stats
     public int iDamage;
     public float fAttackSpeed;
-    public float fRange;
     public Animator anim;
     public GameObject weapon;
 
@@ -36,22 +35,26 @@ public class Script_baseWeapon : MonoBehaviour
         {
             gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            gameObject.GetComponent<BoxCollider>().enabled = true;
-            gameObject.GetComponent<BoxCollider>().isTrigger = true;
-            gameObject.GetComponent<Animator>().enabled = false;
+            gameObject.GetComponent<MeshCollider>().enabled = true;
+            gameObject.GetComponent<MeshCollider>().isTrigger = true;
+            if (gameObject.GetComponent<Animator>() != null)
+            {
+                gameObject.GetComponent<Animator>().enabled = false;
+            }
+
             projectile_lifetime -= Time.deltaTime;
             if (projectile_lifetime <= 0f)
             {
                 Destroy(gameObject);
             }
+            transform.rotation = Quaternion.LookRotation(gameObject.GetComponent<Rigidbody>().velocity);
         }
-
     }
 
     private void PlayAnimation()
     {
-        gameObject.GetComponent<BoxCollider>().isTrigger = true;
-        anim.speed = 1/timeBetweenAttack;
+        GetComponent<MeshCollider>().isTrigger = true;
+        anim.speed = 1 / timeBetweenAttack;
         anim.SetTrigger("Attack");
     }
 
@@ -60,21 +63,6 @@ public class Script_baseWeapon : MonoBehaviour
         if (canAttack)
         {
             PlayAnimation();
-            //Debug.Log("Damage: " + iDamage + " Attack Speed: " + fAttackSpeed + " Range: " + fRange + " TimeBetweenAttack: " + timeBetweenAttack);
-            //Vector3 origin = new Vector3(rayVector.transform.position.x, rayVector.transform.position.y, rayVector.transform.position.z);
-            //Vector3 direction = rayVector.transform.forward;
-
-            //if (Physics.Raycast(origin, direction, out RaycastHit hit, fRange))
-            //{
-            //    Debug.DrawRay(origin, direction * fRange, Color.yellow);
-            //    Debug.Log("GameObject hit: " + hit.collider.name);
-            //    //deal damage
-            //    if (hit.collider.GetComponent<Script_baseHealth>() != null)
-            //    {
-            //        hit.collider.GetComponent<Script_baseHealth>().TakeDamage(iDamage);
-            //        Debug.Log("Hit");
-            //    }
-            //}
             fcooldown = timeBetweenAttack;
             canAttack = false;
             return true;
@@ -143,8 +131,8 @@ public class Script_baseWeapon : MonoBehaviour
 
     public void Ended()
     {
-        gameObject.GetComponent<BoxCollider>().isTrigger = false;
-        gameObject.GetComponent<BoxCollider>().enabled = false;
+        gameObject.GetComponent<MeshCollider>().isTrigger = false;
+        gameObject.GetComponent<MeshCollider>().enabled = false;
         Debug.Log("Animation has ended");
         anim.SetTrigger("Return");
     }

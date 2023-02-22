@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 213149316351560061}
   - component: {fileID: 8101380659539400142}
   - component: {fileID: 6547140406152690885}
-  - component: {fileID: 4950219930692265265}
   - component: {fileID: 3717023708038884612}
+  - component: {fileID: 4921716544494427947}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Weapon
@@ -51,10 +51,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iDamage: 39
   fAttackSpeed: 0.3
-  fRange: 0.5
   anim: {fileID: 3717023708038884612}
   weapon: {fileID: 107374}
   costStamina: 0
+  isThrown: 0
   projectile: {fileID: 4865309214770636011, guid: 45804eb2722b83845adbcf2d72da12dd, type: 3}
 --- !u!33 &213149316351560061
 MeshFilter:
@@ -122,19 +122,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &4950219930692265265
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 107374}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.067567125, y: 1.4684497, z: 0.50064933}
-  m_Center: {x: 0, y: 0.7400406, z: -0.049554266}
 --- !u!95 &3717023708038884612
 Animator:
   serializedVersion: 5
@@ -155,3 +142,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!64 &4921716544494427947
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107374}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: de4223c7a5960064a979a1d5f1324a9c, type: 3}

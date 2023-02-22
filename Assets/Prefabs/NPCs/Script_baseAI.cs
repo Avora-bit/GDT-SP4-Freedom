@@ -28,7 +28,6 @@ public class Script_baseAI : MonoBehaviour
 
     Script_baseFSM FSMScript;
 
-
     private void Awake()
     {
         player = GameObject.Find("FirstPersonController").transform;
@@ -82,6 +81,8 @@ public class Script_baseAI : MonoBehaviour
         if (FSMScript.IsMelee)
         {
             // Melee Code Here
+
+
         }
 
         else if (FSMScript.IsRanged)
