@@ -1532,6 +1532,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &1761012710 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6474225788014693841, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+  m_PrefabInstance: {fileID: 8934863309041446544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1864223651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,6 +1787,7 @@ MonoBehaviour:
   healthToggle: {fileID: 67840577}
   staminaToggle: {fileID: 281105356}
   arrowToggle: {fileID: 1417298924}
+  DefaultTab: {fileID: 1761012710}
   SettingsScreen: {fileID: 708486241}
 --- !u!1 &2041719225
 GameObject:
@@ -2014,6 +2026,38 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3349975229357439757, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349975229357439757, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349975229357439757, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2009446764}
+    - target: {fileID: 3349975229357439757, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349975229357439757, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleTab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349975229357439757, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Script_Settings, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349975229357439757, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349975229357439757, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4814767345443529139, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
@@ -2062,6 +2106,26 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7046783907111415223, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7046783907111415223, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2009446764}
+    - target: {fileID: 7046783907111415223, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleTab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7046783907111415223, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Script_Settings, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7046783907111415223, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7923877194792919257, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2072,7 +2136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7923877194792919257, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -257
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 8934863308318785906, guid: e921fed5f7598d943aa650dc563b7aa2, type: 3}
       propertyPath: m_AnchorMax.x
