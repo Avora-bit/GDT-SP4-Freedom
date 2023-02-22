@@ -10,6 +10,9 @@ public class Script_Settings : MonoBehaviour
     public int sfxvol;
     public Text bgmdisplay;
     public Text sfxdisplay;
+    public Toggle healthToggle;
+    public Toggle staminaToggle;
+    public Toggle arrowToggle;
     
     public Image SettingsScreen;
     void Start()
@@ -19,12 +22,56 @@ public class Script_Settings : MonoBehaviour
         bgmdisplay.text = bgmvol.ToString();
         sfxdisplay.text = sfxvol.ToString();
 
+        #region Toggles
+
+        #region Health Toggle
+        bool HealthIsOn;
+        if (PlayerPrefs.GetInt("HEALTHBARON") == 1)
+        {
+            HealthIsOn = true;
+        }
+        else
+        {
+            HealthIsOn = false;
+        }
+        healthToggle.isOn = HealthIsOn;
+        #endregion
+
+        #region Stamina Toggle
+        bool StaminaIsOn;
+        if (PlayerPrefs.GetInt("STAMBARON") == 1)
+        {
+            StaminaIsOn = true;
+        }
+        else
+        {
+            StaminaIsOn = false;
+        }
+        staminaToggle.isOn = StaminaIsOn;
+        #endregion
+
+        #region Arrow Counter Toggle
+        bool ArrowIsOn;
+        if (PlayerPrefs.GetInt("ARROWCOUNTON") == 1)
+        {
+            ArrowIsOn = true;
+        }
+        else
+        {
+            ArrowIsOn = false;
+        }
+        arrowToggle.isOn = ArrowIsOn;
+        #endregion
+
+        #endregion
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        setHealthBarToggle();
+        setStaminaBarToggle();
+        setArrowCountToggle();
     }
     public void setBGMvol(float num)
     {
@@ -38,49 +85,40 @@ public class Script_Settings : MonoBehaviour
         sfxdisplay.text = sfxvol.ToString();
     }
 
-    public void setHealthBarToggle(bool input)
+    public void setHealthBarToggle()
     {
-        int a = 1;
-        if (input)
+        if (healthToggle.isOn)
         {
-            a = 1;
+            PlayerPrefs.SetInt("HEALTHBARON", 1);
         }
         else
         {
-            a = 0;
+            PlayerPrefs.SetInt("HEALTHBARON", 0);
         }
-        PlayerPrefs.SetInt("HPBARON", a);
-        Debug.Log(PlayerPrefs.GetInt("HPBARON"));
     }
 
-    public void setStaminaBarToggle(bool input)
+    public void setStaminaBarToggle()
     {
-        int a = 1;
-        if (input)
+        if (staminaToggle.isOn)
         {
-            a = 1;
+            PlayerPrefs.SetInt("STAMBARON", 1);
         }
         else
         {
-            a = 0;
+            PlayerPrefs.SetInt("STAMBARON", 0);
         }
-        PlayerPrefs.SetInt("STAMBARON", a);
-        Debug.Log(PlayerPrefs.GetInt("STAMBARON"));
     }
 
-    public void setArrowCountToggle(bool input)
+    public void setArrowCountToggle()
     {
-        int a = 1;
-        if (input)
+        if (arrowToggle.isOn)
         {
-            a = 1;
+            PlayerPrefs.SetInt("ARROWCOUNTON", 1);
         }
         else
         {
-            a = 0;
+            PlayerPrefs.SetInt("ARROWCOUNTON", 0);
         }
-        PlayerPrefs.SetInt("ARROWCOUNTON", a);
-        Debug.Log(PlayerPrefs.GetInt("ARROWCOUNTON"));
     }
 
     public void Save()

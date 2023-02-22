@@ -14,8 +14,10 @@ public class Script_baseHealth : MonoBehaviour
     public bool IsPlayer = false;
     public bool IsDummy = false;
 
-    public GameObject damageTextPrefab;
+    public float InvincTimer = 1.0f;
+    public bool canHit = false;
 
+    public GameObject damageTextPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,18 +35,31 @@ public class Script_baseHealth : MonoBehaviour
             else if (IsDummy)
                 Debug.Log("dummy die");
         }
+
+        if (InvincTimer > 0.0f)
+        {
+            InvincTimer -= Time.deltaTime;
+        }
+        else
+        {
+            canHit = true;
+        }
     }
 
     public void TakeDamage(int _damage)
     {
-        string text = _damage + "!";
-
-        selfHealth -= _damage;
-        if (IsPlayer)
+        if (canHit)
         {
-            totaldmg += _damage;
+            string text = _damage + "!";
+
+            selfHealth -= _damage;
+            if (IsPlayer)
+            {
+                totaldmg += _damage;
+            }
+            else FloatingText(text, Color.red);
+            canHit = false;
         }
-        else FloatingText(text, Color.red);
     }
 
     public void Healing(int _heal)
@@ -59,9 +74,7 @@ public class Script_baseHealth : MonoBehaviour
         return selfHealth;
     }
 
-
     //if game object is dummy or npc, render damage text
-
     public void FloatingText(string _text, Color _color)
     {
         GameObject DamageTextInstance = Instantiate(damageTextPrefab, gameObject.transform);
