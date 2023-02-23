@@ -59,6 +59,10 @@ public class FirstPersonController : MonoBehaviour
     public Image StaminaBar;
     public Image ArrowCounter;
 
+    public AudioClip hitsound;
+    public AudioClip deadsound;
+    private AudioSource audiosource;
+
     private Script_CreateDirectionalIndicator DirectionalIndicator;
 
     #region Camera Movement Variables
@@ -193,6 +197,7 @@ public class FirstPersonController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        audiosource = GetComponent<AudioSource>();
         crosshairObject = GetComponentInChildren<Image>();
         health = GetComponent<Script_baseHealth>();
         DirectionalIndicator = gameObject.transform.GetChild(0).GetChild(1).GetChild(0).GetChild(10).GetComponent<Script_CreateDirectionalIndicator>();
@@ -327,8 +332,10 @@ public class FirstPersonController : MonoBehaviour
             if (lastplayerhp > playerhp)
             {
                 anim.SetBool("hit", true);
+                audiosource.PlayOneShot(hitsound);
                 if (playerhp <= 0)
                 {
+                    audiosource.PlayOneShot(deadsound);
                     StartCoroutine(die());
                 }
                 lastplayerhp = playerhp;
@@ -1122,6 +1129,9 @@ public class FirstPersonControllerEditor : Editor
         fpc.HealthBar = (Image)EditorGUILayout.ObjectField(new GUIContent("Health Bar", "Fader here"), fpc.HealthBar, typeof(Image), true);
         fpc.StaminaBar = (Image)EditorGUILayout.ObjectField(new GUIContent("Stamina Bar", "Fader here"), fpc.StaminaBar, typeof(Image), true);
         fpc.ArrowCounter = (Image)EditorGUILayout.ObjectField(new GUIContent("Arrow Counter", "Fader here"), fpc.ArrowCounter, typeof(Image), true);
+
+        fpc.hitsound = (AudioClip)EditorGUILayout.ObjectField(new GUIContent("hit sound", "ow"), fpc.hitsound, typeof(AudioClip), true);
+        fpc.deadsound = (AudioClip)EditorGUILayout.ObjectField(new GUIContent("death sound", "metal"), fpc.deadsound, typeof(AudioClip), true);
         #endregion
 
         //Sets any changes from the prefab

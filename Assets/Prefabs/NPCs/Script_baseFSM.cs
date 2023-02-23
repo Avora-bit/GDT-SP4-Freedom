@@ -22,6 +22,11 @@ public class Script_baseFSM : MonoBehaviour
     public GameObject ParentArcherTower;
     public Transform garbage;
 
+    private int lastHP;
+    //public AudioClip hit;
+    //public AudioClip death;
+  //  private AudioSource source;
+
     public int dropRate = 25;
     public FSM FSMState;
 
@@ -44,6 +49,8 @@ public class Script_baseFSM : MonoBehaviour
         baseHealth = GetComponent<Script_baseHealth>();
         garbage = GameObject.Find("Garbage Container").transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
+        lastHP = baseHealth.maxHealth;
+        //source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,11 +58,18 @@ public class Script_baseFSM : MonoBehaviour
     {
         //navMeshAgent.destination = TargetPos.position;
         //Debug.Log(FSMState);
-
+      //  Debug.LogWarning("hp " + baseHealth.getHealth() + "   lasthp " + lastHP);
         if (baseHealth.getHealth() <= 0)
         {
+            //AudioSource.PlayClipAtPoint(death, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z));
             currentFSM = FSM.DEATH;
             FSMState = FSM.DEATH; // Just a variable to identify the actual state of the FSM to other scripts
+        }
+        else if (baseHealth.getHealth() < lastHP)
+        {
+            lastHP = baseHealth.getHealth();
+            transform.GetChild(2).gameObject.GetComponent<Script_enemy_sounds>().hitsound();
+            Debug.LogWarning("enemy hit");
         }
         else
         {
@@ -115,12 +129,13 @@ public class Script_baseFSM : MonoBehaviour
                     GameObject Clone = Instantiate(transform.GetChild(0).gameObject, transform.position, Quaternion.identity,garbage);
                     Clone.name = transform.GetChild(0).gameObject.name;
                     Clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                    Clone.GetComponent<BoxCollider>().enabled = true;
+                    Clone.GetComponent<MeshCollider>().enabled = true;
 
                     GameObject body1 = Instantiate(transform.GetChild(2).gameObject, transform.position, Quaternion.identity);
                     body1.GetComponent<Script_GIbs>().vanishing = true;
                     body1.name = transform.GetChild(2).gameObject.name;
                     body1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    body1.GetComponent<Script_enemy_sounds>().deadsound();
 
                     GameObject body2 = Instantiate(transform.GetChild(3).gameObject, transform.position, Quaternion.identity);
                     body2.GetComponent<Script_GIbs>().vanishing = true;

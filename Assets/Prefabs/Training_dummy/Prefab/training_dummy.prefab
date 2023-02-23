@@ -188,6 +188,8 @@ MonoBehaviour:
   revive: 0
   anim: {fileID: 5615497917579445399}
   health: {fileID: 456603006045989466}
+  hit: {fileID: 8300000, guid: d3b1dd4520f1cf84f9409bcf593a825f, type: 3}
+  death: {fileID: 8300000, guid: aea4fe3cd7ad23340bc497325913861b, type: 3}
 --- !u!114 &456603006045989466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +208,6 @@ MonoBehaviour:
   IsPlayer: 0
   IsDummy: 1
   InvincTimer: 1
-  canHit: 0
   damageTextPrefab: {fileID: 2506511521597342433, guid: a5fd43dabeece144cac09031ef1bd3b4, type: 3}
 --- !u!82 &6650675682014778809
 AudioSource:
@@ -218,7 +219,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 2b75c19d23131fe4d9e97e111c737882, type: 2}
-  m_audioClip: {fileID: 8300000, guid: aea4fe3cd7ad23340bc497325913861b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d3b1dd4520f1cf84f9409bcf593a825f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Script_Dummy : MonoBehaviour
 {
@@ -17,10 +18,15 @@ public class Script_Dummy : MonoBehaviour
     public Script_baseHealth health;
     private int currentHP = 100;
     private int lastHP = 100;
+
+    public AudioClip hit;
+    public AudioClip death;
+    private AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
         health = GetComponent<Script_baseHealth>();
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -88,6 +94,7 @@ public class Script_Dummy : MonoBehaviour
             anim.SetBool("backtoneutral", false);
             anim.SetBool("dead", true);
             lastHP = currentHP;
+            source.PlayOneShot(death);
             deadneutraltime = 1;
             deadneutral = true;
         }
@@ -96,7 +103,8 @@ public class Script_Dummy : MonoBehaviour
             lastHP = currentHP;
             anim.SetBool("hit", true);
             timer = 1f;
-           Debug.Log(anim.GetBool("dummy hit"));
+            source.PlayOneShot(hit);
+            Debug.Log(anim.GetBool("dummy hit"));
 
         }    
         if (timer <= 0)
