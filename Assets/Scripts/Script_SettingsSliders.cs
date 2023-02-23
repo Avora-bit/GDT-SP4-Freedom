@@ -16,6 +16,6 @@ public class Script_SettingsSliders : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        PlayerPrefs.SetInt(search, (int)slider.value);
     }
 }
