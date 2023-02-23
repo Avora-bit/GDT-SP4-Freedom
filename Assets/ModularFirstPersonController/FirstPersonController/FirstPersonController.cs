@@ -108,7 +108,7 @@ public class FirstPersonController : MonoBehaviour
     public bool isInWater = false;
 
     // Internal Variables
-    private bool isWalking = false;
+    public bool isWalking = false;
 
     #region Sprint
 
