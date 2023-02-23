@@ -229,14 +229,15 @@ public class FirstPersonController : MonoBehaviour
 
         for (int i = 0; i < WeaponHand.transform.childCount; i++)
         {
-            if (WeaponHand.transform.GetChild(i).gameObject.activeSelf == true)
-            {
-                currentWeapon = i;
-                WeaponHand.GetComponentInChildren<MeshCollider>().enabled = false;
-                WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-                break;
-            }
+            // Set all weapons to inactive, incase one of them is enabled or something
+            WeaponHand.transform.GetChild(i).gameObject.SetActive(false);
         }
+        // Force the player to be Unarmed 
+        currentWeapon = 7;
+        WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(true);
+        WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<MeshCollider>().enabled = false;
+        WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+
     }
 
     void Start()
@@ -548,7 +549,10 @@ public class FirstPersonController : MonoBehaviour
         {
             if (WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<Script_baseWeapon>().Attack(playerCamera))         //if attack succesful
             {
-                WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<MeshCollider>().enabled = true;
+                if (currentWeapon != 2)
+                {
+                    WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<MeshCollider>().enabled = true;
+                }
                 stamina -= WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<Script_baseWeapon>().getStaminaCost();
             }
             else
