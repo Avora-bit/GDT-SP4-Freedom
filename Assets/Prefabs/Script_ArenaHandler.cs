@@ -96,6 +96,8 @@ public class Script_ArenaHandler : MonoBehaviour
                 }
             }
         }
+
+
     }
 
     public void SpawnEnemies()
