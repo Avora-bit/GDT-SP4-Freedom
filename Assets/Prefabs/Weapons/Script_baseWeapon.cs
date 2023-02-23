@@ -20,6 +20,9 @@ public class Script_baseWeapon : MonoBehaviour
 
     private float projectile_lifetime = 20f;
 
+    private float dmgMultiplier = 2f;
+    private float dmgVelocity;
+
     public GameObject projectile;
 
     void Start()
@@ -48,6 +51,11 @@ public class Script_baseWeapon : MonoBehaviour
                 Destroy(gameObject);
             }
             transform.rotation = Quaternion.LookRotation(gameObject.GetComponent<Rigidbody>().velocity);
+
+            //damage multiplier for velocity
+            //theoritical max velocity is 100, 100 mass with 10,000 force
+            //min velocity is 10, 100 mas with 1000 force
+            dmgVelocity = iDamage * (100 / gameObject.GetComponent<Rigidbody>().velocity.magnitude) * dmgMultiplier;
         }
     }
 
@@ -79,19 +87,26 @@ public class Script_baseWeapon : MonoBehaviour
     {
         if (other.gameObject.name.Contains("NPC_Enemy") || other.gameObject.name.Contains("training_dummy"))
         {
-            other.GetComponent<Script_baseHealth>().TakeDamage(iDamage);
-            if (other.GetComponent<Script_baseHealth>().InvincTimer <= 0.0f)
+            if (!isThrown)
             {
-                other.GetComponent<Script_baseHealth>().InvincTimer = timeBetweenAttack;
+                other.GetComponent<Script_baseHealth>().TakeDamage(iDamage);
+                if (other.GetComponent<Script_baseHealth>().InvincTimer <= 0.0f)
+                {
+                    other.GetComponent<Script_baseHealth>().InvincTimer = timeBetweenAttack;
+                }
             }
-        }
-        if (isThrown)
-        {
-            if (other.gameObject.tag == "Untagged" || other.gameObject.name.Contains("NPC_Enemy") || other.gameObject.name.Contains("training_dummy"))
+            else
             {
+                other.GetComponent<Script_baseHealth>().TakeDamage((int)dmgVelocity);
                 Destroy(gameObject);
             }
+            
         }
+        if (isThrown && other.gameObject.tag == "Untagged")         //collision with environment
+        {
+            Destroy(gameObject);
+        }
+        
     }
 
     public void OnTriggerExit(Collider other)

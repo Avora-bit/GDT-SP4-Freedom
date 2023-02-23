@@ -115,7 +115,7 @@ public class Script_baseFSM : MonoBehaviour
                     GameObject Clone = Instantiate(transform.GetChild(0).gameObject, transform.position, Quaternion.identity,garbage);
                     Clone.name = transform.GetChild(0).gameObject.name;
                     Clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                    Clone.GetComponent<BoxCollider>().enabled = true;
+                    Clone.GetComponent<MeshCollider>().enabled = true;
 
                     GameObject body1 = Instantiate(transform.GetChild(2).gameObject, transform.position, Quaternion.identity);
                     body1.GetComponent<Script_GIbs>().vanishing = true;
