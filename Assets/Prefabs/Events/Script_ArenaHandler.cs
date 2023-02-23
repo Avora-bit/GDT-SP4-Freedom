@@ -76,6 +76,9 @@ public class Script_ArenaHandler : MonoBehaviour
             {
                 //spawn enemy on wall
                 GameObject NPCclone = Instantiate(prefab_NPC, gameObject.transform);
+                NPCclone.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                NPCclone.gameObject.GetComponent<Script_baseAI>().enabled = true;
+                NPCclone.gameObject.GetComponent<Script_baseFSM>().enabled = true;
                 NPCclone.transform.parent = null;
                 int gateDirection = Random.Range(0,3);
                 int randXOffset = 0, randZOffset = 0;
@@ -83,7 +86,7 @@ public class Script_ArenaHandler : MonoBehaviour
                 else if (gateDirection == 1) randXOffset = -55;
                 else if (gateDirection == 2) randZOffset = 55;
                 else  if (gateDirection == 3) randZOffset = -55;
-                NPCclone.transform.SetPositionAndRotation(new Vector3(gameObject.transform.position.x + randXOffset, 16.5f, gameObject.transform.position.z + randZOffset), Quaternion.identity);
+                NPCclone.transform.SetPositionAndRotation(new Vector3(gameObject.transform.position.x + randXOffset, 16.0f, gameObject.transform.position.z + randZOffset), Quaternion.identity);
             }
             //last wave and boss is not spawned
             if ((waveCount == numEnemyPerWave.Length) && !spawnedBoss)
