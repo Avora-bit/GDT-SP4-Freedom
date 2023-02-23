@@ -55,6 +55,12 @@ public class Script_baseHealth : MonoBehaviour
 
     }
 
+    public void TakeDamage(int _damage, GameObject selfPTR)
+    {
+        TakeDamage(_damage);
+        //indicator code here
+    }
+
     public void Healing(int _heal)
     {
         string text = ">" + _heal + "<"; 

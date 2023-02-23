@@ -7,7 +7,7 @@ public class Script_Time : MonoBehaviour
     private bool timeActive = false;
 
     public TextMeshPro[] timeText;
-    public float minutes, seconds;
+    public int minutes, seconds;
 
     // Update is called once per frame
     void Update()
