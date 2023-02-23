@@ -22,6 +22,8 @@ public class Script_Settings : MonoBehaviour
 
     [SerializeField] private AudioMixer BGMgroup;
     [SerializeField] private AudioMixer SFXgroup;
+    private AudioSource source;
+    public AudioClip testsound;
 
     void Start()
     {
@@ -79,6 +81,10 @@ public class Script_Settings : MonoBehaviour
         #endregion
     }
 
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -97,6 +103,7 @@ public class Script_Settings : MonoBehaviour
     {
         sfxvol = (int)num;
         sfxdisplay.text = (sfxvol+80).ToString();
+        SFXgroup.SetFloat("SFXvol", num);
     }
 
     public void setHealthBarToggle()
@@ -135,6 +142,15 @@ public class Script_Settings : MonoBehaviour
         }
     }
 
+    public void cleardata()
+    {
+        for (int i = 0; i < PlayerPrefs.GetInt("playamount");i++)
+        {
+            PlayerPrefs.DeleteKey("deathArray" + i);
+        }
+        PlayerPrefs.DeleteKey("playamount");
+    }
+
     public void Save()
     {
         PlayerPrefs.SetInt("BGMVOLUME", bgmvol);
@@ -154,5 +170,10 @@ public class Script_Settings : MonoBehaviour
     public void OpenSettings()
     {
         SettingsScreen.gameObject.SetActive(true);
+    }
+
+    public void playsound()
+    {
+        source.PlayOneShot(testsound);
     }
 }
