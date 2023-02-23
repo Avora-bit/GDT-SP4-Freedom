@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6841786619220029791}
   - component: {fileID: 6009013226255080437}
   - component: {fileID: 1437260280237911075}
+  - component: {fileID: 7782212434300419304}
   m_Layer: 0
   m_Name: Spear
   m_TagString: Weapon
@@ -50,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iDamage: 33
   fAttackSpeed: 0.8
-  anim: {fileID: 0}
+  anim: {fileID: 7782212434300419304}
   weapon: {fileID: 6841786619218095897}
   costStamina: 15
   isThrown: 0
@@ -135,3 +136,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7245416631961224919, guid: c32baef01e84d214d9571ff6ec2352f7, type: 3}
+--- !u!95 &7782212434300419304
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6841786619218095897}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa6ecdb33fbb1e24eb19e956707c8022, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
