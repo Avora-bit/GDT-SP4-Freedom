@@ -6,7 +6,7 @@ public class Script_baseFSM : MonoBehaviour
 {
     Script_baseHealth baseHealth;
 
-    FSM currentFSM = 0;
+    public FSM currentFSM = 0;
     int iFSMCounter = 0;
     public const float iMaxFSMCounter = 60f;       //in seconds
     public int iStunCounter = 3; // time to get stunned
@@ -28,7 +28,6 @@ public class Script_baseFSM : MonoBehaviour
   //  private AudioSource source;
 
     public int dropRate = 25;
-    public FSM FSMState;
 
     public enum FSM
     {
@@ -63,7 +62,6 @@ public class Script_baseFSM : MonoBehaviour
         {
             //AudioSource.PlayClipAtPoint(death, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z));
             currentFSM = FSM.DEATH;
-            FSMState = FSM.DEATH; // Just a variable to identify the actual state of the FSM to other scripts
         }
         else if (baseHealth.getHealth() < lastHP)
         {
@@ -74,7 +72,6 @@ public class Script_baseFSM : MonoBehaviour
         else
         {
             currentFSM = FSM.ATTACK;
-            FSMState = FSM.ATTACK;
         }
 
         switch (currentFSM){
@@ -107,6 +104,14 @@ public class Script_baseFSM : MonoBehaviour
                     }
                     break;
                 }
+            case FSM.RETREAT:
+                {
+                    break;
+                }
+            case FSM.ENCIRCLE:
+                {
+                    break;
+                }
             case FSM.VANTAGE:
                 {
                     if (baseHealth.getHealth() != 100 && IsRanged) // if enemy is an archer and isn't max health 
@@ -114,7 +119,6 @@ public class Script_baseFSM : MonoBehaviour
                         // get out of vantage point to flank/attack player on ground
                         //after getting out of vantage point (dropping to ground), enemy goes to attack
                         OnVantage = false;
-                        currentFSM = FSM.ATTACK;
                     }
                     else if (baseHealth.getHealth() == 100)
                     {
