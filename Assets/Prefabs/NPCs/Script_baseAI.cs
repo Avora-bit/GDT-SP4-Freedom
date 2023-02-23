@@ -34,6 +34,7 @@ public class Script_baseAI : MonoBehaviour
         garbage = GameObject.Find("Garbage Container").transform;
         agent = GetComponent<NavMeshAgent>();
         FSMScript = GetComponent<Script_baseFSM>();
+        
     }
 
     private void Update()

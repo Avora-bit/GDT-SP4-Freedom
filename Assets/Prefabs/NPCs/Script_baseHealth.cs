@@ -18,13 +18,13 @@ public class Script_baseHealth : MonoBehaviour
 
     public GameObject damageTextPrefab;
 
-    private AudioSource source;
+
 
     // Start is called before the first frame update
     void Start()
     {
         selfHealth = maxHealth;
-        source = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -48,9 +48,9 @@ public class Script_baseHealth : MonoBehaviour
             }
             else FloatingText(text, Color.red);
         }
+
         if (IsDummy)
         {
-            source.Play();
         }
 
     }
