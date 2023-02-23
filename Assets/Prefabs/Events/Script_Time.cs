@@ -10,7 +10,7 @@ public class Script_Time : MonoBehaviour
     private bool hasRung = false;
 
     public TextMeshPro[] timeText;
-    public float minutes, seconds;
+    public int minutes, seconds;
 
     private void Awake()
     {
