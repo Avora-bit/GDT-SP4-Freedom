@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iDamage: 40
   fAttackSpeed: 0.4
-  anim: {fileID: 0}
+  anim: {fileID: 791227595985173490}
   weapon: {fileID: 355312524381552382}
   costStamina: 20
   isThrown: 0
@@ -132,7 +132,7 @@ Animator:
   m_GameObject: {fileID: 355312524381552382}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c14b459f57a258a45ad98be489500129, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

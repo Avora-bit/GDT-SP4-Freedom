@@ -66,7 +66,7 @@ public class Script_baseWeapon : MonoBehaviour
         anim.SetTrigger("Attack");
     }
 
-    public bool Attack(Camera rayVector)
+    public bool Attack()
     {
         if (canAttack)
         {
