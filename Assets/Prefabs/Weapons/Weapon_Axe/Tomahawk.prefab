@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6616180891454639516}
   - component: {fileID: 8904413156630367778}
   - component: {fileID: 8846062001106917703}
+  - component: {fileID: 8588131884969915353}
   m_Layer: 0
   m_Name: Tomahawk
   m_TagString: Weapon
@@ -50,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iDamage: 23
   fAttackSpeed: 1.3
-  anim: {fileID: 0}
+  anim: {fileID: 8588131884969915353}
   weapon: {fileID: 174004}
   costStamina: 7
   isThrown: 0
@@ -135,3 +136,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 8b1b8c6927c7e48458cd5a3240f876f6, type: 3}
+--- !u!95 &8588131884969915353
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174004}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ec483a04a4acfb84da22e767d9c4e280, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

@@ -34,21 +34,26 @@ public class Script_baseAI : MonoBehaviour
         garbage = GameObject.Find("Garbage Container").transform;
         agent = GetComponent<NavMeshAgent>();
         FSMScript = GetComponent<Script_baseFSM>();
+        
     }
 
     private void Update()
     {
-        //Check for sight and attack range
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        if (FSMScript.currentFSM != Script_baseFSM.FSM.IDLE)
+        {
+            //Check for sight and attack range
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange && FSMScript.OnVantage == false) Patroling();
-        if (playerInSightRange && !playerInAttackRange && FSMScript.OnVantage == false) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange && FSMScript.OnVantage == false) AttackPlayer();
+            if (!playerInSightRange && !playerInAttackRange && FSMScript.OnVantage == false) Patroling();
+            if (playerInSightRange && !playerInAttackRange && FSMScript.OnVantage == false) ChasePlayer();
+            if (playerInAttackRange && playerInSightRange && FSMScript.OnVantage == false) AttackPlayer();
+        }
     }
 
     private void Patroling()
     {
+        FSMScript.currentFSM = Script_baseFSM.FSM.PATROL;
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -74,6 +79,7 @@ public class Script_baseAI : MonoBehaviour
 
     private void ChasePlayer()
     {
+        FSMScript.currentFSM = Script_baseFSM.FSM.MOVE;
         agent.SetDestination(player.position);
     }
 
@@ -84,10 +90,13 @@ public class Script_baseAI : MonoBehaviour
 
     private void AttackPlayer()
     {
-        if (FSMScript.IsMelee)
+        if (FSMScript.IsMelee && !alreadyAttacked)
         {
             FSMScript.currentFSM = Script_baseFSM.FSM.ATTACK;
-
+            transform.LookAt(player);
+            gameObject.transform.GetChild(0).gameObject.GetComponent<Script_baseWeapon>().Attack();
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
 
         else if (FSMScript.IsRanged)
@@ -132,10 +141,6 @@ public class Script_baseAI : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttacked = false;
-    }
-    private void DestroyEnemy()
-    {
-        Destroy(gameObject);
     }
     private void OnDrawGizmosSelected()
     {

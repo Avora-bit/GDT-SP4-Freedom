@@ -6,8 +6,16 @@ public class Script_Time : MonoBehaviour
     private float timeRemaining = 0f;        //in seconds
     private bool timeActive = false;
 
+    public AudioSource audioSource;
+    private bool hasRung = false;
+
     public TextMeshPro[] timeText;
     public int minutes, seconds;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -23,6 +31,11 @@ public class Script_Time : MonoBehaviour
                 Debug.Log("Time has run out!");
                 timeRemaining = 0;
                 timeActive = false;
+                if (!hasRung)
+                {
+                    audioSource.Play();
+                    hasRung = true;
+                }
             }
         }
         DisplayTime(timeRemaining);

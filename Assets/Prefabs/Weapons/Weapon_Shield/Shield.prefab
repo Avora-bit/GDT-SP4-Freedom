@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 169398615064423146}
   - component: {fileID: 7835348316487913715}
   - component: {fileID: 529899556527284450}
+  - component: {fileID: 8516757502209852993}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Weapon
@@ -50,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iDamage: 13
   fAttackSpeed: 1
-  anim: {fileID: 0}
+  anim: {fileID: 8516757502209852993}
   weapon: {fileID: 1826543164433107775}
   costStamina: 0
   isThrown: 0
@@ -135,3 +136,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2752788004724228794, guid: 5cac7ad8464f8e944b859c007daf9617, type: 3}
+--- !u!95 &8516757502209852993
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826543164433107775}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0bd9417c2bd95c4fb4df994a672cb56, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

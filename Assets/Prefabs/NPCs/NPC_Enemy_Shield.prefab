@@ -276,7 +276,6 @@ MonoBehaviour:
   IsPlayer: 0
   IsDummy: 0
   InvincTimer: 1
-  canHit: 0
   damageTextPrefab: {fileID: 2506511521597342433, guid: a5fd43dabeece144cac09031ef1bd3b4, type: 3}
 --- !u!114 &4626990177488573357
 MonoBehaviour:
@@ -290,6 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d901e079c4a96418995892b5d9e47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentFSM: 0
   iStunCounter: 3
   TargetPos: {fileID: 0}
   IsMelee: 1
@@ -297,6 +297,7 @@ MonoBehaviour:
   OnVantage: 0
   IsStunned: 0
   ParentArcherTower: {fileID: 0}
+  garbage: {fileID: 0}
   dropRate: 25
 --- !u!114 &451876202909151572
 MonoBehaviour:
@@ -312,6 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 9179194396322377716}
   player: {fileID: 0}
+  garbage: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
@@ -470,6 +472,8 @@ GameObject:
   - component: {fileID: 7876748619940009098}
   - component: {fileID: 1413573219808294375}
   - component: {fileID: 2033447419717553002}
+  - component: {fileID: 5073133375888928651}
+  - component: {fileID: 7218469390926494390}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -585,6 +589,116 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 2
   vanishing: 0
+--- !u!114 &5073133375888928651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5888745280489511868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a3a7fea05272b47a962f54d0c210e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hit: {fileID: 8300000, guid: d3b1dd4520f1cf84f9409bcf593a825f, type: 3}
+  death: {fileID: 8300000, guid: aea4fe3cd7ad23340bc497325913861b, type: 3}
+--- !u!82 &7218469390926494390
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5888745280489511868}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 2b75c19d23131fe4d9e97e111c737882, type: 2}
+  m_audioClip: {fileID: 8300000, guid: aea4fe3cd7ad23340bc497325913861b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &2025098669469948451
 PrefabInstance:
   m_ObjectHideFlags: 0

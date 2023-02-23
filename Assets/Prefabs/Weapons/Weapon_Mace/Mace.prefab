@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3349628465692384262}
   - component: {fileID: 2794368601190166439}
   - component: {fileID: 3692610497725447199}
+  - component: {fileID: 5387523588607819276}
   m_Layer: 0
   m_Name: Mace
   m_TagString: Weapon
@@ -50,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iDamage: 25
   fAttackSpeed: 1
-  anim: {fileID: 0}
+  anim: {fileID: 5387523588607819276}
   weapon: {fileID: 100884}
   costStamina: 10
   isThrown: 0
@@ -135,3 +136,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d2b89fec2501cbe4dbb75f50d1e6692f, type: 3}
+--- !u!95 &5387523588607819276
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100884}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ec483a04a4acfb84da22e767d9c4e280, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

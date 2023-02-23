@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Script_Settings : MonoBehaviour
 {
@@ -17,12 +18,17 @@ public class Script_Settings : MonoBehaviour
     public Image DefaultTab;
     
     public Image SettingsScreen;
+
+
+    [SerializeField] private AudioMixer BGMgroup;
+    [SerializeField] private AudioMixer SFXgroup;
+
     void Start()
     {
         bgmvol = PlayerPrefs.GetInt("BGMVOLUME");
         sfxvol = PlayerPrefs.GetInt("SFXVOLUME");
-        bgmdisplay.text = bgmvol.ToString();
-        sfxdisplay.text = sfxvol.ToString();
+        bgmdisplay.text = (bgmvol + 80).ToString();
+        sfxdisplay.text = (sfxvol + 80).ToString();
 
         for (int i = 0; i < DefaultTab.transform.childCount; i++)
         {
@@ -84,6 +90,7 @@ public class Script_Settings : MonoBehaviour
     {
         bgmvol = (int)num;
         bgmdisplay.text = (bgmvol+80).ToString();
+        BGMgroup.SetFloat("BGMvol", num);
     }
 
     public void setSFXvol(float num)
