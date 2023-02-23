@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class Script_playsoundslider : MonoBehaviour
+public class Script_playsoundslider : MonoBehaviour, IDragHandler, IEndDragHandler
 {
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +17,15 @@ public class Script_playsoundslider : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+
     }
 }
