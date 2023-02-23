@@ -86,20 +86,16 @@ public class Script_baseAI : MonoBehaviour
     {
         if (FSMScript.IsMelee)
         {
-            if (FSMScript.FSMState == Script_baseFSM.FSM.ATTACK)
-            {
-
-            }
-            // Melee Code Here
-
+            FSMScript.currentFSM = Script_baseFSM.FSM.ATTACK;
 
         }
 
         else if (FSMScript.IsRanged)
         {
+            FSMScript.currentFSM = Script_baseFSM.FSM.ATTACK;
             transform.LookAt(player);
 
-            if (!alreadyAttacked && FSMScript.FSMState == Script_baseFSM.FSM.ATTACK)
+            if (!alreadyAttacked)
             {
                 // Ranged Code Here
                 // Archer is able to strafe and is not on an archer tower
