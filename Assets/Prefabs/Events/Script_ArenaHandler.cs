@@ -20,8 +20,8 @@ public class Script_ArenaHandler : MonoBehaviour
     private bool spawnedBoss = false;           //ensure 1 boss is spawned
 
     public GameObject prefab_NPC;
-    public GameObject prefab_NPC_SHIELD; 
-    public GameObject prefab_NPC_SPEAR; 
+    public GameObject prefab_NPC_SHIELD;
+    public GameObject prefab_NPC_SPEAR;
     public GameObject prefab_NPC_BOW;
 
     public int[] numEnemyPerWave;
@@ -30,6 +30,9 @@ public class Script_ArenaHandler : MonoBehaviour
     private GameObject bossPtr = null;          //if dead, then level ends
 
     private float time_Offset = 0f;
+
+    public bool hasArcherTower = false;
+    public GameObject[] archerTowerPos;
 
     //private int countNPC;                       //if 0, then all NPC dead, level ends
     // Start is called before the first frame update
@@ -46,7 +49,7 @@ public class Script_ArenaHandler : MonoBehaviour
     {
         //teleporting in and out of arena and boss checking
         {
-            if (TeleportStart.teleported)               //entered arena
+            if (TeleportStart.teleported || Input.GetKeyDown("space"))               //entered arena
             {
                 TimeInstance.setTime(arenaTime);
                 spawnedBoss = false;
@@ -88,6 +91,10 @@ public class Script_ArenaHandler : MonoBehaviour
                 bossPtr.gameObject.GetComponent<Script_baseAI>().enabled = true;
                 bossPtr.gameObject.GetComponent<Script_baseFSM>().enabled = true;
                 bossPtr.GetComponent<NavMeshAgent>().Warp(new Vector3(gameObject.transform.position.x, 17f, gameObject.transform.position.z - 55));     //spawn boss at gate
+
+                if (hasArcherTower) {
+                    SpawnArcherOnTower();
+                }
             }
             Debug.Log("length of Number Per Wave: " + numEnemyPerWave.Length + " / Wave Count: " + waveCount + " / IsSpawnedBoss: " + spawnedBoss + " / bossPtr: " + bossPtr);
             if (!spawnedBoss)
@@ -97,26 +104,16 @@ public class Script_ArenaHandler : MonoBehaviour
                     GameObject NPCToClone = prefab_NPC;
                     switch (Random.Range(0,4))
                     {
-                        case 0:
-                            NPCToClone = prefab_NPC;
-                            break;
-                        case 1:
-                            NPCToClone = prefab_NPC_SHIELD;
-                            break;
-                        case 2:
-                            NPCToClone = prefab_NPC_SPEAR;
-                            break;
-                        case 3:
-                            NPCToClone = prefab_NPC_BOW;
-                            break;
-                        default:
-                            Debug.Log("AHHHHHHHHHHHHHHHHHHHHHHHH");
-                            break;
+                        case 0: NPCToClone = prefab_NPC; break;
+                        case 1: NPCToClone = prefab_NPC_SHIELD; break;
+                        case 2: NPCToClone = prefab_NPC_SPEAR; break;
+                        case 3: NPCToClone = prefab_NPC_BOW; break;
+                        default: Debug.Log("AHHHHHHHHHHHHHHHHHHHHHHHH"); break;
                     }
                     GameObject NPCclone = Instantiate(NPCToClone, gameObject.transform.position, Quaternion.identity);
                     NPCclone.gameObject.GetComponent<Script_baseAI>().enabled = true;
                     NPCclone.gameObject.GetComponent<Script_baseFSM>().enabled = true;
-                    int gateDirection = Random.Range(0, 3);
+                    int gateDirection = Random.Range(0, 4);
                     int randXOffset = 0, randZOffset = 0;
                     if (gateDirection == 0) randXOffset = 55;
                     else if (gateDirection == 1) randXOffset = -55;
@@ -124,12 +121,28 @@ public class Script_ArenaHandler : MonoBehaviour
                     else if (gateDirection == 3) randZOffset = -55;
                     NPCclone.GetComponent<NavMeshAgent>().Warp(new Vector3(gameObject.transform.position.x + randXOffset, 16f, gameObject.transform.position.z + randZOffset));
                 }
+
+                if (hasArcherTower)
+                {
+                    SpawnArcherOnTower();
+                }
             }
         }
     }
 
-    public void SpawnEnemies()
+    public void SpawnArcherOnTower()
     {
-        //instantiate a lot of enemies on the stands
+        //instantiate a archer on each tower
+
+        for (int i = 0; i < archerTowerPos.Length; i++)
+        {
+            GameObject NPCclone = Instantiate(prefab_NPC_BOW, gameObject.transform.position, Quaternion.identity);
+            NPCclone.gameObject.GetComponent<Script_baseAI>().enabled = true;
+            NPCclone.gameObject.GetComponent<Script_baseFSM>().enabled = true;
+            NPCclone.gameObject.GetComponent<Script_baseFSM>().ParentArcherTower = archerTowerPos[i];
+            NPCclone.GetComponent<NavMeshAgent>().Warp(new Vector3(archerTowerPos[i].transform.position.x, 
+                                                                    archerTowerPos[i].transform.position.y + 6, 
+                                                                    archerTowerPos[i].transform.position.z));
+        }
     }
 }
