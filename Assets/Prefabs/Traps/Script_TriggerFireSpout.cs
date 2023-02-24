@@ -17,7 +17,8 @@ public class Script_TriggerFireSpout : MonoBehaviour
     private float fTime = 0f;
 
     public float fDamageTick = 0.2f;
-    private float fDamageCooldown = 0f; 
+    private float fDamageCooldown = 0f;
+    private AudioSource source;
 
     ParticleSystem fireParticle;
 
@@ -84,6 +85,7 @@ public class Script_TriggerFireSpout : MonoBehaviour
             Debug.Log(Entity.getHealth());
             Entity.TakeDamage(iDamage);
             fDamageCooldown = fDamageTick;
+            source.Play();
         }
     }
 }
