@@ -43,7 +43,7 @@ public class Script_baseFSM : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         baseHealth = GetComponent<Script_baseHealth>();
         garbage = GameObject.Find("Garbage Container").transform;
