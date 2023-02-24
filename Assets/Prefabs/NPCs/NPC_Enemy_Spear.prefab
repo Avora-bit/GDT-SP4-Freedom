@@ -148,6 +148,7 @@ MonoBehaviour:
   IsDummy: 0
   InvincTimer: 1
   damageTextPrefab: {fileID: 2506511521597342433, guid: a5fd43dabeece144cac09031ef1bd3b4, type: 3}
+  lastHitEntity: {fileID: 0}
 --- !u!114 &4626990177488573357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +219,7 @@ GameObject:
   - component: {fileID: 2916878735297812306}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: soundgib
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

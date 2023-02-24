@@ -9,6 +9,7 @@ TagManager:
   - Ammo
   - Trigger
   - Projectile
+  - soundgib
   layers:
   - Default
   - TransparentFX

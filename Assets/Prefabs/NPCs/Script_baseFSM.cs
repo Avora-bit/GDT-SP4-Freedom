@@ -130,33 +130,45 @@ public class Script_baseFSM : MonoBehaviour
             case FSM.DEATH:
                 {
                     //drop weapon
-                    GameObject Clone = Instantiate(transform.GetChild(0).gameObject, transform.position, Quaternion.identity,garbage);
-                    Clone.name = transform.GetChild(0).gameObject.name;
-                    Clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                    Clone.GetComponent<MeshCollider>().enabled = true;
-                    Clone.GetComponent<Animator>().enabled = false;
+                    GameObject Clone;
 
-                    GameObject body1 = Instantiate(transform.GetChild(2).gameObject, transform.position, Quaternion.identity);
-                    body1.GetComponent<Script_GIbs>().vanishing = true;
-                    body1.name = transform.GetChild(2).gameObject.name;
-                    body1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                    body1.GetComponent<Script_enemy_sounds>().deadsound();
-
-                    GameObject body2 = Instantiate(transform.GetChild(3).gameObject, transform.position, Quaternion.identity);
-                    body2.GetComponent<Script_GIbs>().vanishing = true;
-                    body2.name = transform.GetChild(3).gameObject.name;
-                    body2.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                    GameObject body3 = Instantiate(transform.GetChild(4).gameObject, transform.position, Quaternion.identity);
-                    body3.GetComponent<Script_GIbs>().vanishing = true;
-                    body3.name = transform.GetChild(4).gameObject.name;
-                    body3.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-
-                    if (UnityEngine.Random.Range(0, 100) <= dropRate)
+                    for (int i = 0; i < gameObject.transform.childCount; i++)
                     {
-                        //drop other
-                        GameObject Other = Instantiate(transform.GetChild(1).gameObject, transform.position, Quaternion.identity,garbage);
-                        Other.name = transform.GetChild(1).gameObject.name;
-                        Other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                        if (gameObject.transform.GetChild(i).gameObject.tag == "Weapon")
+                        {
+                            Clone = Instantiate(transform.GetChild(i).gameObject, transform.position, Quaternion.identity, garbage);
+                            Clone.name = transform.GetChild(i).gameObject.name;
+                            Clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                            Clone.GetComponent<MeshCollider>().enabled = true;
+                            Clone.GetComponent<Animator>().enabled = false;
+                        }
+                        if (gameObject.transform.GetChild(i).gameObject.tag == "Healing")
+                        {
+                            if (UnityEngine.Random.Range(0, 100) <= dropRate)
+                            {
+                                //drop other
+                                GameObject Other = Instantiate(transform.GetChild(i).gameObject, transform.position, Quaternion.identity, garbage);
+                                Other.name = transform.GetChild(i).gameObject.name;
+                                Other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                            }
+                        }
+                        if (gameObject.transform.GetChild(i).gameObject.tag == "soundgib")
+                        {
+                            Clone = Instantiate(transform.GetChild(i).gameObject, transform.position, Quaternion.identity);
+                            Clone.GetComponent<Script_GIbs>().vanishing = true;
+                            Clone.name = transform.GetChild(i).gameObject.name;
+                            Clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                            Clone.GetComponent<Script_enemy_sounds>().deadsound();
+                        }
+                        if (gameObject.transform.GetChild(i).gameObject.tag == "Untagged")
+                        {
+                            Clone = Instantiate(transform.GetChild(i).gameObject, transform.position, Quaternion.identity);
+                            Clone.GetComponent<Script_GIbs>().vanishing = true;
+                            Clone.name = transform.GetChild(i).gameObject.name;
+                            Clone.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
+                        }
+
                     }
 
                     //destroy self

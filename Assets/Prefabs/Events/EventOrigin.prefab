@@ -51,8 +51,11 @@ MonoBehaviour:
   Teleport_TriggerEnd: {fileID: 0}
   waveTimer: 60
   prefab_NPC: {fileID: 1553998467788200286, guid: a05923bf25d66654a94b344664476d87, type: 3}
+  prefab_NPC_SHIELD: {fileID: 1553998467788200286, guid: 5913da53ad344d348ba73ad046718549, type: 3}
+  prefab_NPC_SPEAR: {fileID: 1553998467788200286, guid: 98d34fc8d608fee408c0a815ce1a8b78, type: 3}
+  prefab_NPC_BOW: {fileID: 1553998467788200286, guid: 7f45323baccbf3c4ca898f93a957aeca, type: 3}
   numEnemyPerWave: 
-  prefab_Boss: {fileID: 1553998467788200286, guid: 5913da53ad344d348ba73ad046718549, type: 3}
+  prefab_Boss: {fileID: 1553998467788200286, guid: 71ea7f2f06d61d646aa2e8c6d79e569b, type: 3}
 --- !u!114 &2858640099073798249
 MonoBehaviour:
   m_ObjectHideFlags: 0

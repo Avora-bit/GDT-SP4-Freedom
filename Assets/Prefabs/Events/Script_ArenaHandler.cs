@@ -20,6 +20,9 @@ public class Script_ArenaHandler : MonoBehaviour
     private bool spawnedBoss = false;           //ensure 1 boss is spawned
 
     public GameObject prefab_NPC;
+    public GameObject prefab_NPC_SHIELD; 
+    public GameObject prefab_NPC_SPEAR; 
+    public GameObject prefab_NPC_BOW;
 
     public int[] numEnemyPerWave;
 
@@ -91,7 +94,26 @@ public class Script_ArenaHandler : MonoBehaviour
             {
                 for (int i = 0; i < numEnemyPerWave[waveCount]; i++)
                 {
-                    GameObject NPCclone = Instantiate(prefab_NPC, gameObject.transform.position, Quaternion.identity);
+                    GameObject NPCToClone = prefab_NPC;
+                    switch (Random.Range(0,4))
+                    {
+                        case 0:
+                            NPCToClone = prefab_NPC;
+                            break;
+                        case 1:
+                            NPCToClone = prefab_NPC_SHIELD;
+                            break;
+                        case 2:
+                            NPCToClone = prefab_NPC_SPEAR;
+                            break;
+                        case 3:
+                            NPCToClone = prefab_NPC_BOW;
+                            break;
+                        default:
+                            Debug.Log("AHHHHHHHHHHHHHHHHHHHHHHHH");
+                            break;
+                    }
+                    GameObject NPCclone = Instantiate(NPCToClone, gameObject.transform.position, Quaternion.identity);
                     NPCclone.gameObject.GetComponent<Script_baseAI>().enabled = true;
                     NPCclone.gameObject.GetComponent<Script_baseFSM>().enabled = true;
                     int gateDirection = Random.Range(0, 3);

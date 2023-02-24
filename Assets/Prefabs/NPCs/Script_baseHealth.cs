@@ -39,14 +39,41 @@ public class Script_baseHealth : MonoBehaviour
     {
         if (InvincTimer <= 0)
         {
-            string text = _damage + "!";
-
-            selfHealth -= _damage;
-            if (IsPlayer)
+            if (gameObject.name.Contains("FirstPerson"))
             {
-                totaldmg += _damage;
+                if (gameObject.GetComponent<FirstPersonController>().currentWeapon == 6)
+                {
+                    float shieldeddmg = (float)_damage * 0.7f;
+                    selfHealth -= (int)shieldeddmg;
+                }
+
+                else selfHealth -= _damage;
             }
-            else FloatingText(text, Color.red);
+            if (gameObject.name.Contains("NPC"))
+            {
+                if (gameObject.transform.GetChild(0).gameObject.name == ("Shield"))
+                {
+                    float shieldeddmg = (float)_damage * 0.7f;
+                    selfHealth -= (int)shieldeddmg;
+                    string text = (int)shieldeddmg + "!";
+                    FloatingText(text, Color.red);
+                }
+                else
+                {
+                    string text = _damage + "!";
+
+                    selfHealth -= _damage;
+                    FloatingText(text, Color.red);
+                }
+                    
+            }
+            else
+            {
+                string text = _damage + "!";
+
+                selfHealth -= _damage;
+                FloatingText(text, Color.red);
+            }
         }
     }
 

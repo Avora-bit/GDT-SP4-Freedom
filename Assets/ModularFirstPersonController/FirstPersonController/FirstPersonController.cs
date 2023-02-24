@@ -194,7 +194,7 @@ public class FirstPersonController : MonoBehaviour
 
     #region Player Weapon
     public GameObject WeaponHand;
-    int currentWeapon; //used to store int value of the active child of WeaponHand
+    public int currentWeapon; //used to store int value of the active child of WeaponHand
     #endregion
 
     private void Awake()
@@ -204,10 +204,10 @@ public class FirstPersonController : MonoBehaviour
         crosshairObject = GetComponentInChildren<Image>();
         health = GetComponent<Script_baseHealth>();
         DirectionalIndicator = gameObject.transform.GetChild(0).GetChild(1).GetChild(0).GetChild(10).GetComponent<Script_CreateDirectionalIndicator>();
-        if (DirectionalIndicator != null)
-        {
-            Debug.Log("correct child found");
-        }
+        //if (DirectionalIndicator != null)
+        //{
+        //    Debug.Log("correct child found");
+        //}
         
         // Set internal variables
         playerCamera.fieldOfView = fov;
@@ -315,7 +315,6 @@ public class FirstPersonController : MonoBehaviour
                 WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
                 currentWeapon = 0;
             }
-
             //delete all indicator arrows
 
             StartCoroutine(teleporting());
@@ -394,8 +393,17 @@ public class FirstPersonController : MonoBehaviour
             // Behavior for hold to zoom
             if (holdToZoom && !isSprinting && currentWeapon != 7)
             {
+
                 if (Input.GetKeyDown(zoomKey))
                 {
+                    if (currentWeapon == 2)
+                    {
+                        if (arrows != 0)
+                        {
+                            isZoomed = true;
+                        }
+                    }
+                    else
                     isZoomed = true;
                 }
                 else if (Input.GetKeyUp(zoomKey))
@@ -425,6 +433,10 @@ public class FirstPersonController : MonoBehaviour
                         WeaponHand.transform.GetChild(currentWeapon).gameObject.SetActive(true);
                         WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<MeshCollider>().enabled = false;
                         WeaponHand.GetComponentInChildren<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+                    }
+                    if (currentWeapon == 2)
+                    {
+                        arrows--;
                     }
                     isZoomed = false;
                     throwForce = minThrowForce;
@@ -876,6 +888,10 @@ public class FirstPersonController : MonoBehaviour
     }
     IEnumerator teleported()
     {
+        arrows = 5;
+        health.selfHealth = health.maxHealth;
+        stamina = max_stamina;
+
         anim2.SetBool("fade", false);
         TPUI.gameObject.SetActive(false);
         yield return new WaitUntil(() => black.color.a == 255);
