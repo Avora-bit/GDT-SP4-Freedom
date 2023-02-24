@@ -149,6 +149,7 @@ public class Script_Settings : MonoBehaviour
             PlayerPrefs.DeleteKey("deathArray" + i);
         }
         PlayerPrefs.DeleteKey("playamount");
+        Debug.Log(PlayerPrefs.GetInt("playamount"));
     }
 
     public void Save()

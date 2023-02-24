@@ -9,14 +9,14 @@ public class Script_Grave : MonoBehaviour
     public int ID;
     [SerializeField]
     TextMeshPro Gravetext;
-    [SerializeField]
-    Script_Endscene_get db;
+   // [SerializeField]
+    //Script_Endscene_get db;
     // Start is called before the first frame update
     void Start()
     {
-        db = GetComponent<Script_Endscene_get>();
-        Gravetext = GetComponent<TextMeshPro>();
-        ID = db.graveID;
+        //db = gameObject.transform.parent.GetComponent<Script_Endscene_get>();
+        //Gravetext = GetComponent<TextMeshPro>();
+        //ID = gameObject.transform.parent.GetComponent<Script_Endscene_get>().graveamoun
         string final = PlayerPrefs.GetString("deathArray" + ID);
         Gravetext.text = final;
         Debug.Log(ID);

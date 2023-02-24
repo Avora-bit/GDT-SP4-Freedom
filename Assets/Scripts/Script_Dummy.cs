@@ -104,7 +104,7 @@ public class Script_Dummy : MonoBehaviour
             anim.SetBool("hit", true);
             timer = 1f;
             source.PlayOneShot(hit);
-            Debug.Log(anim.GetBool("dummy hit"));
+            //Debug.Log(anim.GetBool("dummy hit"));
 
         }    
         if (timer <= 0)

@@ -24,6 +24,8 @@ public class Script_Mainmenu : MonoBehaviour
     public void GuestLogin()
     {
         name = nameinput.text;
+        if (name == "") name = "nameless";
+        PlayerPrefs.SetString("username",name);
         StartCoroutine(Fading("Scene_Battle"));
        // Debug.LogError("Loggin");
     }

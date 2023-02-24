@@ -113,7 +113,7 @@ public class Script_baseWeapon : MonoBehaviour
             if (other.gameObject.name == "FirstPersonController")
             {
                 Debug.LogWarning("Weapon from Enemy Hits Player");
-                other.GetComponent<Script_baseHealth>().TakeDamage(iDamage/2);
+                other.GetComponent<Script_baseHealth>().TakeDamage(iDamage/2,gameObject);
                 if (other.GetComponent<Script_baseHealth>().InvincTimer <= 0.0f)
                 {
                     other.GetComponent<Script_baseHealth>().InvincTimer = timeBetweenAttack;
