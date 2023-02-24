@@ -24,6 +24,7 @@ public class Script_baseWeapon : MonoBehaviour
     private float dmgVelocity;
 
     public GameObject projectile;
+    
 
     void Start()
     {
@@ -61,6 +62,7 @@ public class Script_baseWeapon : MonoBehaviour
 
     private void PlayAnimation()
     {
+        GetComponent<MeshCollider>().enabled = true;
         GetComponent<MeshCollider>().isTrigger = true;
         anim.speed = 1 / timeBetweenAttack;
         anim.SetTrigger("Attack");
@@ -73,6 +75,7 @@ public class Script_baseWeapon : MonoBehaviour
             PlayAnimation();
             fcooldown = timeBetweenAttack;
             canAttack = false;
+            //Debug.LogWarning("parent: " + gameObject.transform.parent.name);
             return true;
         }
         else
@@ -85,22 +88,37 @@ public class Script_baseWeapon : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.Contains("NPC_Enemy") || other.gameObject.name.Contains("training_dummy"))
+        if (!gameObject.transform.parent.name.Contains("NPC_Enemy"))
         {
-            if (!isThrown)
+            if (other.gameObject.name.Contains("NPC_Enemy") || other.gameObject.name.Contains("training_dummy"))
             {
-                other.GetComponent<Script_baseHealth>().TakeDamage(iDamage);
+                //Debug.LogWarning("Parent is NOT enemy");
+                if (!isThrown)
+                {
+                    other.GetComponent<Script_baseHealth>().TakeDamage(iDamage);
+                    if (other.GetComponent<Script_baseHealth>().InvincTimer <= 0.0f)
+                    {
+                        other.GetComponent<Script_baseHealth>().InvincTimer = timeBetweenAttack;
+                    }
+                }
+                else
+                {
+                    other.GetComponent<Script_baseHealth>().TakeDamage((int)dmgVelocity);
+                    Destroy(gameObject);
+                }
+            }
+        }
+        else
+        {
+            if (other.gameObject.name == "FirstPersonController")
+            {
+                Debug.LogWarning("Weapon from Enemy Hits Player");
+                other.GetComponent<Script_baseHealth>().TakeDamage(iDamage/2);
                 if (other.GetComponent<Script_baseHealth>().InvincTimer <= 0.0f)
                 {
                     other.GetComponent<Script_baseHealth>().InvincTimer = timeBetweenAttack;
                 }
             }
-            else
-            {
-                other.GetComponent<Script_baseHealth>().TakeDamage((int)dmgVelocity);
-                Destroy(gameObject);
-            }
-            
         }
         if (isThrown && other.gameObject.tag == "Untagged")         //collision with environment
         {
@@ -114,6 +132,10 @@ public class Script_baseWeapon : MonoBehaviour
         if (other.gameObject.name.Contains("NPC_Enemy") || other.gameObject.name.Contains("training_dummy"))
         {
             Debug.Log("Weapon left Enemy Hitbox");
+        }
+        if (!gameObject.transform.parent.name.Contains("NPC_Enemy") && other.gameObject.name == "FirstPersonController")
+        {
+            Debug.LogWarning("Enemy Weapon Left Player Hitbox");
         }
     }
 
