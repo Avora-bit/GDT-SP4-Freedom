@@ -8,6 +8,7 @@ TagManager:
   - Healing
   - Ammo
   - Trigger
+  - Projectile
   layers:
   - Default
   - TransparentFX

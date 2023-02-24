@@ -41,6 +41,7 @@ public class Script_baseWeapon : MonoBehaviour
             gameObject.GetComponent<Rigidbody>().isKinematic = false;
             gameObject.GetComponent<MeshCollider>().enabled = true;
             gameObject.GetComponent<MeshCollider>().isTrigger = true;
+            gameObject.tag = "Projectile";
             if (gameObject.GetComponent<Animator>() != null)
             {
                 gameObject.GetComponent<Animator>().enabled = false;
@@ -73,7 +74,7 @@ public class Script_baseWeapon : MonoBehaviour
         if (canAttack)
         {
             PlayAnimation();
-            fcooldown = timeBetweenAttack;
+            fcooldown = timeBetweenAttack + 0.3f;
             canAttack = false;
             //Debug.LogWarning("parent: " + gameObject.transform.parent.name);
             return true;
@@ -88,43 +89,52 @@ public class Script_baseWeapon : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (!gameObject.transform.parent.name.Contains("NPC_Enemy"))
+        if (gameObject.tag != "Projectile")
         {
-            if (other.gameObject.name.Contains("NPC_Enemy") || other.gameObject.name.Contains("training_dummy"))
+            // Melee
+
+            // Player-side 
+            if (!gameObject.transform.parent.name.Contains("NPC_Enemy"))
             {
-                //Debug.LogWarning("Parent is NOT enemy");
-                if (!isThrown)
+                if (other.gameObject.name.Contains("NPC_Enemy") || other.gameObject.name.Contains("training_dummy"))
                 {
                     other.GetComponent<Script_baseHealth>().TakeDamage(iDamage);
+                    if (other.GetComponent<Script_baseHealth>().InvincTimer <= 0.0f)
+                    {
+                        other.GetComponent<Script_baseHealth>().InvincTimer = timeBetweenAttack * 0.9f;
+                    }
+                }
+            }
+            else
+            {
+                if (other.gameObject.name == "FirstPersonController")
+                {
+                    Debug.LogWarning("Weapon from Enemy Hits Player");
+                    other.GetComponent<Script_baseHealth>().TakeDamage(iDamage / 2);
                     if (other.GetComponent<Script_baseHealth>().InvincTimer <= 0.0f)
                     {
                         other.GetComponent<Script_baseHealth>().InvincTimer = timeBetweenAttack;
                     }
                 }
-                else
+            }
+        } 
+        else
+        {
+            // Shooting
+            if (isThrown)         //collision with environment
+            {
+                if (other.gameObject.name.Contains("NPC_Enemy") || other.gameObject.name.Contains("training_dummy"))
                 {
                     other.GetComponent<Script_baseHealth>().TakeDamage((int)dmgVelocity);
                     Destroy(gameObject);
                 }
-            }
-        }
-        else
-        {
-            if (other.gameObject.name == "FirstPersonController")
-            {
-                Debug.LogWarning("Weapon from Enemy Hits Player");
-                other.GetComponent<Script_baseHealth>().TakeDamage(iDamage/2,gameObject);
-                if (other.GetComponent<Script_baseHealth>().InvincTimer <= 0.0f)
+                else if (other.gameObject.tag == "Untagged")
                 {
-                    other.GetComponent<Script_baseHealth>().InvincTimer = timeBetweenAttack;
+                    // projectile do thing to untagged surfaces, rn its nothing
+                    Destroy(gameObject);
                 }
             }
-        }
-        if (isThrown && other.gameObject.tag == "Untagged")         //collision with environment
-        {
-            Destroy(gameObject);
-        }
-        
+        }        
     }
 
     public void OnTriggerExit(Collider other)
