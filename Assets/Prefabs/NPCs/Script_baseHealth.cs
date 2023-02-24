@@ -18,7 +18,7 @@ public class Script_baseHealth : MonoBehaviour
 
     public GameObject damageTextPrefab;
 
-
+    public GameObject lastHitEntity;
 
     // Start is called before the first frame update
     void Start()
@@ -48,17 +48,15 @@ public class Script_baseHealth : MonoBehaviour
             }
             else FloatingText(text, Color.red);
         }
-
-        if (IsDummy)
-        {
-        }
-
     }
 
     public void TakeDamage(int _damage, GameObject selfPTR)
     {
         TakeDamage(_damage);
         //indicator code here
+
+        //last hit code here
+        lastHitEntity = selfPTR;
     }
 
     public void Healing(int _heal)
