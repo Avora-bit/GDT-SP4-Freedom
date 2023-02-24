@@ -127,18 +127,6 @@ public class Script_baseWeapon : MonoBehaviour
         
     }
 
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.name.Contains("NPC_Enemy") || other.gameObject.name.Contains("training_dummy"))
-        {
-            Debug.Log("Weapon left Enemy Hitbox");
-        }
-        if (!gameObject.transform.parent.name.Contains("NPC_Enemy") && other.gameObject.name == "FirstPersonController")
-        {
-            Debug.LogWarning("Enemy Weapon Left Player Hitbox");
-        }
-    }
-
     public bool Throw(Camera rayVector)
     {
         return false;

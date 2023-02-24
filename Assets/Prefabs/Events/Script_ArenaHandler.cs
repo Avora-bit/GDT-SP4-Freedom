@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -68,36 +69,40 @@ public class Script_ArenaHandler : MonoBehaviour
         //npc spawning
         if (time_Offset > 0) time_Offset -= Time.deltaTime;
         else time_Offset = 0;
-        
-        if (TimeInstance.seconds == 0 && time_Offset <= 0)
+
+        if (TimeInstance.seconds == 1 && time_Offset <= 0)
         {
             time_Offset = 5f;
             int waveCount = numEnemyPerWave.Length - TimeInstance.minutes;          //inverting time into wave count
-            for (int i = 0; i < numEnemyPerWave[waveCount]; i++)
-            {
-                //spawn enemy on wall
-                GameObject NPCclone = Instantiate(prefab_NPC, gameObject.transform.position, Quaternion.identity);
-                NPCclone.gameObject.GetComponent<Script_baseAI>().enabled = true;
-                NPCclone.gameObject.GetComponent<Script_baseFSM>().enabled = true;
-                //NPCclone.transform.parent = null;
-                int gateDirection = Random.Range(0,3);
-                int randXOffset = 0, randZOffset = 0;
-                if (gateDirection == 0) randXOffset = 55;
-                else if (gateDirection == 1) randXOffset = -55;
-                else if (gateDirection == 2) randZOffset = 55;
-                else if (gateDirection == 3) randZOffset = -55;
-                NPCclone.GetComponent<NavMeshAgent>().Warp(new Vector3(gameObject.transform.position.x + randXOffset, 16f, gameObject.transform.position.z + randZOffset));
-            }
+            //Debug.Log("Num Ene: " + numEnemyPerWave[waveCount]);
+
             //last wave and boss is not spawned
-            if ((waveCount == numEnemyPerWave.Length) && !spawnedBoss)
+            if (numEnemyPerWave.Length == waveCount && bossPtr == null && !spawnedBoss)
             {
                 spawnedBoss = true;
-                Debug.Log("spawning Boss");
 
-                //instantiate boss at pos
-                bossPtr = Instantiate(prefab_Boss, gameObject.transform);
+                bossPtr = Instantiate(prefab_Boss, gameObject.transform.position, Quaternion.identity);
+                bossPtr.gameObject.GetComponent<Script_baseAI>().enabled = true;
+                bossPtr.gameObject.GetComponent<Script_baseFSM>().enabled = true;
+                bossPtr.GetComponent<NavMeshAgent>().Warp(new Vector3(gameObject.transform.position.x, 17f, gameObject.transform.position.z - 55));     //spawn boss at gate
             }
-            
+            Debug.Log("length of Number Per Wave: " + numEnemyPerWave.Length + " / Wave Count: " + waveCount + " / IsSpawnedBoss: " + spawnedBoss + " / bossPtr: " + bossPtr);
+            if (!spawnedBoss)
+            {
+                for (int i = 0; i < numEnemyPerWave[waveCount]; i++)
+                {
+                    GameObject NPCclone = Instantiate(prefab_NPC, gameObject.transform.position, Quaternion.identity);
+                    NPCclone.gameObject.GetComponent<Script_baseAI>().enabled = true;
+                    NPCclone.gameObject.GetComponent<Script_baseFSM>().enabled = true;
+                    int gateDirection = Random.Range(0, 3);
+                    int randXOffset = 0, randZOffset = 0;
+                    if (gateDirection == 0) randXOffset = 55;
+                    else if (gateDirection == 1) randXOffset = -55;
+                    else if (gateDirection == 2) randZOffset = 55;
+                    else if (gateDirection == 3) randZOffset = -55;
+                    NPCclone.GetComponent<NavMeshAgent>().Warp(new Vector3(gameObject.transform.position.x + randXOffset, 16f, gameObject.transform.position.z + randZOffset));
+                }
+            }
         }
     }
 

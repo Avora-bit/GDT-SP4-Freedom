@@ -34,7 +34,6 @@ public class Script_baseAI : MonoBehaviour
         garbage = GameObject.Find("Garbage Container").transform;
         agent = GetComponent<NavMeshAgent>();
         FSMScript = GetComponent<Script_baseFSM>();
-        
     }
 
     private void Update()
@@ -95,6 +94,11 @@ public class Script_baseAI : MonoBehaviour
             FSMScript.currentFSM = Script_baseFSM.FSM.ATTACK;
             transform.LookAt(player);
             gameObject.transform.GetChild(0).gameObject.GetComponent<Script_baseWeapon>().Attack();
+
+            if (gameObject.transform.GetChild(1).gameObject.GetComponent<Script_baseWeapon>() != null)
+            {
+                gameObject.transform.GetChild(1).gameObject.GetComponent<Script_baseWeapon>().Attack();
+            }
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
