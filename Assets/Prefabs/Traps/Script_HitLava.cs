@@ -57,7 +57,7 @@ public class Script_HitLava : MonoBehaviour
         }
         if (canDamage)
         {
-            other.gameObject.GetComponent<Script_baseHealth>().TakeDamage(10);
+            other.gameObject.GetComponent<Script_baseHealth>().TakeDamage(10,gameObject);
             canDamage = false;
         }
     }

@@ -28,9 +28,12 @@ public class Script_Endscene_get : MonoBehaviour
             pos.x = 1.2f * (i % 4);
             //z = i / 4 + 1;
             pos.z = 3 * (i / 4);
-            currentgrave = i;
             GameObject newgrave = Instantiate(grave, pos, rotation, gameObject.transform);
             newgrave.GetComponent<Script_Grave>().ID = i+1;
+            if (i == graveamount-1)
+            {
+                newgrave.gameObject.transform.GetChild(3).gameObject.SetActive(true);
+            }
         }
     }
 

@@ -35,10 +35,13 @@ public class Script_Endscene_Stats : MonoBehaviour
                     break;
                 case 4: arenaname = "Castle";
                     break;
-                case 0: arenaname = "how";
+                case 0: arenaname = "how are you dying in the hub";
                     break;     
             }
             causeofdeath = fpc.lasthitfrom;
+            if (causeofdeath.Contains("Trap_Spikes")) causeofdeath = "Spike Trap";
+            if (causeofdeath.Contains("Lava")) causeofdeath = "Lava Pit";
+            if (causeofdeath.Contains("Fire")) causeofdeath = "Fire Geyser";
             generateStats();
             generated = true;
         }
