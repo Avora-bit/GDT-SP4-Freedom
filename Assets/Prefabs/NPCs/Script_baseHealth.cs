@@ -57,6 +57,9 @@ public class Script_baseHealth : MonoBehaviour
 
         //last hit code here
         lastHitEntity = selfPTR;
+        string lasthitfrom = lastHitEntity.name;
+        Debug.LogWarning(lasthitfrom);
+        gameObject.GetComponent<FirstPersonController>().lasthitfrom = lasthitfrom;
     }
 
     public void Healing(int _heal)

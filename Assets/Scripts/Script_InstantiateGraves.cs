@@ -5,14 +5,14 @@ using UnityEngine;
 public class Script_InstantiateGraves : MonoBehaviour
 {
     //Script_Endscene_get statgetter;
-    GameObject grave;
+    [SerializeField] GameObject grave;
     public int graveamount;
     private Vector3 pos;
     private Quaternion rotation;
     // Start is called before the first frame update
     void Start()
     {
-        pos.y = -1.2f;
+        pos.y = -6f;
         rotation.x = 0; rotation.y = 0; rotation.z = 0;
         graveamount = PlayerPrefs.GetInt("playamount");
         for(int i = 1; i < graveamount; i++)
@@ -20,7 +20,7 @@ public class Script_InstantiateGraves : MonoBehaviour
             pos.x = 1.2f * (i % 4);
             //z = i / 4 + 1;
             pos.z = 3 * (i / 4);
-            Instantiate(grave, pos, rotation);
+            Instantiate(grave, pos, rotation, gameObject.transform);
             
         }
 

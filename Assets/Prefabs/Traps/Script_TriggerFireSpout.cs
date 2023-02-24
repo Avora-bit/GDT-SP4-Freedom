@@ -83,7 +83,7 @@ public class Script_TriggerFireSpout : MonoBehaviour
         if (Entity != null && isActive && fDamageCooldown == 0)
         {
             Debug.Log(Entity.getHealth());
-            Entity.TakeDamage(iDamage);
+            Entity.TakeDamage(iDamage,gameObject);
             fDamageCooldown = fDamageTick;
             source.Play();
         }

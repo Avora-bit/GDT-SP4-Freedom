@@ -36,7 +36,7 @@ public class Script_TriggerSpikes : MonoBehaviour
         Script_baseHealth Entity = other.GetComponent<Script_baseHealth>();
         if (Entity != null && fCurrentCooldown <= 0)
         {
-            Entity.TakeDamage(iDamage);
+            Entity.TakeDamage(iDamage,gameObject);
             Debug.Log("Spiked");
             fCurrentCooldown = fCooldown;
             Debug.Log(Entity.getHealth());

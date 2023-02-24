@@ -65,6 +65,9 @@ public class FirstPersonController : MonoBehaviour
 
     private Script_CreateDirectionalIndicator DirectionalIndicator;
 
+
+    public int tpcount = 0;
+    public string lasthitfrom = "nothing";
     #region Camera Movement Variables
 
     public Camera playerCamera;

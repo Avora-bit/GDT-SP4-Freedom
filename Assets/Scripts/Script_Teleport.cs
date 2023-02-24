@@ -29,6 +29,7 @@ public class Script_Teleport : MonoBehaviour
                 fpc.transform.position = TeleportPos;
                 teleported = true;
                 cooldownTimer = 2f;
+                fpc.tpcount++;
             }
         }
     }
