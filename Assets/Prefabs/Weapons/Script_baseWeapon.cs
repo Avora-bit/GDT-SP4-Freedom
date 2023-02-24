@@ -139,13 +139,20 @@ public class Script_baseWeapon : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name.Contains("NPC_Enemy") || other.gameObject.name.Contains("training_dummy"))
+        if (gameObject.tag != "Projectile")
         {
-            Debug.Log("Weapon left Enemy Hitbox");
+            if (other.gameObject.name.Contains("NPC_Enemy") || other.gameObject.name.Contains("training_dummy"))
+            {
+                Debug.Log("Weapon left Enemy Hitbox");
+            }
+            if (!gameObject.transform.parent.name.Contains("NPC_Enemy") && other.gameObject.name == "FirstPersonController")
+            {
+                Debug.LogWarning("Enemy Weapon Left Player Hitbox");
+            }
         }
-        if (!gameObject.transform.parent.name.Contains("NPC_Enemy") && other.gameObject.name == "FirstPersonController")
+        else
         {
-            Debug.LogWarning("Enemy Weapon Left Player Hitbox");
+            Debug.Log("Projectile left" + other.gameObject.name);
         }
     }
 
