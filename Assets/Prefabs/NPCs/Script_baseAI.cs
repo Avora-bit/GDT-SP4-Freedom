@@ -46,7 +46,19 @@ public class Script_baseAI : MonoBehaviour
 
             if (!playerInSightRange && !playerInAttackRange && FSMScript.OnVantage == false) Patroling();
             if (playerInSightRange && !playerInAttackRange && FSMScript.OnVantage == false) ChasePlayer();
-            if (playerInAttackRange && playerInSightRange && FSMScript.OnVantage == false) AttackPlayer();
+
+            if (playerInAttackRange && playerInSightRange)
+            {
+                int random = Random.Range(0, 2);
+                if (random == 1)
+                {
+                    AttackPlayer();
+                }
+                else
+                {
+                    Retreat();
+                }
+            }
         }
     }
 
@@ -80,6 +92,24 @@ public class Script_baseAI : MonoBehaviour
     {
         FSMScript.currentFSM = Script_baseFSM.FSM.MOVE;
         agent.SetDestination(player.position);
+    }
+
+    // AI finds a alternate route to flank the player
+    private void EncirclePlayer()
+    {
+
+    }
+
+    // AI retreats/backs up and not engage the player instead of attacking using the same attack cooldown
+    private void Retreat()
+    {
+        if (!alreadyAttacked)
+        {
+            FSMScript.currentFSM = Script_baseFSM.FSM.RETREAT;
+            agent.SetDestination(transform.position - transform.forward);
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
     }
 
     // For Archers if they are on vantage point, their isStrafing variable is off and they stand on the vantage point and shoot, else when they take damage they move off the tower
