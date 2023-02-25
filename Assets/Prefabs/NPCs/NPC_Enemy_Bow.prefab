@@ -849,6 +849,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 7645224530029470391, guid: c223b5254ae0cec4180d5af774d0d2b3, type: 3}
+      propertyPath: iDamage
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c223b5254ae0cec4180d5af774d0d2b3, type: 3}
 --- !u!4 &1876995055964548666 stripped

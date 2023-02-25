@@ -113,7 +113,7 @@ public class Script_baseWeapon : MonoBehaviour
                     other.GetComponent<Script_baseHealth>().TakeDamage(iDamage / 2, gameObject);
                     if (other.GetComponent<Script_baseHealth>().InvincTimer <= 0.0f)
                     {
-                        other.GetComponent<Script_baseHealth>().InvincTimer = timeBetweenAttack;
+                        other.GetComponent<Script_baseHealth>().InvincTimer = timeBetweenAttack * 1.1f;
                     }
                 }
             }

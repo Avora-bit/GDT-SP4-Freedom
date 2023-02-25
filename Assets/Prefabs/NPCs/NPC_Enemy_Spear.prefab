@@ -715,6 +715,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1618176729946809537, guid: 6d6964f787699194b9af6583ce7ef956, type: 3}
+      propertyPath: iDamage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1618176729946809537, guid: 6d6964f787699194b9af6583ce7ef956, type: 3}
+      propertyPath: fAttackSpeed
+      value: 1.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6009013226255080437, guid: 6d6964f787699194b9af6583ce7ef956, type: 3}
       propertyPath: m_Constraints
       value: 14
