@@ -61,6 +61,7 @@ public class FirstPersonController : MonoBehaviour
 
     public AudioClip hitsound;
     public AudioClip deadsound;
+    public AudioClip sizzle;
     private AudioSource audiosource;
 
     private Script_CreateDirectionalIndicator DirectionalIndicator;
@@ -335,7 +336,12 @@ public class FirstPersonController : MonoBehaviour
             if (lastplayerhp > playerhp)
             {
                 anim.SetBool("hit", true);
-                audiosource.PlayOneShot(hitsound);
+
+                if (lasthitfrom.Contains("Lava") || lasthitfrom.Contains("Fire"))
+                {
+                    audiosource.PlayOneShot(sizzle);
+                }
+                else audiosource.PlayOneShot(hitsound);
                 if (playerhp <= 0)
                 {
                     audiosource.PlayOneShot(deadsound);
@@ -1155,6 +1161,7 @@ public class FirstPersonControllerEditor : Editor
 
         fpc.hitsound = (AudioClip)EditorGUILayout.ObjectField(new GUIContent("hit sound", "ow"), fpc.hitsound, typeof(AudioClip), true);
         fpc.deadsound = (AudioClip)EditorGUILayout.ObjectField(new GUIContent("death sound", "metal"), fpc.deadsound, typeof(AudioClip), true);
+        fpc.sizzle = (AudioClip)EditorGUILayout.ObjectField(new GUIContent("burn sound", "fire"), fpc.sizzle, typeof(AudioClip), true);
         #endregion
 
         //Sets any changes from the prefab
