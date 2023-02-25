@@ -1035,6 +1035,8 @@ MonoBehaviour:
   hitsound: {fileID: 8300000, guid: 5dc181965a0d78b4080f875073af3184, type: 3}
   deadsound: {fileID: 8300000, guid: aea4fe3cd7ad23340bc497325913861b, type: 3}
   sizzle: {fileID: 8300000, guid: 1e844c3476b710d4e895964281f321f8, type: 3}
+  whoosh: {fileID: 8300000, guid: 3afb8696054a7344bb85aba71b0ec6f6, type: 3}
+  bowsound: {fileID: 8300000, guid: 35957e7df4a03fd41af7f1d36330d1ad, type: 3}
   tpcount: 0
   lasthitfrom: nothing
   playerCamera: {fileID: 4459864851310106426}

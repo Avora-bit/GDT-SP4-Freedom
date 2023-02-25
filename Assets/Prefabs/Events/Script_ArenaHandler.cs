@@ -34,6 +34,7 @@ public class Script_ArenaHandler : MonoBehaviour
     public bool hasArcherTower = false;
     public GameObject[] archerTowerPos;
 
+  
     //private int countNPC;                       //if 0, then all NPC dead, level ends
     // Start is called before the first frame update
     private void Awake()

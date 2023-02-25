@@ -6,7 +6,7 @@ public class Script_Time : MonoBehaviour
     public float timeRemaining = 0f;        //in seconds
     private bool timeActive = false;
 
-    public AudioSource audioSource;
+    private AudioSource audioSource;
     private bool hasRung = false;
 
     public TextMeshPro[] timeText;

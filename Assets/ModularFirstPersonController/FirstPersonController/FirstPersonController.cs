@@ -62,6 +62,8 @@ public class FirstPersonController : MonoBehaviour
     public AudioClip hitsound;
     public AudioClip deadsound;
     public AudioClip sizzle;
+    public AudioClip whoosh;
+    public AudioClip bowsound;
     private AudioSource audiosource;
 
     private Script_CreateDirectionalIndicator DirectionalIndicator;
@@ -443,6 +445,7 @@ public class FirstPersonController : MonoBehaviour
                     if (currentWeapon == 2)
                     {
                         arrows--;
+                        audiosource.PlayOneShot(bowsound);
                     }
                     isZoomed = false;
                     throwForce = minThrowForce;
@@ -580,7 +583,9 @@ public class FirstPersonController : MonoBehaviour
                 if (currentWeapon != 2)
                 {
                     WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<MeshCollider>().enabled = true;
+                    audiosource.PlayOneShot(whoosh);
                 }
+
                 stamina -= WeaponHand.transform.GetChild(currentWeapon).gameObject.GetComponent<Script_baseWeapon>().getStaminaCost();
             }
             else
@@ -1162,6 +1167,8 @@ public class FirstPersonControllerEditor : Editor
         fpc.hitsound = (AudioClip)EditorGUILayout.ObjectField(new GUIContent("hit sound", "ow"), fpc.hitsound, typeof(AudioClip), true);
         fpc.deadsound = (AudioClip)EditorGUILayout.ObjectField(new GUIContent("death sound", "metal"), fpc.deadsound, typeof(AudioClip), true);
         fpc.sizzle = (AudioClip)EditorGUILayout.ObjectField(new GUIContent("burn sound", "fire"), fpc.sizzle, typeof(AudioClip), true);
+        fpc.whoosh = (AudioClip)EditorGUILayout.ObjectField(new GUIContent("attack sound", "whoosh"), fpc.whoosh, typeof(AudioClip), true);
+        fpc.bowsound = (AudioClip)EditorGUILayout.ObjectField(new GUIContent("bow sound", "bow"), fpc.bowsound, typeof(AudioClip), true);
         #endregion
 
         //Sets any changes from the prefab
