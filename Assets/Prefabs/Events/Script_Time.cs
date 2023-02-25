@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Script_Time : MonoBehaviour
 {
-    private float timeRemaining = 0f;        //in seconds
+    public float timeRemaining = 0f;        //in seconds
     private bool timeActive = false;
 
     public AudioSource audioSource;

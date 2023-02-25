@@ -76,7 +76,7 @@ public class Script_ArenaHandler : MonoBehaviour
         if (time_Offset > 0) time_Offset -= Time.deltaTime;
         else time_Offset = 0;
 
-        if (TimeInstance.seconds == 1 && time_Offset <= 0)
+        if (TimeInstance.timeRemaining % waveTimer == 1 && time_Offset <= 0)
         {
             time_Offset = 5f;
             int waveCount = numEnemyPerWave.Length - TimeInstance.minutes;          //inverting time into wave count
