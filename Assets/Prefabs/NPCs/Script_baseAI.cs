@@ -50,13 +50,13 @@ public class Script_baseAI : MonoBehaviour
             if (playerInAttackRange && playerInSightRange)
             {
                 int random = Random.Range(0, 2);
-                if (random == 1)
+                if (random == 1 && FSMScript.OnVantage == false)
                 {
-                    AttackPlayer();
+                    Retreat();
                 }
                 else
                 {
-                    Retreat();
+                    AttackPlayer();
                 }
             }
         }
@@ -159,6 +159,11 @@ public class Script_baseAI : MonoBehaviour
                 {
                     // Archer stands in place
                     agent.SetDestination(transform.position);
+                    int random = Random.Range(0, 5);
+                    if (random == 1)
+                    {
+                        FSMScript.OnVantage = false;
+                    }
                 }
                 Quaternion rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z);
                 ///Attack code here

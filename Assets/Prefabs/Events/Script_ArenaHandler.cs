@@ -139,6 +139,7 @@ public class Script_ArenaHandler : MonoBehaviour
             GameObject NPCclone = Instantiate(prefab_NPC_BOW, gameObject.transform.position, Quaternion.identity);
             NPCclone.gameObject.GetComponent<Script_baseAI>().enabled = true;
             NPCclone.gameObject.GetComponent<Script_baseFSM>().enabled = true;
+            NPCclone.gameObject.GetComponent<Script_baseFSM>().OnVantage = true;
             NPCclone.gameObject.GetComponent<Script_baseFSM>().ParentArcherTower = archerTowerPos[i];
             NPCclone.GetComponent<NavMeshAgent>().Warp(new Vector3(archerTowerPos[i].transform.position.x, 
                                                                     archerTowerPos[i].transform.position.y + 6, 
