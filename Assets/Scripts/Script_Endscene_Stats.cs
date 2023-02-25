@@ -42,6 +42,7 @@ public class Script_Endscene_Stats : MonoBehaviour
             if (causeofdeath.Contains("Trap_Spikes")) causeofdeath = "Spike Trap";
             if (causeofdeath.Contains("Lava")) causeofdeath = "Lava Pit";
             if (causeofdeath.Contains("Fire")) causeofdeath = "Fire Geyser";
+            if (causeofdeath.Contains("Arrow")) causeofdeath = "Arrow";
             generateStats();
             generated = true;
         }

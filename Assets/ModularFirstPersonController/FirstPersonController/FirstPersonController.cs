@@ -793,31 +793,31 @@ public class FirstPersonController : MonoBehaviour
         if (hit.collider.gameObject.name != WeaponHand.transform.GetChild(currentWeapon).gameObject.name)
         {
             int WeaponToHold = -1;
-            if (hit.collider.gameObject.name == "Shortsword")
+            if (hit.collider.gameObject.name.Contains("Shortsword"))
             {
                 WeaponToHold = 0;
             }
-            else if (hit.collider.gameObject.name == "Tomahawk")
+            else if (hit.collider.gameObject.name.Contains("Tomahawk"))
             {
                 WeaponToHold = 1;
             }
-            else if (hit.collider.gameObject.name == "Bow")
+            else if (hit.collider.gameObject.name.Contains("Bow"))
             {
                 WeaponToHold = 2;
             }
-            else if (hit.collider.gameObject.name == "Mace")
+            else if (hit.collider.gameObject.name.Contains("Mace"))
             {
                 WeaponToHold = 3;
             }
-            else if (hit.collider.gameObject.name == "Spear")
+            else if (hit.collider.gameObject.name.Contains("Spear"))
             {
                 WeaponToHold = 4;
             }
-            else if (hit.collider.gameObject.name == "Greatsword")
+            else if (hit.collider.gameObject.name.Contains("Greatsword"))
             {
                 WeaponToHold = 5;
             }
-            else if (hit.collider.gameObject.name == "Shield")
+            else if (hit.collider.gameObject.name.Contains("Shield"))
             {
                 WeaponToHold = 6;
             }

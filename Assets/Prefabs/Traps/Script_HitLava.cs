@@ -46,20 +46,26 @@ public class Script_HitLava : MonoBehaviour
         if (other.gameObject.name == "FirstPersonController")
         {
             Debug.Log("Player Touch Lava " + LavaDamageTimer);
+            if (canDamage)
+            {
+                other.gameObject.GetComponent<Script_baseHealth>().TakeDamage(10, gameObject);
+                canDamage = false;
+            }
         }
         else if (other.gameObject.name.Contains("NPC_Enemy"))
         {
-            Debug.Log("Enemy Touch Water");
+            Debug.Log("Enemy Touch Lava");
         }
         else if (other.gameObject.tag == "Weapon")
         {
             Destroy(other.gameObject);
         }
-        if (canDamage)
-        {
-            other.gameObject.GetComponent<Script_baseHealth>().TakeDamage(10,gameObject);
-            canDamage = false;
-        }
+        else { }
+        //if (canDamage)
+        //{
+        //    other.gameObject.GetComponent<Script_baseHealth>().TakeDamage(10,gameObject);
+        //    canDamage = false;
+        //}
     }
 
     private void OnTriggerExit(Collider other)

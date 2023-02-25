@@ -130,11 +130,14 @@ public class Script_baseAI : MonoBehaviour
                     // Archer stands in place
                     agent.SetDestination(transform.position);
                 }
+                Quaternion rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z);
                 ///Attack code here
-                Rigidbody rb = Instantiate(projectile, transform.position + (transform.forward * 2) + (transform.up * 0.3f), Quaternion.identity,garbage).GetComponent<Rigidbody>();
+                Rigidbody rb = Instantiate(projectile, transform.position + (transform.forward * 2) + (transform.up * 0.3f), Quaternion.Euler(transform.forward),garbage).GetComponent<Rigidbody>();
                 //Debug.Log(transform.position);
+                rb.rotation = (Quaternion.Euler(transform.forward));
                 rb.AddForce(transform.forward * 32f, ForceMode.Impulse); // forward force of projectile
                 rb.AddForce(transform.up * 8f, ForceMode.Impulse); // upward force of projectile
+    
                 ///End of attack code
 
                 alreadyAttacked = true;
