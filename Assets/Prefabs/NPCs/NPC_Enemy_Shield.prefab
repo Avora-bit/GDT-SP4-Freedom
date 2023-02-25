@@ -299,7 +299,7 @@ MonoBehaviour:
   IsStunned: 0
   ParentArcherTower: {fileID: 0}
   garbage: {fileID: 0}
-  dropRate: 25
+  dropRate: 50
 --- !u!114 &451876202909151572
 MonoBehaviour:
   m_ObjectHideFlags: 0

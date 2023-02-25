@@ -22,6 +22,7 @@ public class EnemyProjectileCollision : MonoBehaviour
         {
             other.GetComponent<Script_baseHealth>().TakeDamage(5,gameObject);
             Debug.LogWarning("hit: " + other.GetComponent<Script_baseHealth>().selfHealth);
+            Destroy(transform.parent.gameObject);
         }
         Destroy(transform.parent.gameObject);
     }
