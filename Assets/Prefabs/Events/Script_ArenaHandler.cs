@@ -26,6 +26,7 @@ public class Script_ArenaHandler : MonoBehaviour
 
     public int[] numEnemyPerWave;
 
+    public bool toSpawnBoss = false;
     public GameObject prefab_Boss;
     private GameObject bossPtr = null;          //if dead, then level ends
 
@@ -61,14 +62,38 @@ public class Script_ArenaHandler : MonoBehaviour
                 spawnedBoss = false;
             }
 
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("NPC_Enemy");
+
             //if timer is done and boss is dead
-            if (!TimeInstance.getState() && spawnedBoss && bossPtr != null)
+            if (!TimeInstance.getState())
             {
-                TeleportEnd.gameObject.SetActive(true);
+                if (toSpawnBoss && spawnedBoss && bossPtr != null && enemies.Length == 0)        // for boss check
+                {
+                    TeleportEnd.gameObject.SetActive(true);
+                }
+                else if (!toSpawnBoss && enemies.Length == 0)                                    // for no boss
+                {
+                    TeleportEnd.gameObject.SetActive(true);
+                }
+                else
+                {
+                    //null
+                }
             }
             else
             {
-                TeleportEnd.gameObject.SetActive(false);
+                if (toSpawnBoss && spawnedBoss && bossPtr != null && enemies.Length == 0)        // for boss check
+                {
+                    TeleportEnd.gameObject.SetActive(false);
+                }
+                else if (!toSpawnBoss && enemies.Length == 0)                                    // for no boss
+                {
+                    TeleportEnd.gameObject.SetActive(true);
+                }
+                else
+                {
+                    //null
+                }
             }
         }
 
@@ -83,19 +108,24 @@ public class Script_ArenaHandler : MonoBehaviour
             //Debug.Log("Num Ene: " + numEnemyPerWave[waveCount]);
 
             //last wave and boss is not spawned
-            if (numEnemyPerWave.Length == waveCount && bossPtr == null && !spawnedBoss)
+            if (toSpawnBoss)  //check if the boss is meant to be spawned
             {
-                spawnedBoss = true;
+                if (numEnemyPerWave.Length == waveCount && bossPtr == null && !spawnedBoss)
+                {
+                    spawnedBoss = true;
 
-                bossPtr = Instantiate(prefab_Boss, gameObject.transform.position, Quaternion.identity);
-                bossPtr.gameObject.GetComponent<Script_baseAI>().enabled = true;
-                bossPtr.gameObject.GetComponent<Script_baseFSM>().enabled = true;
-                bossPtr.GetComponent<NavMeshAgent>().Warp(new Vector3(gameObject.transform.position.x, 17f, gameObject.transform.position.z - 55));     //spawn boss at gate
+                    bossPtr = Instantiate(prefab_Boss, gameObject.transform.position, Quaternion.identity);
+                    bossPtr.gameObject.GetComponent<Script_baseAI>().enabled = true;
+                    bossPtr.gameObject.GetComponent<Script_baseFSM>().enabled = true;
+                    bossPtr.GetComponent<NavMeshAgent>().Warp(new Vector3(gameObject.transform.position.x, 17f, gameObject.transform.position.z - 55));     //spawn boss at gate
 
-                if (hasArcherTower) {
-                    SpawnArcherOnTower();
+                    if (hasArcherTower)
+                    {
+                        SpawnArcherOnTower();
+                    }
                 }
             }
+            
             Debug.Log("length of Number Per Wave: " + numEnemyPerWave.Length + " / Wave Count: " + waveCount + " / IsSpawnedBoss: " + spawnedBoss + " / bossPtr: " + bossPtr);
             if (!spawnedBoss)
             {
