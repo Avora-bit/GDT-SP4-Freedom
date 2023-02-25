@@ -411,7 +411,7 @@ MonoBehaviour:
   IsStunned: 0
   ParentArcherTower: {fileID: 2506511521597342433, guid: a5fd43dabeece144cac09031ef1bd3b4, type: 3}
   garbage: {fileID: 0}
-  dropRate: 25
+  dropRate: 100
 --- !u!114 &1535155599018897294
 MonoBehaviour:
   m_ObjectHideFlags: 0
