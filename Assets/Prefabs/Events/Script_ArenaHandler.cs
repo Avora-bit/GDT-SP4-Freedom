@@ -49,7 +49,7 @@ public class Script_ArenaHandler : MonoBehaviour
     {
         //teleporting in and out of arena and boss checking
         {
-            if (TeleportStart.teleported || Input.GetKeyDown("space"))               //entered arena
+            if (TeleportStart.teleported)               //entered arena
             {
                 TimeInstance.setTime(arenaTime);
                 spawnedBoss = false;

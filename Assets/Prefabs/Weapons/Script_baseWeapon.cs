@@ -17,6 +17,7 @@ public class Script_baseWeapon : MonoBehaviour
     private float fcooldown;
     private bool canAttack;
     public bool isThrown = false;
+    private bool toThrow = false;
 
     private float projectile_lifetime = 20f;
 
@@ -37,27 +38,34 @@ public class Script_baseWeapon : MonoBehaviour
         if (fcooldown <= 0f) canAttack = true;
         if (isThrown)
         {
-            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            gameObject.GetComponent<MeshCollider>().enabled = true;
-            gameObject.GetComponent<MeshCollider>().isTrigger = true;
-            gameObject.tag = "Projectile";
-            if (gameObject.GetComponent<Animator>() != null)
+            if (!toThrow)
             {
-                gameObject.GetComponent<Animator>().enabled = false;
-            }
+                gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                gameObject.GetComponent<MeshCollider>().enabled = true;
+                gameObject.GetComponent<MeshCollider>().isTrigger = true;
+                gameObject.tag = "Projectile";
+                if (gameObject.GetComponent<Animator>() != null)
+                {
+                    gameObject.GetComponent<Animator>().enabled = false;
+                }
 
+                if (gameObject.GetComponent<LineRenderer>() != null)
+                {
+                    gameObject.GetComponent<LineRenderer>().enabled = true;
+                }
+            }
             projectile_lifetime -= Time.deltaTime;
             if (projectile_lifetime <= 0f)
             {
                 Destroy(gameObject);
             }
-            transform.rotation = Quaternion.LookRotation(gameObject.GetComponent<Rigidbody>().velocity);
+            gameObject.GetComponent<Rigidbody>().MoveRotation(Quaternion.LookRotation(gameObject.GetComponent<Rigidbody>().velocity));
 
             //damage multiplier for velocity
             //theoritical max velocity is 100, 100 mass with 10,000 force
             //min velocity is 10, 100 mas with 1000 force
-            dmgVelocity = iDamage * (100 / gameObject.GetComponent<Rigidbody>().velocity.magnitude) * dmgMultiplier;
+            dmgVelocity = iDamage * (gameObject.GetComponent<Rigidbody>().velocity.magnitude/100) * dmgMultiplier;
         }
     }
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6136069501548657610}
   - component: {fileID: 5014604472120104760}
   - component: {fileID: 5576314463660552481}
-  - component: {fileID: 5019195909263153011}
+  - component: {fileID: 190583213462069476}
   m_Layer: 0
   m_Name: Sample Projectile
   m_TagString: Untagged
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f5e844023fea74b965ea037f0c1b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!96 &5019195909263153011
+--- !u!96 &190583213462069476
 TrailRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -85,7 +85,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 433dd043cafc3bc41a807966e10f3880, type: 2}
+  - {fileID: 2100000, guid: 4f948b36d1e80af408a9bce179b66ed7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,13 +109,13 @@ TrailRenderer:
   m_Time: 0.5
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.15652275
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -355,6 +355,7 @@ PrefabInstance:
     - {fileID: -7209868870912848018, guid: 45804eb2722b83845adbcf2d72da12dd, type: 3}
     - {fileID: 0}
     - {fileID: 2511442736552357615, guid: 45804eb2722b83845adbcf2d72da12dd, type: 3}
+    - {fileID: -2671604768192797512, guid: 45804eb2722b83845adbcf2d72da12dd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 45804eb2722b83845adbcf2d72da12dd, type: 3}
 --- !u!4 &5307640108920929328 stripped
 Transform:
