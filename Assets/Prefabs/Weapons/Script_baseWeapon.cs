@@ -21,7 +21,7 @@ public class Script_baseWeapon : MonoBehaviour
 
     private float projectile_lifetime = 20f;
 
-    private float dmgMultiplier = 2f;
+    private float dmgMultiplier = 4f;
     private float dmgVelocity;
 
     public GameObject projectile;

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4749804021471125364}
   m_Layer: 0
   m_Name: NPC_Enemy_Sword
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   IsStunned: 0
   ParentArcherTower: {fileID: 0}
   garbage: {fileID: 0}
-  dropRate: 25
+  dropRate: 50
 --- !u!114 &4749804021471125364
 MonoBehaviour:
   m_ObjectHideFlags: 0

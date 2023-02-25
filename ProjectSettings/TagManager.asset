@@ -10,6 +10,7 @@ TagManager:
   - Trigger
   - Projectile
   - soundgib
+  - Enemy
   layers:
   - Default
   - TransparentFX
