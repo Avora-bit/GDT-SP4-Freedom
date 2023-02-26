@@ -117,7 +117,7 @@ public class Script_baseWeapon : MonoBehaviour
             {
                 if (other.gameObject.name == "FirstPersonController")
                 {
-                    Debug.LogWarning("Weapon from Enemy Hits Player");
+                    //Debug.LogWarning("Weapon from Enemy Hits Player");
                     other.GetComponent<Script_baseHealth>().TakeDamage(iDamage / 2, gameObject);
                     if (other.GetComponent<Script_baseHealth>().InvincTimer <= 0.0f)
                     {
@@ -157,26 +157,26 @@ public class Script_baseWeapon : MonoBehaviour
 
     public void StopEvent(string s)
     {
-        Debug.Log(s + " anim.length: " + anim.GetCurrentAnimatorStateInfo(0).length);
+        //Debug.Log(s + " anim.length: " + anim.GetCurrentAnimatorStateInfo(0).length);
         anim.ResetTrigger("Attack");
     }
     public void HasStarted()
     {
         anim.ResetTrigger("Return");
-        Debug.Log("Animation has started");
+        //Debug.Log("Animation has started");
         anim.ResetTrigger("Attack");
     }
 
     public void IsInMiddle()
     {
-        Debug.Log("Animation is in the middle");
+        //Debug.Log("Animation is in the middle");
     }
 
     public void Ended()
     {
         gameObject.GetComponent<MeshCollider>().isTrigger = false;
         gameObject.GetComponent<MeshCollider>().enabled = false;
-        Debug.Log("Animation has ended");
+        //Debug.Log("Animation has ended");
         anim.SetTrigger("Return");
     }
 }

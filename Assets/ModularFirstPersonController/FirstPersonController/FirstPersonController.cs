@@ -307,7 +307,7 @@ public class FirstPersonController : MonoBehaviour
         {
             foreach (Transform pickup in garbage)
             {
-                Debug.Log(pickup.gameObject);
+                //Debug.Log(pickup.gameObject);
                 Destroy(pickup.gameObject);
             }
             if (currentWeapon == 7)
@@ -767,7 +767,7 @@ public class FirstPersonController : MonoBehaviour
         if (Physics.Raycast(origin, direction, out RaycastHit hit, pickUpRange))
         {
             Debug.DrawRay(origin, direction * pickUpRange, Color.cyan);
-            Debug.Log("GameObject interacted: " + hit.collider.tag);
+            //Debug.Log("GameObject interacted: " + hit.collider.tag);
             canDelete = true;
             if (hit.collider.gameObject.tag == "Healing")
             {
