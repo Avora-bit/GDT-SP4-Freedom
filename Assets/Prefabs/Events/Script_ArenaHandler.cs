@@ -63,16 +63,16 @@ public class Script_ArenaHandler : MonoBehaviour
                 spawnedBoss = false;
             }
 
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("NPC_Enemy");
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-            //if timer is done and boss is dead
-            if (!TimeInstance.getState())
+            //if timer is done and all enemies are dead
+            if (!TimeInstance.getState() && enemies.Length == 0)
             {
-                if (toSpawnBoss && spawnedBoss && bossPtr != null && enemies.Length == 0)        // for boss check
+                if (!toSpawnBoss)                                    // for no boss
                 {
                     TeleportEnd.gameObject.SetActive(true);
                 }
-                else if (!toSpawnBoss && enemies.Length == 0)                                    // for no boss
+                else if (toSpawnBoss && spawnedBoss && bossPtr != null)        // for boss check
                 {
                     TeleportEnd.gameObject.SetActive(true);
                 }
@@ -83,18 +83,7 @@ public class Script_ArenaHandler : MonoBehaviour
             }
             else
             {
-                if (toSpawnBoss && spawnedBoss && bossPtr != null && enemies.Length == 0)        // for boss check
-                {
-                    TeleportEnd.gameObject.SetActive(false);
-                }
-                else if (!toSpawnBoss && enemies.Length == 0)                                    // for no boss
-                {
-                    TeleportEnd.gameObject.SetActive(true);
-                }
-                else
-                {
-                    //null
-                }
+                TeleportEnd.gameObject.SetActive(false);
             }
         }
 
@@ -102,7 +91,7 @@ public class Script_ArenaHandler : MonoBehaviour
         if (time_Offset > 0) time_Offset -= Time.deltaTime;
         else time_Offset = 0;
 
-        if (TimeInstance.timeRemaining % waveTimer == 1 && time_Offset <= 0)
+        if ((int)TimeInstance.timeRemaining % waveTimer == 0 && time_Offset <= 0)
         {
             time_Offset = 5f;
             int waveCount = numEnemyPerWave.Length - TimeInstance.minutes;          //inverting time into wave count

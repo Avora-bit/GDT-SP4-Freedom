@@ -24,7 +24,6 @@ public class Script_CreateDirectionalIndicator : MonoBehaviour
     public void createDamageIndicator(GameObject _target, bool _isObjective)
     {
         GameObject newArrow = Instantiate(arrowPrefab, gameObject.transform);
-        newArrow.transform.parent = gameObject.transform;
         newArrow.GetComponent<Script_UIDirectiionalIndicator>().setTarget(_target, _isObjective);
     }
 

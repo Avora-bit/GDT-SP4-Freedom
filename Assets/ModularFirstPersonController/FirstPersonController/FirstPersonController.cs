@@ -51,7 +51,7 @@ public class FirstPersonController : MonoBehaviour
     public bool tping;
 
     private float minThrowForce = 1000f, maxThrowForce = 10000f;
-    private float throwChargeRate = 1000f;
+    private float throwChargeRate = 2000f;
     private float throwForce;
 
     public bool IsInHub = false;
