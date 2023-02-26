@@ -772,7 +772,7 @@ public class FirstPersonController : MonoBehaviour
             if (hit.collider.gameObject.tag == "Healing")
             {
                 Debug.Log("Clicked on healing item");
-                health.Healing(15);
+                health.Healing(30);
             }
             else if (hit.collider.gameObject.tag == "Ammo")
             {
