@@ -91,10 +91,10 @@ public class Script_ArenaHandler : MonoBehaviour
         if (time_Offset > 0) time_Offset -= Time.deltaTime;
         else time_Offset = 0;
 
-        if ((int)TimeInstance.timeRemaining % waveTimer == 0 && time_Offset <= 0)
+        if ((int)TimeInstance.timeRemaining % waveTimer == 1 && time_Offset <= 0)
         {
             time_Offset = 5f;
-            int waveCount = numEnemyPerWave.Length - TimeInstance.minutes;          //inverting time into wave count
+            int waveCount = numEnemyPerWave.Length - (int)(TimeInstance.timeRemaining/waveTimer);          //inverting time into wave count
             //Debug.Log("Num Ene: " + numEnemyPerWave[waveCount]);
 
             //last wave and boss is not spawned

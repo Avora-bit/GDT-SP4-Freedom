@@ -2384,11 +2384,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[0]
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[1]
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[2]
@@ -2688,15 +2688,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[0]
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[1]
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[2]
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[3]
@@ -4723,7 +4723,7 @@ PrefabInstance:
       objectReference: {fileID: 1553998467788200286, guid: 71ea7f2f06d61d646aa2e8c6d79e569b, type: 3}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: toSpawnBoss
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: Teleport_TriggerEnd
@@ -4739,19 +4739,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[0]
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[1]
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[2]
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[3]
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[4]
@@ -5296,7 +5296,7 @@ PrefabInstance:
       objectReference: {fileID: 1553998467788200286, guid: 71ea7f2f06d61d646aa2e8c6d79e569b, type: 3}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: toSpawnBoss
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: isArcherTower
@@ -5356,23 +5356,23 @@ PrefabInstance:
       objectReference: {fileID: 641015469}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[0]
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[1]
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[2]
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[3]
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4429735721006612599, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: numEnemyPerWave.Array.data[4]
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7252011386018130248, guid: 39c059c06cacaab48b349de281045646, type: 3}
       propertyPath: m_Enabled
