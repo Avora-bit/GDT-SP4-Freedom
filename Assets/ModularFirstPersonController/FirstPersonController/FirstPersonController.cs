@@ -68,6 +68,7 @@ public class FirstPersonController : MonoBehaviour
 
     private Script_CreateDirectionalIndicator DirectionalIndicator;
 
+    public KeyCode ExitMenu = KeyCode.Escape;
 
     public int tpcount = 0;
     public string lasthitfrom = "nothing";
@@ -593,6 +594,12 @@ public class FirstPersonController : MonoBehaviour
                 //null
             }
         }
+
+        if (Input.GetKeyDown(ExitMenu))
+        {
+            Debug.Log("Going to Main Menu");
+            StartCoroutine(FadeToMenu("Scene_Menu"));
+        }
     }
 
     void FixedUpdate()
@@ -906,7 +913,13 @@ public class FirstPersonController : MonoBehaviour
         anim2.SetBool("fade", false);
         TPUI.gameObject.SetActive(false);
         yield return new WaitUntil(() => black.color.a == 255);
+    }
 
+    IEnumerator FadeToMenu(string sceneName)
+    {
+        anim2.SetBool("fade", true);
+        yield return new WaitUntil(() => black.color.a == 1);
+        SceneManager.LoadScene(sceneName);
     }
 }
 

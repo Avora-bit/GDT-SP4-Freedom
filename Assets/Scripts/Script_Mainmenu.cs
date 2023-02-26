@@ -13,7 +13,8 @@ public class Script_Mainmenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Update is called once per frame
@@ -28,6 +29,12 @@ public class Script_Mainmenu : MonoBehaviour
         PlayerPrefs.SetString("username",name);
         StartCoroutine(Fading("Scene_Battle"));
        // Debug.LogError("Loggin");
+    }
+
+    public void DoQuitGame()
+    {
+        Debug.Log("Clicked On quit game button");
+        Application.Quit();
     }
 
     IEnumerator Fading(string sceneName)
