@@ -364,7 +364,7 @@ NavMeshAgent:
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
@@ -409,6 +409,7 @@ MonoBehaviour:
   IsRanged: 1
   OnVantage: 0
   IsStunned: 0
+  IsFlanking: 0
   ParentArcherTower: {fileID: 2506511521597342433, guid: a5fd43dabeece144cac09031ef1bd3b4, type: 3}
   garbage: {fileID: 0}
   dropRate: 100
@@ -435,6 +436,10 @@ MonoBehaviour:
     m_Bits: 256
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
+  flankpointA: {x: 0, y: 0, z: 0}
+  flankpointB: {x: 0, y: 0, z: 0}
+  flankpointC: {x: 0, y: 0, z: 0}
+  iteration: 0
   timeBetweenAttacks: 2
   projectile: {fileID: 1900148654302723510, guid: 593ffa9acb7d6f245bf3a9375ed0a4cc, type: 3}
   sightRange: 65

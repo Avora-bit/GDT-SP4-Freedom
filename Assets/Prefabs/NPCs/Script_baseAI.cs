@@ -16,6 +16,14 @@ public class Script_baseAI : MonoBehaviour
     bool walkPointSet;
     public float walkPointRange;
 
+    public Vector3 flankpointA;
+    bool flankpointASet;
+    public Vector3 flankpointB;
+    bool flankpointBSet;
+    public Vector3 flankpointC;
+    bool flankpointCSet;
+    public int iteration = 0;
+
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
@@ -45,7 +53,8 @@ public class Script_baseAI : MonoBehaviour
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
             if (!playerInSightRange && !playerInAttackRange && FSMScript.OnVantage == false) Patroling();
-            if (playerInSightRange && !playerInAttackRange && FSMScript.OnVantage == false) ChasePlayer();
+            if (playerInSightRange && !playerInAttackRange && FSMScript.OnVantage == false && !FSMScript.IsFlanking) ChasePlayer();
+            if (playerInSightRange && !playerInAttackRange && FSMScript.OnVantage == false && FSMScript.IsFlanking) EncirclePlayer();
 
             if (playerInAttackRange && playerInSightRange)
             {
@@ -97,6 +106,47 @@ public class Script_baseAI : MonoBehaviour
     // AI finds a alternate route to flank the player
     private void EncirclePlayer()
     {
+        FSMScript.currentFSM = Script_baseFSM.FSM.ENCIRCLE;
+        // iteration int
+        iteration = 0;
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
+
+        // point nearest to enemy
+        flankpointA = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        if (Physics.Raycast(flankpointA, flankpointA - transform.position, 100.0f, whatIsGround) &&
+            !Physics.Raycast(flankpointA, player.transform.position - flankpointA, 100.0f, whatIsGround))
+            flankpointASet = true;
+        // point nearest to player
+        flankpointB = new Vector3(player.transform.position.x + randomX, player.transform.position.y, player.transform.position.z + randomZ);
+        if (!Physics.Raycast(flankpointB, flankpointB - transform.position, 100.0f, whatIsGround) &&
+            Physics.Raycast(flankpointB, player.transform.position - flankpointB, 100.0f, whatIsGround))
+            flankpointBSet = true;
+        // point in between the two points above
+        flankpointC = new Vector3(flankpointA.x - flankpointB.x, flankpointA.y - flankpointB.y, flankpointA.z - flankpointB.z);
+        if (Physics.Raycast(flankpointC, flankpointC - flankpointA, 100.0f, whatIsGround) &&
+            Physics.Raycast(flankpointC, flankpointC - flankpointB, 100.0f, whatIsGround) &&
+            !Physics.Raycast(flankpointC, flankpointC - transform.position, 100.0f, whatIsGround) &&
+            !Physics.Raycast(flankpointC, flankpointC - player.position, 100.0f, whatIsGround))
+            flankpointCSet = true;
+
+        // goes towards each waypoint to flank player
+
+        Vector3[] FlankArray = new[] { flankpointA, flankpointC, flankpointB, player.position };
+        var dist = Vector3.Distance(FlankArray[iteration], transform.position);
+
+        if (dist < 5)
+        {
+            for (int i = 0; i < FlankArray.Length; i++)
+            {
+                if (iteration < FlankArray.Length - 1)
+                {
+                    iteration++;
+                    agent.SetDestination(FlankArray[iteration]);
+                }
+            }
+        }
+
 
     }
 

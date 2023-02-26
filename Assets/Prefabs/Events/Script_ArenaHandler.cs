@@ -140,6 +140,8 @@ public class Script_ArenaHandler : MonoBehaviour
                     else if (gateDirection == 2) randZOffset = 55;
                     else if (gateDirection == 3) randZOffset = -55;
                     NPCclone.GetComponent<NavMeshAgent>().Warp(new Vector3(gameObject.transform.position.x + randXOffset, 16f, gameObject.transform.position.z + randZOffset));
+                    int random = Random.Range(0, 2);
+                    if (random == 1) NPCclone.gameObject.GetComponent<Script_baseFSM>().IsFlanking = true;
                 }
 
                 if (hasArcherTower)

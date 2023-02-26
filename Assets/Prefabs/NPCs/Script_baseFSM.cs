@@ -19,6 +19,7 @@ public class Script_baseFSM : MonoBehaviour
     public bool IsRanged; // boolean to check whether the enemy is a ranged type
     public bool OnVantage; // boolean to check whether the enemy is on the vantage point
     public bool IsStunned; // booleN to check whether the enemy is stunned or not
+    public bool IsFlanking;
     public GameObject ParentArcherTower;
     public Transform garbage;
 
